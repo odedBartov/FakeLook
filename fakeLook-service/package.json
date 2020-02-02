@@ -11,6 +11,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "gitignore": "^0.6.0",
     "mssql": "^6.0.1"
   }
 }
