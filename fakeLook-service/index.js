@@ -2,9 +2,8 @@ const express = require('express')
 const app = express()
 
 const authController = require('./authentication/authController')
-const postsController = require('./posts/postsController')
-const friendsController = require('./friends/friendsController')
-const socialController = require('./social/socialController')
+const postsController = require('./social/posts/postsController')
+const friendsController = require('./social/friends/friendsController')
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -22,8 +21,6 @@ app.use(function (req, res, next) {
  app.use('/posts', postsController)
 
  app.use('/friends', friendsController)
-
- app.use('/social', socialController)
 
 
 app.use((err, req, res, next) => {
