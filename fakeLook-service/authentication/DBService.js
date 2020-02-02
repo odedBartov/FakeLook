@@ -1,11 +1,12 @@
 const sql = require('mssql')
 
-const config = {
-  server: 'localhost',
-  database: 'UsersDB',
-  user: 'oded',
-  password: '1234'
-}
+const config = require('../credentials')
+//  {
+//   server: 'localhost',
+//   database: 'UsersDB',
+//   user: 'oded',
+//   password: '1234'
+// }
 
 const dbPool = new sql.ConnectionPool(config, err => {
   if (err) {
