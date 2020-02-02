@@ -1,0 +1,21 @@
+<div class="main">
+    <div class="line">
+      <label for="name">User name:</label>
+      <input [(ngModel)]="userName" type="text" id="name"/>
+    </div>
+  
+    <div class="line">
+      <label for="pass">Password:</label>
+      <input [(ngModel)]="password" type="password" id="pass"/>
+    </div>
+
+    <div class="line">
+        <label for="mail">Email:</label>
+        <input [(ngModel)]="email" type="email" id="mail"/>
+      </div>
+    <div class="line">
+        <button (click)="signUp()">Submit</button>
+        <button (click)="goBack()">Back</button>
+    </div>
+  </div>
+  

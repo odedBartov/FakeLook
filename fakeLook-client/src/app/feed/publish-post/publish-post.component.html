@@ -1,0 +1,16 @@
+<input type="file" (change)="fileUploaded($event)" style="display: none;" #imageInput>
+<button class="uploadBtn" (click)="imageInput.click()">Upload image</button>
+<div class="line">
+    <h2>Post date:</h2>
+    <h2>{{dateString}}</h2>
+</div>
+
+<div class="line">
+    <h2>Tagged friends:</h2>
+    <input [(ngModel)]="taggedFriends" type="text">
+</div>
+
+<div class="line">
+        <h2>Image tags:</h2>
+        <input [(ngModel)]="imageTags" type="text">
+    </div>

@@ -1,0 +1,33 @@
+.main {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  margin-left: 1%;
+}
+
+button {
+  border-radius: 20%;
+  height: 100px;
+  width: 100px;
+  background-color: rgb(193, 197, 247);
+  font-size: 25px;
+  font-family: cursive;
+  margin: 20px;
+}
+
+label{
+    width: 150px;
+    margin: 3%;
+    font-size: 25px;
+}

@@ -1,0 +1,15 @@
+.main{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+button{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    width: 150px;
+    height: 60px;
+    margin: 5px;
+    background: rgb(165, 189, 233);
+    border-radius: 20%;
+}

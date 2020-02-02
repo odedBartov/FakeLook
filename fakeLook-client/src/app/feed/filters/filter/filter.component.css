@@ -1,0 +1,16 @@
+.line{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    border: 2px solid black;
+    align-items: center;
+    padding: 10px;
+}
+
+h4{
+    padding-right: 10px;
+}
+
+input{
+    margin: 0 10px;
+}

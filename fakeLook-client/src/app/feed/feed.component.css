@@ -1,0 +1,12 @@
+.main{
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter{
+    width: 32%;
+}
+
+.map{
+    width: 62%;
+}
