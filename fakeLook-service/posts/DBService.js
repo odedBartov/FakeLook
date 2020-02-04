@@ -1,15 +1,37 @@
 const sql = require('mssql')
 
-const services = {  }
-module.exports = services
+const config = require('../credentials')
 
-const config = {
+//need to change this connection to db of social!
+
+const dbPool = new sql.ConnectionPool(config).
+connect().
+then(pool => pool).
+catch(err=>console.log(err));
+
+
+/* const services = {  } */
+module.exports = {
+    InsertTag: async function (title, callback) {
+        var dbreq = (await dbPool).request()
+        dbreq.input('title', sql.NVarChar(50), title)
+        dbreq.execute('dbo.SP_InsertTag', (err, data) => {
+          if (err) {
+            callback(err, false)
+          } else {
+            callback(undefined,true)
+          }
+        })
+      },
+}
+
+/* const config = {
     server: 'localhost',
     database: 'UsersDB',
     user: 'oded',
     password: '1234'
 }
-
+ */
 // const dbPool = new sql.ConnectionPool(config, err => {
 //   if (err) {
 //     console.log(err)

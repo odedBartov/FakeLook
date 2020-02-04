@@ -8,14 +8,14 @@ const config = require('../credentials')
 //   password: '1234'
 // }
 
-const dbPool = new sql.ConnectionPool(config, err => {
+/* const dbPool = new sql.ConnectionPool(config, err => {
   if (err) {
     console.log(err)
   } else {
     console.log('connected to DB!')
   }
 })
-
+ */
 module.exports = {
   CheckIfUserExist: function (userName, callback) {
     var dbreq = dbPool.request()
