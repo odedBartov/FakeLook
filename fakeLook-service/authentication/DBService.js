@@ -12,7 +12,7 @@ const dbPool = new sql.ConnectionPool(config, err => {
   if (err) {
     console.log(err)
   } else {
-    console.log('connected to DB!')
+    console.log('connected to DB from Authentication!')
   }
 })
 
