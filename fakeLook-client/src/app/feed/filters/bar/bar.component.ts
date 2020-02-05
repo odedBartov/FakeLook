@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavigatorService } from "../../../utils/navigator.service"
+import { NavigatorService } from "../../../services/navigator.service"
 import { from } from 'rxjs';
 
 @Component({

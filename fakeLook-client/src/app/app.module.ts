@@ -16,6 +16,7 @@ import { GroupsComponent } from './friends/groups/groups.component';
 import { FilterComponent } from './feed/filters/filter/filter.component';
 import { BarComponent } from './feed/filters/bar/bar.component';
 import { PublishPostComponent } from './feed/publish-post/publish-post.component';
+import { Credentials } from '../../credentials';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PublishPostComponent } from './feed/publish-post/publish-post.component
     HttpClientModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDRU_ENlCIyblA3pyCHqoPoaAJhsaQGv98'
+      apiKey: Credentials.API_Key,
+      libraries: ['geometry']
     })
   ],
   providers: [],

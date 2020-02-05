@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpService } from "../services/http-service.service"
-import { NavigatorService } from "../../utils/navigator.service"
+import { NavigatorService } from "../../services/navigator.service"
 
 @Component({
   selector: 'app-sign-up',
