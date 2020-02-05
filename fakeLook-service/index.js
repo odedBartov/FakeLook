@@ -8,7 +8,7 @@ const socialController = require('./social/socialController')
 
 //checking 
 const dbService = require('./posts/DBService');
-dbService.InsertTag("batata",(r)=>console.log(r));
+dbService.InsertTag("HKI",3,(r)=>console.log(r));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*')

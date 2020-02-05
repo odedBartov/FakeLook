@@ -5,24 +5,26 @@ const config = require('../credentials')
 //need to change this connection to db of social!
 
 const dbPool = new sql.ConnectionPool(config).
-connect().
-then(pool => pool).
-catch(err=>console.log(err));
+    connect().
+    then(pool => pool).
+    catch(err => console.log(err));
 
 
 /* const services = {  } */
 module.exports = {
-    InsertTag: async function (title, callback) {
+    InsertTag: async function (title, postId, callback) {
         var dbreq = (await dbPool).request()
-        dbreq.input('title', sql.NVarChar(50), title)
-        dbreq.execute('dbo.SP_InsertTag', (err, data) => {
-          if (err) {
-            callback(err, false)
-          } else {
-            callback(undefined,true)
-          }
+        dbreq.input('title', sql.NVarChar(50), title);
+        dbreq.input('postId', sql.BigInt, postId);
+
+        dbreq.execute('dbo.SP_InsertImageTag', (err, data) => {
+            if (err) {
+                callback(err, false)
+            } else {
+                callback(undefined, true)
+            }
         })
-      },
+    },
 }
 
 /* const config = {
