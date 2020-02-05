@@ -19,7 +19,6 @@ export class MapComponent implements OnInit {
   posts: PostModel[];
   size;
 
-  icon = "https://media.wired.com/photos/5e1e646743940d0008009167/master/pass/Science_Cats-84873657.jpg";
   constructor(private postService: PostsService, private mapsAPILoader: MapsAPILoader) { }
 
   ngOnInit() {
@@ -27,14 +26,15 @@ export class MapComponent implements OnInit {
     this.initPosts();
     
     this.mapsAPILoader.load().then(() => {
-      debugger;
       this.size = new google.maps.Size(120, 120);
     })
   }
   
 
   initPosts() {
-    this.posts = this.postService.getPosts({});
+    this.postService.getPosts({}).then(res => {    
+      this.posts = res;
+     });
   }
 
   centerMap() {
@@ -55,14 +55,4 @@ export class MapComponent implements OnInit {
     // }
     // return icon;
   }
-
-  // click(){
-  //   this.icon = {
-  //     url: 'https://media.wired.com/photos/5e1e646743940d0008009167/master/pass/Science_Cats-84873657.jpg',
-  //     scaledSize: {
-  //       height: 100,
-  //       width: 100
-  //     }
-  //   }
-  // }
 }
