@@ -1,10 +1,10 @@
 <div>
   <agm-map [latitude]='latitude' [longitude]='longitude' mapTypeId='roadmap' [zoom]='14'>
     <agm-marker [latitude]="latitude" [longitude]="longitude" label='You'></agm-marker>
-    <agm-marker *ngFor="let post of posts" [iconUrl]="getIcon()" label='b' [latitude]="post.latitude"
+    <agm-marker *ngFor="let post of posts" label='b' [latitude]="post.latitude"
       [longitude]="post.longitude">
       <agm-info-window>
-        <img style="height: 160px;" src="https://media.wired.com/photos/5e1e646743940d0008009167/master/pass/Science_Cats-84873657.jpg"/>
+        <img style="height: 160px;" [src]="post.imageSrc"/>
         <h4>{{post.text}}</h4>
         <div class="tags">
           <div class="flex" *ngFor="let tag of post.imageTags; let i = index">
@@ -15,5 +15,4 @@
       </agm-info-window>
     </agm-marker>
   </agm-map>
-  <!-- <!-- <button (click)="click()">click</button> --> -->
 </div>
