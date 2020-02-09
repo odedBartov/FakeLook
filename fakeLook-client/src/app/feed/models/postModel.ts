@@ -8,6 +8,6 @@ export class PostModel{
     imageTags: string[];
     text: string;
     comments: CommentModel[];
-    latitude: string;
-    longitude: string;
+    latitude: number;
+    longitude: number;
 }

@@ -7,10 +7,17 @@
 }
 
 .line{
-    margin: 15px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15px;
 }
 
 h2{
     margin: 0 10px;
+}
+
+.error{
+    color: red;
+    font-size: 10px;
 }

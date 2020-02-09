@@ -13,3 +13,9 @@ agm-info-window{
 .tag{
     color: cornflowerblue;
 }
+
+
+#myMap {
+    height: 700px;
+    width: 100%;
+   }
