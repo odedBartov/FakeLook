@@ -1,6 +1,9 @@
 const sql = require('mssql')
-
+const genericRepo = require('../services/genericRepo');
 const config = require('../credentials')
+const postModel = require('./models/postModel')
+
+
 
 //need to change this connection to db of social!
 
@@ -9,21 +12,46 @@ const dbPool = new sql.ConnectionPool(config).
     then(pool => pool).
     catch(err => console.log(err));
 
-
+g, h
 /* const services = {  } */
 module.exports = {
-    InsertTag: async function (title, postId, callback) {
-        var dbreq = (await dbPool).request()
-        dbreq.input('title', sql.NVarChar(50), title);
-        dbreq.input('postId', sql.BigInt, postId);
-
-        dbreq.execute('dbo.SP_InsertImageTag', (err, data) => {
+    InsertTag: async function (title, postId) {
+        let data = {
+            "title": title,
+            "postId": postId
+        }
+        await genericRepo.executeProcedure(data, "SP_InsertImageTag", (err, data) => {
             if (err) {
-                callback(err, false)
-            } else {
-                callback(undefined, true)
+                //send response object with the err?
             }
-        })
+            else {
+             return data;//?also return object of response
+            }
+        });
+    },
+    InsertUserTag: async function (taggedUsername, postId) {
+        let data = {
+            "taggedUsername": taggedUsername,
+            "postId": postId
+        }
+        await genericRepo.executeProcedure(data, "InsertUserTag", (err, data) => {
+            if (err) {
+                //send response object with the err?
+            }
+            else {
+             return data;//?also return object of response
+            }
+        });
+    },
+    InsertPost: async function (postData) {
+        await genericRepo.executeProcedure(JSON.stringify(postData), "InsertPost", (err, data) => {
+            if (err) {
+                //send response object with the err?
+            }
+            else {
+             return data;//?also return object of response
+            }
+        });
     },
 }
 
