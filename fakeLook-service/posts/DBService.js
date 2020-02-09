@@ -15,7 +15,7 @@ const dbPool = new sql.ConnectionPool(config).
 g, h
 /* const services = {  } */
 module.exports = {
-    InsertTag: async function (title, postId) {
+    InsertImageTag: async function (title, postId) {
         let data = {
             "title": title,
             "postId": postId
@@ -52,7 +52,7 @@ module.exports = {
              return data;//?also return object of response
             }
         });
-    },
+    }
 }
 
 /* const config = {
