@@ -1,16 +1,24 @@
 import { Injectable } from '@angular/core';
 import { PostModel } from '../models/postModel';
 import { HttpService } from 'src/app/feed/services/http.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
-  posts: PostModel[];
+  private posts: Subject<PostModel[]>;
   constructor(private httpService: HttpService) { 
+    this.posts = new Subject<PostModel[]>();
   }
 
-   getPosts(filters){     
-    return this.httpService.getPosts();
+   getPostsList(){     
+     return this.posts;
+  }
+
+  UpdatePosts(filters){
+  this.httpService.getPosts().then(res => {
+    this.posts.next(res);
+  })
   }
 }
