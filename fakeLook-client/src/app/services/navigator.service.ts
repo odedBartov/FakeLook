@@ -23,4 +23,8 @@ export class NavigatorService {
   navigateToPublishPost(){
     this.router.navigateByUrl('publishPost');
   }
+
+  navigateToFriends(){
+    this.router.navigateByUrl('friends');
+  }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PostModel } from '../models/postModel';
+import { FilterModel } from '../filters/filter/models/filterModel';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class HttpService {
   posts: PostModel[];
   constructor(private httpClient: HttpClient) { }
 
-  getPosts() {
+  getPosts(filters: FilterModel) {
     return new Promise<PostModel[]>((res, rej) => {
       setTimeout(() => {
         const p1 = new PostModel();
@@ -24,6 +25,12 @@ export class HttpService {
         this.posts = [p1];
         res(this.posts);
       }, 200);
+    })
+  }
+
+  publishPost(formData){
+    this.httpClient.post('', formData).subscribe(res => {
+
     })
   }
 }

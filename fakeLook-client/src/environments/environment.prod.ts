@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  googleAPi: 'API'
+  googleAPi: 'AIzaSyDRU_ENlCIyblA3pyCHqoPoaAJhsaQGv98'
 };

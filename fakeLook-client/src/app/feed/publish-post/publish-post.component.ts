@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../services/posts.service';
 
 @Component({
   selector: 'app-publish-post',
@@ -8,17 +9,23 @@ import { Component, OnInit } from '@angular/core';
 export class PublishPostComponent implements OnInit {
   uploadedImage;
   date = new Date();
-  dateString = `${this.date.getFullYear()}/${this.date.getMonth()+1}/${this.date.getDate()}`
+  dateString = `${this.date.getDate()}/${this.date.getMonth()+1}/${this.date.getFullYear()}`
   taggedFriends = '';
   imageTags = '';
 
-  constructor() { }
+  constructor(private postService: PostsService) { }
 
   ngOnInit() {
   }
 
   fileUploaded(event){
-    debugger;
     this.uploadedImage = event.target.files[0]
+  }
+
+  upload(){
+    const formData = new FormData();
+    formData.append('file', this.uploadedImage);
+
+    this.postService.publishPost(formData);
   }
 }

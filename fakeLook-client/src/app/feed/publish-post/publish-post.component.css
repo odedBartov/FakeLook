@@ -8,9 +8,9 @@
 
 .line{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     margin: 15px;
+
 }
 
 h2{
