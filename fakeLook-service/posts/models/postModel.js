@@ -1,4 +1,4 @@
-module.exports = postModel
+
 
 const postModel = {
     postId,
@@ -13,3 +13,4 @@ const postModel = {
     likes,
     
 }
+module.exports = postModel

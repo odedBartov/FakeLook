@@ -1,7 +1,7 @@
 const sql = require('mssql')
 const genericRepo = require('../services/genericRepo');
 const config = require('../credentials')
-const postModel = require('./models/postModel')
+
 
 
 
@@ -12,7 +12,7 @@ const dbPool = new sql.ConnectionPool(config).
     then(pool => pool).
     catch(err => console.log(err));
 
-g, h
+
 /* const services = {  } */
 module.exports = {
     InsertImageTag: async function (title, postId) {
@@ -25,7 +25,7 @@ module.exports = {
                 //send response object with the err?
             }
             else {
-             return data;//?also return object of response
+                return data;//?also return object of response
             }
         });
     },
@@ -39,19 +39,24 @@ module.exports = {
                 //send response object with the err?
             }
             else {
-             return data;//?also return object of response
+                return data;//?also return object of response
             }
         });
     },
-    InsertPost: async function (postData) {
-        await genericRepo.executeProcedure(JSON.stringify(postData), "InsertPost", (err, data) => {
+    InsertPost: async function (postData, userTags, imageTags) {
+        var dbreq = (await dbPool).request();
+        dbreq.input("postData", JSON.stringify(postData));
+        dbreq.input("userTags", JSON.stringify(userTags));
+        dbreq.input("imageTags",JSON.stringify(imageTags));
+        /*      dbreq.output('outputJson', sql.NVarChar);//? */
+       await dbreq.execute("InsertPost3", (err, data) => {
             if (err) {
-                //send response object with the err?
+                console.log(err);
+            } else {
+                console.log(data);
             }
-            else {
-             return data;//?also return object of response
-            }
-        });
+        })
+
     }
 }
 

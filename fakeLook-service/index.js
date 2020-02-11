@@ -6,9 +6,29 @@ const postsController = require('./posts/postsController')
 const friendsController = require('./friends/friendsController')
 const socialController = require('./social/socialController')
 
-//checking 
+/* //checking 
 const dbService = require('./posts/DBService');
-dbService.InsertTag("HKI",3,(r)=>console.log(r));
+postData = {
+    userUpId: 2,
+    postImage: 'ms/hdjjs/jhjhs',
+    uploadDate: new Date(),
+    longtitude: 34.56,
+    latitude: 23.56
+}
+
+
+imageTags = [
+    { title: 'batata' },
+    { title: 'mush' }
+];
+userTags =  [
+        { username: 'shush' },
+        { username: 'kuku' }
+    ];
+
+const func = async () => { await dbService.InsertPost(postData,userTags,imageTags); }
+func();
+ */
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -21,19 +41,19 @@ app.use(function (req, res, next) {
     next()
 })
 
- app.use('/authentication', authController)
+app.use('/authentication', authController)
 
- app.use('/posts', postsController)
+app.use('/posts', postsController)
 
- app.use('/friends', friendsController)
+app.use('/friends', friendsController)
 
- app.use('/social', socialController)
+app.use('/social', socialController)
 
 
 app.use((err, req, res, next) => {
-    res.status(err.status ? err.status:500).send(err.message)
-  })
+    res.status(err.status ? err.status : 500).send(err.message)
+})
 
-  app.listen(1000, () => {
-      console.log("server is working")
-  })
+app.listen(1000, () => {
+    console.log("server is working")
+})
