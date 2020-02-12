@@ -5,17 +5,15 @@ import { PostsService } from '../services/posts.service'
 //import {} from '@types/googlemaps';
 import { } from "googlemaps";
 import { MapsAPILoader } from '@agm/core';
-import { environment } from 'src/environments/environment.prod';
 import { DOCUMENT } from '@angular/common';
+import { FilterModel } from '../filters/filter/models/filterModel';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
-  // @ViewChildren('map') public mapChildren;
-  // @ViewChildren('marker') mark: QueryList<any>;
+export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
   latitude = 0;
@@ -33,34 +31,36 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     private elementRef: ElementRef,
     private postService: PostsService,
     private mapsAPILoader: MapsAPILoader,
-  ) { 
-    this.postsSubscription = null;
-  }
+  ) { }
 
-  ngOnInit() { }
-
-  ngAfterViewInit() {
-    this.initGoogleScript();
+  ngOnInit() {
     this.mapsAPILoader.load().then(() => {
-      this.centerMap(() => {
-        this.coordinates = new google.maps.LatLng(this.latitude, this.longitude);
-        this.mapOptions = {
-          center: this.coordinates,
-          zoom: 12,
-        };
-        this.mapInitializer();
-        this.initPosts();
-      })
+      this.coordinates = new google.maps.LatLng(this.postService.currentLatitude, this.postService.currentLongitude);
+      this.mapOptions = {
+        center: this.coordinates,
+        zoom: 12
+      };
+      this.mapInitializer();
+      this.initPosts();
     });
   }
 
+  mapInitializer() {
+    this.map = new google.maps.Map(this.gmap.nativeElement,
+      this.mapOptions);
+
+    const marker = new google.maps.Marker({
+      position: this.coordinates,
+      map: this.map,
+      label: 'You'
+    });
+  }
 
   initPosts() {
     this.postsSubscription = this.postService.getPostsList().subscribe(res => {
-      this.clearMarkers();
       this.posts = res;
       this.posts.forEach(post => {
-        var infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post) });
+        const infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post) });
         const marker = new google.maps.Marker({
           position: new google.maps.LatLng(post.latitude, post.longitude),
           map: this.map,
@@ -70,37 +70,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
           infowindow.open(this.getMap(), marker);
         });
         this.markers.push(marker);
-        marker.setMap(this.map);
-      })
+      });
     })
-  }
-
-  centerMap(callback) {
-    navigator.geolocation.getCurrentPosition(pos => {
-      this.longitude = pos.coords.longitude;
-      this.latitude = pos.coords.latitude;
-      callback();
-    });
-  }
-
-  mapInitializer() {
-    this.map = new google.maps.Map(this.gmap.nativeElement,
-      this.mapOptions);
-    const marker = new google.maps.Marker({
-      position: this.coordinates,
-      map: this.map,
-      label: 'You'
-    });
-    // marker.setMap(this.map);
-  }
-
-  initGoogleScript() {
-    //const googleApiKey = 'AIzaSyDRU_ENlCIyblA3pyCHqoPoaAJhsaQGv98';
-    const googleApiKey = environment.googleAPi;
-    const script = this.document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}`;
-    this.elementRef.nativeElement.appendChild(script);
+    this.postService.UpdatePosts(new FilterModel);
   }
 
   getIcon(url) {
@@ -132,15 +104,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     return contentString;
   }
 
-  clearMarkers() {
-    this.markers.forEach(marker => {
-      marker.setMap(null);
-    })
-    this.markers = [];
-  }
-
   ngOnDestroy() {
     this.postsSubscription.unsubscribe();
-    this.postsSubscription = null;
   }
 }

@@ -38,8 +38,8 @@ import { Credentials } from '../../credentials';
     HttpClientModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: Credentials.API_Key,
-      libraries: ['geometry']
+       apiKey: Credentials.API_Key,
+       libraries: ['geometry']
     })
   ],
   providers: [],

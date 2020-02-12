@@ -1,6 +1,6 @@
 <div class="form-group">
     <div class="line">
-        <input type="file" accept="image/*" (change)="fileUploaded($event)" (change)="fileUploaded($event)" style="display: none;" #imageInput>
+        <input type="file" accept="image/*" (change)="fileUploaded($event)" style="display: none;" #imageInput>
         <button class="uploadBtn" (click)="imageInput.click()">Choose image</button>
         <h4>{{imageInput.value}}</h4>
         <button class="uploadBtn" [disabled]="!uploadedImage" (click)="upload()">Upload</button>
@@ -11,12 +11,13 @@
     </div>
 
     <div class="line">
-        <h2>Tagged friends:</h2>
-        <input placeholder="mushki,oded_bar,kitcat" [(ngModel)]="taggedFriends" type="text" name="taggedFriends" required #friendTag="ngModel">
+        <h2>Tagged users:</h2>
+        <input placeholder="mushki,oded_bar,kitcat" [(ngModel)]="post.taggedUsers" type="text" name="taggedFriends" required #friendTag="ngModel">
     </div>
 
     <div class="line">
         <h2>Image tags:</h2>
-        <input placeholder="cat,fur,tiger" [(ngModel)]="imageTags" type="text">
+        <input placeholder="cat,fur,tiger" [(ngModel)]="post.imageTags" type="text">
     </div>
 </div>
+<button class="back" (click)="goBackToFeed()">Go Back</button>
