@@ -1,21 +1,34 @@
-<div class="main">
-    <div class="line">
+<form class="main form-group" #signUpForm="ngForm">
+  <div class="line">
+    <div class="fields">
       <label for="name">User name:</label>
-      <input [(ngModel)]="userName" type="text" id="name"/>
+      <input [(ngModel)]="userName" type="text" id="name" name="userName" required
+        #name="ngModel" />
     </div>
-  
-    <div class="line">
-      <label for="pass">Password:</label>
-      <input [(ngModel)]="password" type="password" id="pass"/>
-    </div>
-
-    <div class="line">
-        <label for="mail">Email:</label>
-        <input [(ngModel)]="email" type="email" id="mail"/>
-      </div>
-    <div class="line">
-        <button (click)="signUp()">Submit</button>
-        <button (click)="goBack()">Back</button>
+    <div [hidden]="name.pristine || name.valid" class="error">User name is required
     </div>
   </div>
-  
+
+  <div class="line">
+    <div class="fields">
+      <label for="pass">Password:</label>
+      <input [(ngModel)]="password" type="password" id="pass" name="password" required #pass="ngModel" />
+    </div>
+    <div [hidden]="pass.pristine || pass.valid" class="error">password is required
+      </div>
+  </div>
+
+  <div class="line">
+    <div class="fields">
+      <label for="mail">Email:</label>
+      <input [(ngModel)]="email" type="email" id="mail" name="email" email="true" required #mail="ngModel" />
+    </div>
+    <div [hidden]="mail.pristine || mail.valid" class="error">Enter valid Email
+      </div>
+  </div>
+
+  <div class="fields">
+    <button (click)="signUp()" [disabled]="!signUpForm.form.valid">Submit</button>
+    <button (click)="goBack()">Back</button>
+  </div>
+</form>

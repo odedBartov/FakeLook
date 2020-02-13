@@ -18,4 +18,8 @@ export class BarComponent implements OnInit {
   goToPublishPost(){
     this.navigatorService.navigateToPublishPost();
   }
+
+  goToFriends(){
+    this.navigatorService.navigateToFriends();
+  }
 }

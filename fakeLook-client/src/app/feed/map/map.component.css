@@ -1,5 +1,5 @@
 agm-map{
-    height: 700px;
+    height: 600px;
 }
 
 agm-info-window{
@@ -13,3 +13,9 @@ agm-info-window{
 .tag{
     color: cornflowerblue;
 }
+
+
+#myMap {
+    height: 700px;
+    width: 100%;
+   }
