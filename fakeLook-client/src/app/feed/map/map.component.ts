@@ -31,7 +31,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(DOCUMENT) private document,
-    //private elementRef: ElementRef,
     private postService: PostsService,
     private mapsAPILoader: MapsAPILoader,
     private resolver: ComponentFactoryResolver,

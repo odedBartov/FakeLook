@@ -26,10 +26,9 @@ export class PublishPostComponent implements OnInit {
 
   upload(){
     this.post.publishedDate = this.date;    
-
     this.postService.publishPost(this.post, this.uploadedImage).subscribe(
-      res => { alert('Your post uploaded successfuly!');
-     // this.goBackToFeed();
+      res => { alert('Your post uploaded successfuly!');      
+      this.goBackToFeed();
      },
     err => {
       // Write to log      
@@ -38,6 +37,6 @@ export class PublishPostComponent implements OnInit {
   }
 
   goBackToFeed(){
-    //this.navigationService.navigateToFeed();
+    this.navigationService.navigateToFeed();
   }
 }

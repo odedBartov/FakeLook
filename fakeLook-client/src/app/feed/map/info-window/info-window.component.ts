@@ -28,12 +28,11 @@ export class InfoWindowComponent implements OnInit {
   constructor(private postServiec: PostsService, private loggerService: LoggerService) {
   }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.postServiec.getPost(this.postId).subscribe((res: any) => {
       this.currentPost = res;
     },
     error => {
-      console.log(error);
       alert("can't get post\n\n" + error.error);
       this.loggerService.writeToLog(error);
       // Write to log
