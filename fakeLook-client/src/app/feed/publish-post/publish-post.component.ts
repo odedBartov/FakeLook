@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../services/posts.service';
-import { PostModel } from '../models/postModel';
-import { NavigatorService } from '../../services/navigator.service'
+import { NavigatorService } from '../../shared/navigator.service'
+import { postToUpload } from '../models/postToUpload';
 
 @Component({
   selector: 'app-publish-post',
@@ -12,7 +12,7 @@ export class PublishPostComponent implements OnInit {
   uploadedImage;
   date = new Date();
   dateString = `${this.date.getDate()}/${this.date.getMonth()+1}/${this.date.getFullYear()}`
-  post: PostModel = new PostModel();
+  post: postToUpload = new postToUpload();
 
   constructor(private postService: PostsService, private navigationService: NavigatorService) { 
   }
@@ -25,7 +25,7 @@ export class PublishPostComponent implements OnInit {
   }
 
   upload(){
-    this.post.publishDate = this.date;    
+    this.post.publishedDate = this.date;    
 
     this.postService.publishPost(this.post, this.uploadedImage).subscribe(
       res => { alert('Your post uploaded successfuly!');

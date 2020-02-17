@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const bp = require('body-parser')
+const path = require('path')
+const fs = require('fs');
 
 const authController = require('./authentication/authController')
 const postsController = require('./social/posts/postsController')
@@ -17,8 +19,9 @@ app.use(function (req, res, next) {
     next()
 })
 
-
 app.use(bp.json());
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use('/authentication', authController)
 
@@ -28,6 +31,12 @@ app.use('/friends', friendsController)
 
 
 app.use((err, req, res, next) => {
+    fs.appendFile('Log.txt', `Error thrown at ${new Date()}${err}`, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+    
     res.status(err.status ? err.status : 500).send(err.message)
 })
 

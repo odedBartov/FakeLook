@@ -1,5 +1,7 @@
 const dbService = require('./DBService')
-const bcryptService = require('./bcryptService')
+const bcryptServiceType = require('./bcryptService')
+const bcryptService = new bcryptServiceType();
+
 
 module.exports = {
     Login: function (req, res, next) {
@@ -9,7 +11,7 @@ module.exports = {
                 next(error)
             }
             else {
-                if (bcryptService().comparePassword(user.password, password)) {
+                if (this.bcryptService.comparePassword(user.password, password)) {
                     res.send(user)
                 }
                 else {
@@ -36,7 +38,7 @@ module.exports = {
                     next(err)
                 }
                 else {
-                    user.password = bcryptService().password(user)
+                    user.password = this.bcryptService.password(user)
                     dbService.InsertUser(user, (error, result) => {
                         if (error) {
                             next(error)

@@ -19,5 +19,10 @@
         <h2>Image tags:</h2>
         <input placeholder="cat,fur,tiger" [(ngModel)]="post.imageTags" type="text">
     </div>
+
+    <div class="line">
+        <h2>Text</h2>
+        <input placeholder="Watch my post!" [(ngModel)]="post.text">
+    </div>
 </div>
 <button class="back" (click)="goBackToFeed()">Go Back</button>

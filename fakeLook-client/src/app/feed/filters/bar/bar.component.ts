@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavigatorService } from "../../../services/navigator.service"
-import { from } from 'rxjs';
+import { NavigatorService } from "../../../shared/navigator.service"
 
 @Component({
   selector: 'app-bar',

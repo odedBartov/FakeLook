@@ -16,7 +16,15 @@ export class HttpService {
     return this.httpClient.post(`${environment.URL}${this.currentAPI}getPosts`, filters)
   }
 
+  getPost(postId: string){    
+    return this.httpClient.get(`${environment.URL}${this.currentAPI}getPost?postId=${postId}`);
+  }
+
   publishPost(formData){
       return this.httpClient.post(`${environment.URL}${this.currentAPI}publishPost`, formData)
+  }
+
+  likePost(postId){    
+    return this.httpClient.get(`${environment.URL}${this.currentAPI}likePost?postId=${postId}`)
   }
 }

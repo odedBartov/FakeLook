@@ -1,4 +1,5 @@
 export class PostModel{
+    postId: string;
     imageSrc: string;
     publishDate: Date;
     taggedUsers: string;
@@ -6,4 +7,6 @@ export class PostModel{
     text: string;
     latitude: number;
     longitude: number;
+    likes: number;
+    // comments
 }
