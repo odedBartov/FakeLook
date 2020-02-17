@@ -1,1 +1,1 @@
-Error thrown at Sun Feb 16 2020 15:42:18 GMT+0200 (GMT+02:00)Error: No file provided
+Error thrown at Sun Feb 16 2020 15:42:18 GMT+0200 (GMT+02:00)Error: No file providedError thrown at Mon Feb 17 2020 09:24:09 GMT+0200 (Israel Standard Time)ReferenceError: dbPool is not definedError thrown at Mon Feb 17 2020 10:05:04 GMT+0200 (Israel Standard Time)Error: Wrong username or passwordError thrown at Mon Feb 17 2020 10:05:09 GMT+0200 (Israel Standard Time)Error: Wrong username or password

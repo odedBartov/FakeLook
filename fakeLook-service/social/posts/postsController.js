@@ -1,15 +1,15 @@
 const express = require('express')
 const multer = require('multer')
- var storage = multer.memoryStorage();
+//const storage = multer.memoryStorage();
 
-// const storage = multer.diskStorage({
-//     destination: (res, file, callback) => {
-//         callback(null, 'uploads')
-//     },
-//     filename: (res, file, callback) => {
-//         callback(null, file.originalname)
-//     }
-// })
+const storage = multer.diskStorage({
+    destination: (res, file, callback) => {
+        callback(null, 'uploads')
+    },
+    filename: (res, file, callback) => {
+        callback(null, file.originalname)
+    }
+})
 const upload = multer({storage: storage})
 
 const router = express.Router();

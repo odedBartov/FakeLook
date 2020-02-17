@@ -53,10 +53,10 @@ module.exports = {
             next(err)
         }
 
-        else{
+        else{            
             var post = JSON.parse(req.body.post)
             const p = path.join(__dirname, '../..')
-            post.imageSrc = `${p}\\${req.file.path}`
+            post.imageSrc = `http://localhost:1000/${req.file.path}`
             
             //To do: save to DB
             res.json(post)

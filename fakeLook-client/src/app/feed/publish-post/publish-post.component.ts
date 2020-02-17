@@ -29,7 +29,7 @@ export class PublishPostComponent implements OnInit {
 
     this.postService.publishPost(this.post, this.uploadedImage).subscribe(
       res => { alert('Your post uploaded successfuly!');
-      this.goBackToFeed();
+     // this.goBackToFeed();
      },
     err => {
       // Write to log      
@@ -38,6 +38,6 @@ export class PublishPostComponent implements OnInit {
   }
 
   goBackToFeed(){
-    this.navigationService.navigateToFeed();
+    //this.navigationService.navigateToFeed();
   }
 }
