@@ -1,18 +1,9 @@
 <h1>freinds</h1>
-<form class="form-inline">
-    <div class="form-group mb-2">
-        <label for="staticEmail2" class="sr-only">Serach Freind</label>
-        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
-    </div>
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action active">
-          Cras justo odio
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-      </div>
-    <button type="submit" class="btn btn-primary mb-2">Add freind</button>
-    <button type="submit" class="btn btn-primary mb-2">Remove freind</button>
-</form>
+<div class="form-group mb-2" id="searchInput">
+    <label for="staticEmail2" class="sr-only">Search Freind</label>
+    <input [(ngModel)]="currentUsername" type="text" class="form-control-plaintext" placeholder="Insert username" id="staticEmail2" >
+</div>
+<div>
+    <button type="button" class="btn btn-primary mb-2" (click)="addFriend">Add freind</button>
+    <button type="button" class="btn btn-primary mb-2" (click)="removeFreind">Remove freind</button>
+</div>

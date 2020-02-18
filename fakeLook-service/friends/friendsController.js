@@ -8,6 +8,8 @@ router.post('/sendFriendRequest', friendsAPI.sendFriendRequest)
 
 router.post('/acceptFriendRequest', friendsAPI.acceptFriendRequest)
 
+router.post('/addFriend')
+
 router.post('/removeFriend', friendsAPI.removeFriend)
 
 router.post('/followFriend', friendsAPI.followFriend)

@@ -9,6 +9,9 @@ module.exports = {
     acceptFriendRequest: function () {
 
     },
+    addFriend:function (username) {
+        
+    },
 
     removeFriend:  function () {
 
