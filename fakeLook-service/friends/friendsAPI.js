@@ -1,4 +1,6 @@
-const dbService = require('./DBService')
+const dbServiceFriends = require('./DBService')
+const authDBService= require('../authentication/DBService')
+
 
 
 module.exports = {
@@ -12,7 +14,10 @@ module.exports = {
     addFriend: async function (req, res, next) {
         //recrypt token and get userId
         let userId = req.body.token;//?
-        result = await dbService.InsertFreind(req.body.usernameFriend, userId, (response) => {
+
+        //check if username exist 
+        await 
+        await dbService.InsertFreind(req.body.usernameFriend, userId, (response) => {
             res.status(response.status).json(response.err);
         });
     },
