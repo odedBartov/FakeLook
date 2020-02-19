@@ -9,27 +9,31 @@ module.exports = {
     acceptFriendRequest: function () {
 
     },
-    addFriend:function (username) {
-        
+    addFriend: async function (req, res, next) {
+        //recrypt token and get userId
+        let userId = req.body.token;//?
+        result = await dbService.InsertFreind(req.body.usernameFriend, userId, (response) => {
+            res.status(response.status).json(response.err);
+        });
     },
 
-    removeFriend:  function () {
-
-    },
-
-    followFriend:  function () {
-
-    },
-
-    createGroup:  function () {
+    removeFriend: function () {
 
     },
 
-    addFriendToGroup:  function () {
+    followFriend: function () {
 
     },
 
-    removeFriendFromGroup:  function () {
+    createGroup: function () {
+
+    },
+
+    addFriendToGroup: function () {
+
+    },
+
+    removeFriendFromGroup: function () {
 
     }
 }

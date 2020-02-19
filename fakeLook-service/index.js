@@ -6,30 +6,9 @@ const postsController = require('./posts/postsController')
 const friendsController = require('./friends/friendsController')
 const socialController = require('./social/socialController')
 
-/* //checking 
-const dbService = require('./posts/DBService');
-postData = {
-    userUpId: 2,
-    postImage: 'ms/hdjjs/jhjhs',
-    uploadDate: new Date(),
-    longtitude: 34.56,
-    latitude: 23.56
-}
-
-
-imageTags = [
-    { title: 'batata' },
-    { title: 'mush' }
-];
-userTags =  [
-        { username: 'shush' },
-        { username: 'kuku' }
-    ];
-
-const func = async () => { await dbService.InsertPost(postData,userTags,imageTags); }
+const FRIENDaPI = require('./friends/friendsAPI');
+const func = async()=>{await FRIENDaPI.addFriend("klik",1)};
 func();
- */
-
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader(
