@@ -15,22 +15,18 @@ const dbPool = new sql.ConnectionPool(config, err => {
 module.exports = {
   getPosts: function (filter, callback) {
     var dbreq = dbPool.request()
-    dbreq.input('dateFrom', sql.DateTime, filter.dateFrom)
-    dbreq.input('dateTo', sql.DateTime, filter.dateTo)
+    dbreq.input('dateFrom', sql.Date, filter.dateFrom)
+    dbreq.input('dateTo', sql.Date, filter.dateTo)
     dbreq.input('radius', sql.Float, filter.radius)
     dbreq.input('longitude', sql.Float, filter.longitude)
     dbreq.input('latitude', sql.Float, filter.latitude)
 
-    //dbreq.input('groups', sql.Float, filter.latitude)
+    // dbreq.input('groups', sql.Float, filter.latitude)
     // dbreq.input('imageTags', sql.Float, filter.latitude)
     // dbreq.input('taggedusers', sql.Float, filter.latitude)
 
     dbreq.execute('SP_GetPosts', (err, data) => {
-      if (err) {
-        callback(err, undefined)
-      } else {
-        callback(undefined, data.recordset)
-      }
+      handleDbResponses(err, data, callback)
     })
   },
 
@@ -38,11 +34,7 @@ module.exports = {
     var dbreq = dbPool.request()
     dbreq.input('postId', sql.BigInt, postId)
     dbreq.execute('SP_GetPost', (err, data) => {
-      if (err) {
-        callback(err, undefined)
-      } else {
-        callback(undefined, data.recordset[0])
-      }
+      handleDbResponses(err, data, callback)
     })
   },
 
@@ -52,32 +44,49 @@ module.exports = {
     dbreq.input('taggedUsers', JSON.stringify(post.taggedUsers))
     dbreq.input('imageTags', JSON.stringify(post.imageTags))
     dbreq.execute('SP_InsertPost', (err, data) => {
-      if (err) {
-        callback(err, undefined)
-      } else {
-        callback(undefined, data)
-      }
+      handleDbResponses(err, data, callback)
     })
   },
 
-  likepost: function (postId, callback) {},
-
-  dislikePost: function (postId, callback){},
-
-  checkIfLikedPost (postId, callback) {
-    const userId = 2
-    
-    //from JWT!
+  likepost: function (postId, userId, callback) {
     var dbreq = dbPool.request()
-    dbreq.inout('postId', sql.BigInt, postId)
+    dbreq.input('postId', sql.BigInt, postId)
+    dbreq.input('userId', sql.BigInt, userId)
+    dbreq.execute('SP_LikePost', (err, data) => {
+      handleDbResponses(err, data, callback)
+    })
+  },
+
+  dislikePost: function (postId, userId, callback) {
+    var dbreq = dbPool.request()
+    dbreq.input('postId', sql.BigInt, postId)
+    dbreq.input('userId', sql.BigInt, userId)
+    dbreq.execute('SP_DisLikePost', (err, data) => {
+      handleDbResponses(err, data, callback)
+    })
+  },
+
+  checkIfLikedPost: function (postId, userId, callback) {
+    var dbreq = dbPool.request()
+    dbreq.input('postId', sql.BigInt, postId)
     dbreq.input('userId', sql.BigInt, userId)
     dbreq.execute('SP_CheckIfUserLikedPost', (err, data) => {
-        if (err) {
-            callback(err, undefined)
-        }
-        else{
-            callback(undefined, data.recordset[0])
-        }
+      handleDbResponses(err, data, callback)
     })
+  },
+  CheckIfUsernamesExist:function (usernames, callback) {
+    var dbreq = dbPool.request()
+    dbreq.input('usernames', JSON.stringify(usernames))
+    dbreq.execute('SP_CheckIfUsernamesExist', (err, data) => {
+      handleDbResponses(err, data, callback)
+    })
+  }
+}
+
+const handleDbResponses = function (err, data, callback) {
+  if (err) {
+    callback(err, undefined)
+  } else {
+    callback(undefined, data.recordsets)
   }
 }

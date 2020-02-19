@@ -7,6 +7,7 @@ const fs = require('fs');
 const authController = require('./authentication/authController')
 const postsController = require('./social/posts/postsController')
 const friendsController = require('./social/friends/friendsController')
+const errorHandler = require('./common/errorHandler')
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -19,7 +20,11 @@ app.use(function (req, res, next) {
     next()
 })
 
-app.use(bp.json());
+app.use(bp.json())
+
+app.use((req, res, next) => {
+    errorHandler.setNext(next)
+})
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
@@ -31,12 +36,7 @@ app.use('/friends', friendsController)
 
 
 app.use((err, req, res, next) => {
-    fs.appendFile('Log.txt', `Error thrown at ${new Date()}${err}`, (err) => {
-        if (err) {
-            console.log(err);
-        }
-    })
-    
+    fs.appendFile('Log.txt', `Error thrown at ${new Date()}${err}` + "\n\n\n", () => {})
     res.status(err.status ? err.status : 500).send(err.message)
 })
 

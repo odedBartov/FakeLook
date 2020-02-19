@@ -36,8 +36,8 @@ export class PostsService {
     this.httpService.getPosts(filter).subscribe((res: PostModel[]) => {      
       this.posts.next(res);
     },
-    error => {
-      alert(error.error);
+    error => {      
+      alert(error.message);
     })
   }
 
@@ -54,6 +54,10 @@ export class PostsService {
 
   likePost(postId){    
     return this.httpService.likePost(postId);
+  }
+
+  checkIfLikedPost(postId){
+    return this.httpService.checkIfLikedPost(postId);
   }
 
   likeComment(commentId){

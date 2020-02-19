@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {trigger, state, style, animate, transition,} from '@angular/animations';
+import { trigger, state, style, animate, transition, } from '@angular/animations';
 
 import { PostModel } from '../../models/postModel';
 import { PostsService } from '../../services/posts.service';
-import { LoggerService } from 'src/app/shared/logger.service';
 
 @Component({
   selector: 'app-info-window',
@@ -24,35 +23,34 @@ export class InfoWindowComponent implements OnInit {
   currentPost: PostModel;
   comment: string;
   liked = false;
-  
-  constructor(private postServiec: PostsService, private loggerService: LoggerService) {
+
+  constructor(private postServiec: PostsService) {
   }
 
-  ngOnInit() {    
-    this.postServiec.getPost(this.postId).subscribe((res: any) => {
+  ngOnInit() {
+    this.postServiec.getPost(this.postId).subscribe((res: PostModel) => {
       this.currentPost = res;
     },
-    error => {
-      alert("can't get post\n\n" + error.error);
-      this.loggerService.writeToLog(error);
-      // Write to log
+      error => {
+        alert("can't get post\n\n" + error.error);
+      })
+
+    this.postServiec.checkIfLikedPost(this.postId).subscribe((res: boolean) => {
+      this.liked = res
+      console.log("on init " + res);
+      
+    }, err => {
+      alert(err.error);
     })
   }
 
   like() {
-    if (this.liked) {
-      this.currentPost.likes--;
-      this.liked = false;
-    }
-    else {
-      this.postServiec.likePost(this.postId).subscribe(res => {
-        this.currentPost.likes++;
-        this.liked = true;
-      }, err => {
-        console.log(err.error.error);
-        //Write to log
-      });
-    }
+    this.postServiec.likePost(this.currentPost.postId).subscribe((res: boolean) => {
+      this.liked = res;       
+      this.currentPost.likes += this.liked ? 1 : -1;
+    }, err => {
+      alert(err.error)
+    })
   }
 
   publishComment() {

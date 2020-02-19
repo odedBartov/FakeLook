@@ -13,7 +13,7 @@ export class HttpService {
   constructor(private httpClient: HttpClient) { }
 
   getPosts(filters: FilterModel) {    
-    return this.httpClient.post(`${environment.URL}${this.currentAPI}getPosts`, filters)
+    return this.httpClient.post(`${environment.URL}${this.currentAPI}getPosts`, filters);
   }
 
   getPost(postId: string){    
@@ -21,10 +21,14 @@ export class HttpService {
   }
 
   publishPost(formData){
-      return this.httpClient.post(`${environment.URL}${this.currentAPI}publishPost`, formData)
+      return this.httpClient.post(`${environment.URL}${this.currentAPI}publishPost`, formData);
   }
 
   likePost(postId){    
-    return this.httpClient.get(`${environment.URL}${this.currentAPI}likePost?postId=${postId}`)
+    return this.httpClient.get(`${environment.URL}${this.currentAPI}likePost?postId=${postId}`);
+  }
+
+  checkIfLikedPost(postId){
+    return this.httpClient.get(`${environment.URL}${this.currentAPI}checkIfLikedPost?postId=${postId}`);
   }
 }

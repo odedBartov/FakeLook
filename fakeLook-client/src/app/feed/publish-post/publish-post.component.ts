@@ -27,11 +27,11 @@ export class PublishPostComponent implements OnInit {
   upload(){
     this.post.publishedDate = this.date;    
     this.postService.publishPost(this.post, this.uploadedImage).subscribe(
-      res => { alert('Your post uploaded successfuly!');      
-      this.goBackToFeed();
+      res => { 
+        alert('Your post uploaded successfuly!');      
+        this.goBackToFeed();
      },
     err => {
-      // Write to log      
       alert('An error occured:\n\n' + err.error)
     })
   }

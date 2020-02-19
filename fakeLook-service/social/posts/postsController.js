@@ -7,7 +7,8 @@ const storage = multer.diskStorage({
         callback(null, 'uploads')
     },
     filename: (res, file, callback) => {
-        callback(null, file.originalname)
+        const date = new Date()
+        callback(null, `${file.originalname}-${date.getMinutes()}-${date.getHours()}-${date.getDate()}-${date.getFullYear()}`)
     }
 })
 const upload = multer({storage: storage})
@@ -23,8 +24,10 @@ router.post('/publishPost', upload.single('image'), postAPI.PublishPost)
 
 router.get('/likePost', postAPI.LikePost)
 
+router.get('/checkIfLikedPost', postAPI.checkIfLikedPost)
+
 router.post('/publishComment', postAPI.PublishComment)
 
-router.post('/likeComment', postAPI.LikeComment)
+router.get('/likeComment', postAPI.LikeComment)
 
 module.exports = router
