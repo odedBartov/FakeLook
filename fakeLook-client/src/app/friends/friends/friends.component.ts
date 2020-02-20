@@ -9,18 +9,22 @@ import { FriendsApiService } from '../services/friends-api.service';
 export class FriendsComponent implements OnInit {
 
   public currentUsername: string;
-  public error: string;
+  public msg: string = "hgs";
   constructor(private freindsApi: FriendsApiService) { }
 
   ngOnInit() {
   }
 
   //add freind to the active user
-  addFreind() {//?
-    this.freindsApi.addFriend(this.currentUsername).subscribe(data => {
-      console.log("hey")
-     console.log(data);
-     
+  addFriend() {
+    this.freindsApi.addFriend({ friendUsername: this.currentUsername }).subscribe(data => {
+      console.log(data.success)
+      if (data.success) {
+        this.msg = "The friend been added successfully"
+      }
+      else {
+        this.msg = data.errorMsg;
+      }
     })
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,15 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class FriendsApiService {
 
-  friendsUrl: string = "http://localhost:1000/freinds";
+  friendsUrl: string = "http://localhost:1000/friends";
   constructor(private httpClient:HttpClient) {
+
   }
 
-  addFriend(username:string): Observable<any> {
+  addFriend(username): Observable<any> {
     return this.httpClient.post<any>(`${this.friendsUrl}/addFriend`, username);
   }
 
-  removeFriend(username:string): Observable<any> {
+  removeFriend(username): Observable<any> {
     return this.httpClient.delete<any>(`${this.friendsUrl}/removeFriend/${username}`);
   }
 

@@ -1,9 +1,11 @@
 <h1>freinds</h1>
+<div>{{msg}}</div>
 <div class="form-group mb-2" id="searchInput">
     <label for="staticEmail2" class="sr-only">Search Freind</label>
-    <input [(ngModel)]="currentUsername" type="text" class="form-control-plaintext" placeholder="Insert username" id="staticEmail2" >
+    <input [(ngModel)]="currentUsername" type="text" class="form-control-plaintext" placeholder="Insert username"
+        id="staticEmail2">
 </div>
 <div>
-    <button type="button" class="btn btn-primary mb-2" (click)="addFriend">Add freind</button>
-    <button type="button" class="btn btn-primary mb-2" (click)="removeFreind">Remove freind</button>
+    <button class="btn btn-primary mb-2" (click)="addFriend()">Add freind</button>
+    <button class="btn btn-primary mb-2" (click)="removeFreind">Remove freind</button>
 </div>

@@ -6,6 +6,8 @@ const postsController = require('./posts/postsController')
 const friendsController = require('./friends/friendsController')
 const socialController = require('./social/socialController')
 
+const bodyParser = require('body-parser');
+
 /* const FRIENDaPI = require('./friends/DBService');
  FRIENDaPI.InsertFreind(2,3).then(res=>console.log(res)) */
  
@@ -19,6 +21,10 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true)
     next()
 })
+//convertion of body to json object
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 
 app.use('/authentication', authController)
 
