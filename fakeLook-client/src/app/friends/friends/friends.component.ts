@@ -18,7 +18,9 @@ export class FriendsComponent implements OnInit {
   //add freind to the active user
   addFreind() {//?
     this.freindsApi.addFriend(this.currentUsername).subscribe(data => {
-
+      console.log("hey")
+     console.log(data);
+     
     })
   }
 

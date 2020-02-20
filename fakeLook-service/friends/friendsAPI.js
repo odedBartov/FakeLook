@@ -10,7 +10,7 @@ module.exports = {
 
     },
     addFriend: async function (req, res, next) {
-    /*     const friendUsername = req.body.friendUsername */
+        const friendUsername = req.body.friendUsername
         console.log(req.body)
         const userId = 1//?from token
         response = {}

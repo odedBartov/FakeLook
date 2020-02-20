@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FriendsApiService {
 
-  friendsUrl: string = "http://localhost:3000/freinds";
+  friendsUrl: string = "http://localhost:1000/freinds";
   constructor(private httpClient:HttpClient) {
   }
 
