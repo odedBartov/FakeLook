@@ -7,32 +7,30 @@ const dbPool = new sql.ConnectionPool(config).
     catch(err => console.log(err));
 
 module.exports = {
-    InsertFreind: async function (usernameFreind, userId, callback) {
+    InsertFreind: async function (friendId, userId) {
         var dbreq = (await dbPool).request();
-        dbreq.input("usernameFreind", usernameFreind);
+        dbreq.input("friendId", friendId);
         dbreq.input("userId", userId);
+        dbreq.output("success", sql.Bit);
         /*      dbreq.output('outputJson', sql.NVarChar);//? */
-        await dbreq.execute("InsertFriend", (err, data) => {
-            if (err) {
-                callback(err,undefined);
-            }
-            else {
-                callback(undefined,data);
-            }
-        })
+        const result = await dbreq.execute("InsertFriend").catch(err => console.log(err))
+        return result.output.success
     },
-    CheckUserIsFriend(friendUsername,userId){
+
+    CheckUserIsFriend: async function (friendId, userId) {
         var dbreq = (await dbPool).request();
-        dbreq.input("usernameFreind", friendUsername);
+        dbreq.input("friendId", friendId);
         dbreq.input("userId", userId);
         /*      dbreq.output('outputJson', sql.NVarChar);//? */
-        await dbreq.execute("CheckUserIsFriend", (err, data) => {
-            if (err) {
-                callback(err,undefined);
-            }
-            else {
-                callback(undefined,data);
-            }
-        })  
+        const result = await dbreq.execute("CheckUserIsFriend").catch(err => console.log(err))
+        return result.rescordsets[0][0]
+    },
+
+    CheckIfUserExist: async function (username) {
+        var dbreq = (await dbPool).request();
+        dbreq.input("username", username);
+        dbreq.output('outputJson', sql.NVarChar);//? */
+        const result = await dbreq.execute("IsUserExist").catch(err => console.log(err))
+        return result.rescordsets[0][0]
     }
 }

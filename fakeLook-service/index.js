@@ -6,9 +6,9 @@ const postsController = require('./posts/postsController')
 const friendsController = require('./friends/friendsController')
 const socialController = require('./social/socialController')
 
-const FRIENDaPI = require('./friends/friendsAPI');
-const func = async()=>{await FRIENDaPI.addFriend("klik",1)};
-func();
+/* const FRIENDaPI = require('./friends/DBService');
+ FRIENDaPI.InsertFreind(2,3).then(res=>console.log(res)) */
+ 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader(
