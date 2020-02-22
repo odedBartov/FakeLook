@@ -1,12 +1,6 @@
 const sql = require('mssql')
 
 const config = require('../credentials').usersDB_Config
-//  {
-//   server: 'localhost',
-//   database: 'UsersDB',
-//   user: 'oded',
-//   password: '1234'
-// }
 
 const dbPool = new sql.ConnectionPool(config, err => {
   if (err) {
@@ -50,7 +44,7 @@ module.exports = {
       if (err) {
         callback(err, undefined)
       } else {
-        callback(undefined, data.recordset[0].Password)
+        callback(undefined, data.recordset[0])
       }
     })
   }

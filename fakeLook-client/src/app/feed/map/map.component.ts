@@ -62,23 +62,28 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   initPosts() {
-    this.postsSubscription = this.postService.getPostsList().subscribe(res => {
-      this.clearMarkers();
-      this.posts = res;
-      this.posts.forEach(post => {
-        const marker = new google.maps.Marker({
-          position: new google.maps.LatLng(post.latitude, post.longitude),
-          map: this.map,
-          icon: this.getIcon(post.imageSrc)
+    this.postsSubscription = this.postService.getPostsList().subscribe((res: {posts: postToShow[], error : Error}) => {
+      if (res.error) {
+        console.log(res.error);     
+      }
+      else{      
+        this.clearMarkers();
+        this.posts = res.posts;
+        this.posts.forEach(post => {
+          const marker = new google.maps.Marker({
+            position: new google.maps.LatLng(post.latitude, post.longitude),
+            map: this.map,
+            icon: this.getIcon(post.imageSrc)
+          });
+          marker.addListener('click', () => {
+            const infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.postId) });
+            infowindow.open(this.map, marker);
+          });
+          this.markers.push(marker);
         });
-        marker.addListener('click', () => {
-          const infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.postId) });
-          infowindow.open(this.map, marker);
-        });
-        this.markers.push(marker);
-      });
+      }
     })
-    this.postService.UpdatePosts(new FilterModel);
+      this.postService.UpdatePosts(new FilterModel);
   }
 
   getIcon(url) {

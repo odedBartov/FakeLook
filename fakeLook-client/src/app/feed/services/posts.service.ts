@@ -10,7 +10,8 @@ import { postToShow } from '../models/postToShow';
   providedIn: 'root'
 })
 export class PostsService {
-  private posts: Subject<postToShow[]>;
+  private posts: Subject<{posts: postToShow[], error : Error}>;
+ // private posts: Subject<{bool, number}>;
   currentLatitude = 33;
   currentLongitude = 33;
 
@@ -19,7 +20,7 @@ export class PostsService {
       this.currentLatitude = pos.coords.latitude;
       this.currentLongitude = pos.coords.longitude;
     })
-    this.posts = new Subject<postToShow[]>();
+    this.posts = new Subject<{posts: postToShow[], error : Error}>();
   }
 
   getPostsList() {
@@ -33,11 +34,12 @@ export class PostsService {
   UpdatePosts(filter: FilterModel) {
     filter.latitude = this.currentLatitude;
     filter.longitude = this.currentLongitude;
-    this.httpService.getPosts(filter).subscribe((res: PostModel[]) => {      
-      this.posts.next(res);
+    this.httpService.getPosts(filter).subscribe((res: PostModel[]) => {     
+      this.posts.next({posts: res, error: undefined});
     },
     error => {      
       alert(error.message);
+      this.posts.next(error);
     })
   }
 

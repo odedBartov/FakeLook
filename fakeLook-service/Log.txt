@@ -1,36 +1,78 @@
-Error thrown at Wed Feb 19 2020 16:34:20 GMT+0200 (Israel Standard Time)Error: No image provided
+Error thrown at Thu Feb 20 2020 16:27:54 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 16:37:00 GMT+0200 (Israel Standard Time)Error: No image provided
+Error thrown at Thu Feb 20 2020 16:28:38 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 16:37:12 GMT+0200 (Israel Standard Time)Error: RequestError: Procedure or function 'SP_CheckIfUsernamesExist' expects parameter '@usernames', which was not supplied.
+Error thrown at Thu Feb 20 2020 16:28:55 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 16:38:56 GMT+0200 (Israel Standard Time)RequestError: Procedure or function 'SP_CheckIfUsernamesExist' expects parameter '@usernames', which was not supplied.
+Error thrown at Thu Feb 20 2020 16:29:21 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 16:40:08 GMT+0200 (Israel Standard Time)RequestError: Procedure or function 'SP_CheckIfUsernamesExist' expects parameter '@usernames', which was not supplied.
+Error thrown at Thu Feb 20 2020 16:29:38 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 16:52:47 GMT+0200 (Israel Standard Time)Error: Wrong username or password
+Error thrown at Thu Feb 20 2020 16:29:41 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 16:53:30 GMT+0200 (Israel Standard Time)Error: user already exist!
+Error thrown at Thu Feb 20 2020 16:29:52 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 16:53:40 GMT+0200 (Israel Standard Time)Error: Wrong username or password
+Error thrown at Thu Feb 20 2020 16:36:07 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 17:36:51 GMT+0200 (Israel Standard Time)RequestError: Validation failed for parameter 'dateFrom'. Invalid date.
+Error thrown at Thu Feb 20 2020 17:18:18 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 17:36:56 GMT+0200 (Israel Standard Time)RequestError: Validation failed for parameter 'dateFrom'. Invalid date.
+Error thrown at Thu Feb 20 2020 17:20:08 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 18:10:45 GMT+0200 (Israel Standard Time)RequestError: Validation failed for parameter 'dateFrom'. Invalid date.
+Error thrown at Thu Feb 20 2020 17:32:15 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
 
 
-Error thrown at Wed Feb 19 2020 18:10:52 GMT+0200 (Israel Standard Time)RequestError: Validation failed for parameter 'dateFrom'. Invalid date.
+Error thrown at Thu Feb 20 2020 17:33:04 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
+
+
+Error thrown at Thu Feb 20 2020 17:34:20 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
+
+
+Error thrown at Thu Feb 20 2020 17:34:31 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
+
+
+Error thrown at Thu Feb 20 2020 17:37:22 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
+
+
+Error thrown at Sat Feb 22 2020 22:19:59 GMT+0200 (Israel Standard Time)ReferenceError: dbPool is not defined
+
+
+Error thrown at Sat Feb 22 2020 22:21:42 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
+
+
+Error thrown at Sat Feb 22 2020 22:24:48 GMT+0200 (Israel Standard Time)Error: Login for user has expired!
+
+
+Error thrown at Sat Feb 22 2020 22:27:51 GMT+0200 (Israel Standard Time)RequestError: Validation failed for parameter 'userId'. Invalid number.
+
+
+Error thrown at Sat Feb 22 2020 22:30:16 GMT+0200 (Israel Standard Time)ReferenceError: dbPool is not defined
+
+
+Error thrown at Sat Feb 22 2020 22:38:16 GMT+0200 (Israel Standard Time)Error: Wrong username or password
+
+
+Error thrown at Sat Feb 22 2020 22:39:21 GMT+0200 (Israel Standard Time)Error: Wrong username or password
+
+
+Error thrown at Sat Feb 22 2020 22:39:25 GMT+0200 (Israel Standard Time)Error: Wrong username or password
+
+
+Error thrown at Sat Feb 22 2020 22:40:05 GMT+0200 (Israel Standard Time)RequestError: Validation failed for parameter 'userId'. Invalid number.
+
+
+Error thrown at Sat Feb 22 2020 22:41:47 GMT+0200 (Israel Standard Time)RequestError: Validation failed for parameter 'userId'. Invalid number.
+
+
+Error thrown at Sat Feb 22 2020 22:42:37 GMT+0200 (Israel Standard Time)RequestError: Validation failed for parameter 'userId'. Invalid number.
 
 

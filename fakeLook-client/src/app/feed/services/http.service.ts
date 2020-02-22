@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PostModel } from '../models/postModel';
 import { FilterModel } from '../filters/filter/models/filterModel';
 import { environment } from 'src/environments/environment.prod';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,25 +11,40 @@ import { environment } from 'src/environments/environment.prod';
 export class HttpService {
   posts: PostModel[];
   currentAPI = 'posts/';
-  constructor(private httpClient: HttpClient) { }
-
-  getPosts(filters: FilterModel) {    
-    return this.httpClient.post(`${environment.URL}${this.currentAPI}getPosts`, filters);
+  tokenHeader = new HttpHeaders({ 'access-token': environment.secretToken });
+  constructor(private httpClient: HttpClient) {
   }
 
-  getPost(postId: string){    
-    return this.httpClient.get(`${environment.URL}${this.currentAPI}getPost?postId=${postId}`);
+  private getWithHeaders(url) {
+    return this.httpClient.get(url, { headers: this.tokenHeader})
+    .pipe(tap(res=>{
+      
+    },err => {
+
+    }));    
   }
 
-  publishPost(formData){
-      return this.httpClient.post(`${environment.URL}${this.currentAPI}publishPost`, formData);
+  private postWithHeaders(url, body) {
+    return this.httpClient.post(url, body, { headers: this.tokenHeader });
   }
 
-  likePost(postId){    
-    return this.httpClient.get(`${environment.URL}${this.currentAPI}likePost?postId=${postId}`);
+  getPosts(filters: FilterModel) {
+    return this.postWithHeaders(`${environment.URL}${this.currentAPI}getPosts`, filters);
   }
 
-  checkIfLikedPost(postId){
-    return this.httpClient.get(`${environment.URL}${this.currentAPI}checkIfLikedPost?postId=${postId}`);
+  getPost(postId: string) {
+    return this.getWithHeaders(`${environment.URL}${this.currentAPI}getPost?postId=${postId}`);
+  }
+
+  publishPost(formData) {
+    return this.postWithHeaders(`${environment.URL}${this.currentAPI}publishPost`, formData);
+  }
+
+  likePost(postId) {
+    return this.getWithHeaders(`${environment.URL}${this.currentAPI}likePost?postId=${postId}`);
+  }
+
+  checkIfLikedPost(postId) {
+    return this.getWithHeaders(`${environment.URL}${this.currentAPI}checkIfLikedPost?postId=${postId}`);
   }
 }

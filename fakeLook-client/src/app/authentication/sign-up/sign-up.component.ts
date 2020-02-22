@@ -23,7 +23,8 @@ export class SignUpComponent implements OnInit {
     }
     else{
       this.httpService.SignUp(this.userName, this.password, this.email).subscribe(res => {
-        this.navigatorService.navigateToFeed();
+        alert("New user created successfuly")
+        this.goBack();
       }, error => {
         alert(error.message + "\n\n" + error.error)
       })

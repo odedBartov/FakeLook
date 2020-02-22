@@ -36,9 +36,7 @@ export class InfoWindowComponent implements OnInit {
       })
 
     this.postServiec.checkIfLikedPost(this.postId).subscribe((res: boolean) => {
-      this.liked = res
-      console.log("on init " + res);
-      
+      this.liked = res      
     }, err => {
       alert(err.error);
     })

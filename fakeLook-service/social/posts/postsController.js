@@ -1,4 +1,5 @@
 const express = require('express')
+
 const multer = require('multer')
 //const storage = multer.memoryStorage();
 
@@ -13,8 +14,11 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage: storage})
 
-const router = express.Router();
+const jwtService = require('../../common/JWT_Service')
 const postAPI = require('./postsAPI')
+const router = express.Router()
+
+router.use(jwtService.validateToken)
 
 router.post('/getPosts', postAPI.GetPosts)
 

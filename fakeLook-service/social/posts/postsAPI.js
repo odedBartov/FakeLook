@@ -2,11 +2,11 @@ const dbService = require('./DBService')
 const errorHandler = require('../../common/errorHandler')
 module.exports = {
   GetPosts: function (req, res, next) {
-    const filter = req.body    
+    const filter = req.body
     dbService.getPosts(filter, (error, data) => {
       if (error) {
         next(error)
-      } else {                
+      } else {
         res.send(data[0])
       }
     })
@@ -37,12 +37,14 @@ module.exports = {
   PublishPost: function (req, res, next) {
     const image = req.file
     if (!image) {
-      errorHandler.throwException('No image provided', 401)
+      errorHandler.throwException('No image provided', 400)
     } else {
       var receivedPost = JSON.parse(req.body.post)
       var post = buildPost(receivedPost)
       post.data.imageSrc = `http://localhost:1000/${req.file.path}`
-      post.data.userUpId = 1
+      post.data.userUpId = req.user.dislikePost
+      console.log(req.user);
+      
 
       const usernames = post.taggedUsers
       dbService.CheckIfUsernamesExist(usernames, (err, data) => {
@@ -54,7 +56,7 @@ module.exports = {
               `You tagged users whom does not exist!\nNames: ${data[0].map(
                 u => u.username
               )}`,
-              401
+              400
             )
           } else {
             dbService.insertPost(post, (err, data) => {
@@ -72,7 +74,9 @@ module.exports = {
 
   LikePost: function (req, res, next) {
     const postId = req.query.postId
-    const userId = 2
+    const userId = req.user.id
+    console.log(req.user)
+    
     // from JWT!
     dbService.checkIfLikedPost(postId, userId, (err, data) => {
       if (err) {
