@@ -1,3 +1,5 @@
+import { CommentModel } from './commentModel';
+
 export class PostModel{
     postId: string;
     imageSrc: string;
@@ -8,5 +10,5 @@ export class PostModel{
     latitude: number;
     longitude: number;
     likes: number;
-    // comments
+    comments: CommentModel;
 }

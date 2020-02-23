@@ -62,13 +62,9 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   initPosts() {
-    this.postsSubscription = this.postService.getPostsList().subscribe((res: {posts: postToShow[], error : Error}) => {
-      if (res.error) {
-        console.log(res.error);     
-      }
-      else{      
+    this.postsSubscription = this.postService.getPostsList().subscribe((res: postToShow[]) => {
         this.clearMarkers();
-        this.posts = res.posts;
+        this.posts = res;
         this.posts.forEach(post => {
           const marker = new google.maps.Marker({
             position: new google.maps.LatLng(post.latitude, post.longitude),
@@ -81,7 +77,7 @@ export class MapComponent implements OnInit, OnDestroy {
           });
           this.markers.push(marker);
         });
-      }
+      
     })
       this.postService.UpdatePosts(new FilterModel);
   }

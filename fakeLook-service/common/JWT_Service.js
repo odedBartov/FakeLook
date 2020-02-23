@@ -10,8 +10,8 @@ module.exports = {
     validateToken: (req, res, next) => {
         const token = req.headers['access-token']
 
-        jwt.verify(token, secretToken, (err, data) => {
-            if (err) {
+        jwt.verify(token, secretToken, (err, data) => {            
+            if (err) {                
                 errorHandler.throwException('Login for user has expired!', 403)
             }
             else {

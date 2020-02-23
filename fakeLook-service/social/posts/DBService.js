@@ -74,11 +74,38 @@ module.exports = {
       handleDbResponses(err, data, callback)
     })
   },
+
   CheckIfUsernamesExist:function (usernames, callback) {
     var dbreq = dbPool.request()
     dbreq.input('usernames', JSON.stringify(usernames))
     dbreq.execute('SP_CheckIfUsernamesExist', (err, data) => {
       handleDbResponses(err, data, callback)
+    })
+  },
+
+  createUser: function (user, callback){
+    var dbreq = dbPool.request()
+    dbreq.input('userId', sql.BigInt, user.createdUserId)
+    dbreq.input('userName', sql.NVarChar(20), user.userName)
+    dbreq.input('email', sql.NVarChar(30), user.email)
+    dbreq.execute('SP_InsertUser', (err, data) => {
+      handleDbResponses(err, data, callback)
+    })
+  },
+
+  publishComment: function (comment, callback){
+    var dbreq = dbPool.request()
+    dbreq.input('postId', sql.BigInt, comment.postId)
+    dbreq.input('userId', sql.BigInt, comment.userId)
+    dbreq.input('text', sql.NVarChar(200), comment.text)
+    dbreq.input('date', sql.Date, comment.date)
+    dbreq.execute('SP_PublishComment', (error, data) => {
+      if (error) {
+        callback(error, undefined)
+      }
+      else{
+        callback(undefined, data)
+      }
     })
   }
 }

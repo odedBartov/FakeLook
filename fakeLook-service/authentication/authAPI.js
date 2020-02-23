@@ -2,6 +2,7 @@ const dbService = require('./DBService')
 const bcryptServiceType = require('./bcryptService')
 const errorHandler = require('../common/errorHandler')
 const jwtService = require('../common/JWT_Service')
+const socialApi = require('../social/posts/postsAPI')
 
 module.exports = {
   Login: function (req, res, next) {
@@ -13,6 +14,7 @@ module.exports = {
         
         if (bcryptServiceType.comparePassword(user.password, data.Password)) {
           const token = jwtService.createToken(data.ID)
+          
           res.setHeader('access-token', token)
           res.send(user)
         } else {
@@ -36,11 +38,21 @@ module.exports = {
           errorHandler.throwException('user already exist!', 400)
         } else {
           user.password = bcryptServiceType.password(user)
-          dbService.InsertUser(user, (error, result) => {
+          dbService.InsertUser(user, (error, data) => {
             if (error) {
               next(error)
             } else {
-              res.send(result)
+              data.createdUserId
+              data.email = user.email
+              data.userName = user.userName              
+              socialApi.createUser(data, (error, result) => {
+                if (error) {
+                  next(error)
+                }
+                else{
+                  res.send(user)
+                }
+              })
             }
           })
         }

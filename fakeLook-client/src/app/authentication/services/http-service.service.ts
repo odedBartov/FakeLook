@@ -13,7 +13,7 @@ export class HttpService {
 
   Login(userName, password){
     return this.http.get(`http://localhost:1000/authentication/login?userName=${userName}&password=${password}`,
-    {observe: 'response'}).pipe(tap(res => {
+    {observe: 'response'}).pipe(tap(res => {   
       environment.secretToken = res.headers.get('access-token');
     }))
   }

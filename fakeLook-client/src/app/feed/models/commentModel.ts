@@ -1,7 +1,6 @@
 export class CommentModel{
+    commentId: number;
     publisherName: string;
     publishDate: Date;
-    taggedUsers: string[];
-    imageTags: string;
     text: string;
 }

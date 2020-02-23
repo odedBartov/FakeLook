@@ -27,4 +27,8 @@ export class NavigatorService {
   navigateToFriends(){
     this.router.navigateByUrl('friends');
   }
+
+  navigateToScrollFeed(){
+    this.router.navigateByUrl('scrollFeed');
+  }
 }

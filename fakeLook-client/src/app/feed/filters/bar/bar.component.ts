@@ -21,4 +21,8 @@ export class BarComponent implements OnInit {
   goToFriends(){
     this.navigatorService.navigateToFriends();
   }
+
+  goToScrollFeed(){
+    this.navigatorService.navigateToScrollFeed();
+  }
 }

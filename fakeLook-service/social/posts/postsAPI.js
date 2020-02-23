@@ -14,12 +14,13 @@ module.exports = {
 
   GetPost: function (req, res, next) {
     dbService.getPost(req.query.postId, (error, data) => {
-      if (error) {
+      if (error) {     
         next(error)
       } else {
         var post = data[0][0]
         post.imageTags = []
         post.taggedUsers = []
+        post.comments = []
 
         data[1].forEach(tag => {
           post.imageTags.push(tag.title)
@@ -28,7 +29,12 @@ module.exports = {
         data[2].forEach(tag => {
           post.taggedUsers.push(tag.username)
         })
-        post.likes = data[3][0].likes
+
+        data[4].forEach(comment => {
+          post.comments.push(comment)
+        })
+        post.likes = data[3][0].likes      
+          
         res.send(post)
       }
     })
@@ -42,10 +48,9 @@ module.exports = {
       var receivedPost = JSON.parse(req.body.post)
       var post = buildPost(receivedPost)
       post.data.imageSrc = `http://localhost:1000/${req.file.path}`
-      post.data.userUpId = req.user.dislikePost
-      console.log(req.user);
+      post.data.userUpId = req.user.id
+      // post.data.userUpId = req.user.dislikePost
       
-
       const usernames = post.taggedUsers
       dbService.CheckIfUsernamesExist(usernames, (err, data) => {
         if (err) {
@@ -59,7 +64,7 @@ module.exports = {
               400
             )
           } else {
-            dbService.insertPost(post, (err, data) => {
+            dbService.insertPost(post, (err, data) => {              
               if (err) {
                 next(err)
               } else {
@@ -75,13 +80,11 @@ module.exports = {
   LikePost: function (req, res, next) {
     const postId = req.query.postId
     const userId = req.user.id
-    console.log(req.user)
     
-    // from JWT!
     dbService.checkIfLikedPost(postId, userId, (err, data) => {
       if (err) {
         next(err)
-      } else {
+      } else {        
         const isLiked = data[0].length > 0
         const like = isLiked ? dbService.dislikePost : dbService.likepost
         like(postId, userId, (err, data) => {
@@ -97,7 +100,7 @@ module.exports = {
 
   checkIfLikedPost: function (req, res, next) {
     const postId = req.query.postId
-    const userId = 2
+    const userId = req.user.id
     //from JWT
     dbService.checkIfLikedPost(postId, userId, (err, data) => {
       if (err) {
@@ -108,9 +111,32 @@ module.exports = {
     })
   },
 
-  PublishComment: function (user, comment) {},
+  PublishComment: function (req, res, next) {
+    var comment = req.body  
+    comment.userId = req.user.id       
+    dbService.publishComment(comment, (error, data) => {
+      if (error) {
+        console.log(error);
+        next(error)
+      }
+      else{        
+        res.send(data)
+      }
+    })
+  },
 
-  LikeComment: function (user, comment) {}
+  LikeComment: function (user, comment) {},
+
+  createUser: function (user, callback) {
+    dbService.createUser(user, (error, data) => {
+      if (error) {
+        callback(error, undefined)
+      }
+      else{
+        callback(undefined, user)
+      }
+    })
+  }
 }
 
 const buildPost = function (receivedPost) {

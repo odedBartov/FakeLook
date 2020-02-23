@@ -10,17 +10,17 @@ import { postToShow } from '../models/postToShow';
   providedIn: 'root'
 })
 export class PostsService {
-  private posts: Subject<{posts: postToShow[], error : Error}>;
- // private posts: Subject<{bool, number}>;
+  private posts: Subject<postToShow[]>;
   currentLatitude = 33;
   currentLongitude = 33;
+  currentFeed = 'map';
 
   constructor(private httpService: HttpService) {
     navigator.geolocation.getCurrentPosition(pos => {
       this.currentLatitude = pos.coords.latitude;
       this.currentLongitude = pos.coords.longitude;
     })
-    this.posts = new Subject<{posts: postToShow[], error : Error}>();
+    this.posts = new Subject<postToShow[]>();
   }
 
   getPostsList() {
@@ -35,11 +35,7 @@ export class PostsService {
     filter.latitude = this.currentLatitude;
     filter.longitude = this.currentLongitude;
     this.httpService.getPosts(filter).subscribe((res: PostModel[]) => {     
-      this.posts.next({posts: res, error: undefined});
-    },
-    error => {      
-      alert(error.message);
-      this.posts.next(error);
+      this.posts.next(res);
     })
   }
 
@@ -54,12 +50,16 @@ export class PostsService {
     return this.httpService.publishPost(formData);
   }
 
-  likePost(postId){    
+  likePost(postId){
     return this.httpService.likePost(postId);
   }
 
   checkIfLikedPost(postId){
     return this.httpService.checkIfLikedPost(postId);
+  }
+
+  publishComment(comment){
+    return this.httpService.publishComment(comment);
   }
 
   likeComment(commentId){

@@ -1,14 +1,18 @@
 <div *ngIf="currentPost" class="main">
     <img [src]="currentPost.imageSrc"/>
     <div class="line text">
-        <h3>{{currentPost.text}}</h3>
+        <h2>{{currentPost.text}}</h2>
         <div class="likes">
             <img class="icon" [@rotation]="liked? 'rotate' : 'straight'" (click)="like($event)" src="https://cdn4.vectorstock.com/i/thumbs/97/58/like-icon-like-in-flat-style-like-icon-thumb-up-vector-22509758.jpg"/>
             <h4>{{currentPost.likes}}</h4>
         </div>
     </div>
+    <div class="comment" *ngFor="let comment of currentPost.comments">
+        <h3>{{comment.text}}</h3>
+        <h5>{{comment.username}}</h5>
+    </div>
     <form class="line text form-group" #commentForm="ngForm">
-        <input class="form-control" placeholder="Comment" [(ngModel)]="comment" type="text" name="comment" required
+        <input class="form-control" placeholder="Comment" [(ngModel)]="text" type="text" name="text" required
         #name="ngModel"/>
         <button (click)="publishComment()" [disabled]="!commentForm.form.valid">Publish</button>
     </form>

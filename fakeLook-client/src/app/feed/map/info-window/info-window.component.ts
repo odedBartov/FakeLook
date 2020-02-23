@@ -21,22 +21,23 @@ export class InfoWindowComponent implements OnInit {
 
   @Input() postId: string;
   currentPost: PostModel;
-  comment: string;
+  text: string;
   liked = false;
 
-  constructor(private postServiec: PostsService) {
+  constructor(private postServiec: PostsService) {  
   }
-
+  
   ngOnInit() {
     this.postServiec.getPost(this.postId).subscribe((res: PostModel) => {
       this.currentPost = res;
+      console.log(res);
     },
       error => {
         alert("can't get post\n\n" + error.error);
       })
 
     this.postServiec.checkIfLikedPost(this.postId).subscribe((res: boolean) => {
-      this.liked = res      
+      this.liked = res
     }, err => {
       alert(err.error);
     })
@@ -44,7 +45,7 @@ export class InfoWindowComponent implements OnInit {
 
   like() {
     this.postServiec.likePost(this.currentPost.postId).subscribe((res: boolean) => {
-      this.liked = res;       
+      this.liked = res;
       this.currentPost.likes += this.liked ? 1 : -1;
     }, err => {
       alert(err.error)
@@ -52,11 +53,20 @@ export class InfoWindowComponent implements OnInit {
   }
 
   publishComment() {
-    if (!this.comment) {
+    if (!this.text) {
       alert('Fill the comment');
     }
     else {
-      alert('Comment published successfuly');
+      var dat = new Date();
+      var comment = {
+        date: dat.getFullYear() + '-' + (dat.getMonth() + 1) + '-' + dat.getDate(),
+        text: this.text,
+        postId: this.currentPost.postId
+      };      
+      this.postServiec.publishComment(comment).subscribe(res => {
+        alert('Your comment published successfuly');
+        this.text = '';
+      })
     }
   }
 }
