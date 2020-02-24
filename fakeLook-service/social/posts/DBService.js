@@ -13,17 +13,17 @@ const dbPool = new sql.ConnectionPool(config, err => {
 })
 
 module.exports = {
-  getPosts: function (filter, callback) {
+  getPosts: function (filter, callback) {    
     var dbreq = dbPool.request()
-    dbreq.input('dateFrom', sql.Date, filter.dateFrom)
-    dbreq.input('dateTo', sql.Date, filter.dateTo)
-    dbreq.input('radius', sql.Float, filter.radius)
-    dbreq.input('longitude', sql.Float, filter.longitude)
-    dbreq.input('latitude', sql.Float, filter.latitude)
+    dbreq.input('dateFrom', sql.Date, filter.data.dateFrom)
+    dbreq.input('dateTo', sql.Date, filter.data.dateTo)
+    dbreq.input('radius', sql.Float, filter.data.radius)
+    dbreq.input('currentLongitude', sql.Float, filter.data.longitude)
+    dbreq.input('currentLatitude', sql.Float, filter.data.latitude)
+    dbreq.input('users', JSON.stringify(filter.taggedUsers))
+    dbreq.input('imageTags', JSON.stringify(filter.imageTags))
 
     // dbreq.input('groups', sql.Float, filter.latitude)
-    // dbreq.input('imageTags', sql.Float, filter.latitude)
-    // dbreq.input('taggedusers', sql.Float, filter.latitude)
 
     dbreq.execute('SP_GetPosts', (err, data) => {
       handleDbResponses(err, data, callback)
@@ -38,8 +38,9 @@ module.exports = {
     })
   },
 
-  insertPost: function (post, callback) {
-    var dbreq = dbPool.request()
+  insertPost: function (post, callback) {    
+    var dbreq = dbPool.request()    
+    
     dbreq.input('postData', JSON.stringify(post.data))
     dbreq.input('taggedUsers', JSON.stringify(post.taggedUsers))
     dbreq.input('imageTags', JSON.stringify(post.imageTags))

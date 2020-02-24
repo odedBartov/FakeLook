@@ -5,6 +5,6 @@ export class FilterModel {
     longitude;
     latitude;
     imageTags: string;
-    taggedUsers: string;
+    tagedUsers: string;
     groups: string;
 }

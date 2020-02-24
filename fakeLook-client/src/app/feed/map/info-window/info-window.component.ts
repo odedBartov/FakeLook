@@ -30,7 +30,6 @@ export class InfoWindowComponent implements OnInit {
   ngOnInit() {
     this.postServiec.getPost(this.postId).subscribe((res: PostModel) => {
       this.currentPost = res;
-      console.log(res);
     },
       error => {
         alert("can't get post\n\n" + error.error);

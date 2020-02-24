@@ -2,11 +2,15 @@ const dbService = require('./DBService')
 const errorHandler = require('../../common/errorHandler')
 module.exports = {
   GetPosts: function (req, res, next) {
-    const filter = req.body
+    const recievedFilter = req.body     
+    var filter = buildPost(recievedFilter)
+    filter.data.dateFrom = recievedFilter.dateFrom
+    filter.data.dateTo = recievedFilter.dateTo
+    filter.data.radius = recievedFilter.radius*1000
     dbService.getPosts(filter, (error, data) => {
       if (error) {
         next(error)
-      } else {
+      } else {        
         res.send(data[0])
       }
     })
@@ -33,8 +37,7 @@ module.exports = {
         data[4].forEach(comment => {
           post.comments.push(comment)
         })
-        post.likes = data[3][0].likes      
-          
+        post.likes = data[3][0].likes    
         res.send(post)
       }
     })
@@ -47,11 +50,13 @@ module.exports = {
     } else {
       var receivedPost = JSON.parse(req.body.post)
       var post = buildPost(receivedPost)
+      post.data.publishedDate = receivedPost.publishedDate
+      post.data.text = receivedPost.text
       post.data.imageSrc = `http://localhost:1000/${req.file.path}`
       post.data.userUpId = req.user.id
-      // post.data.userUpId = req.user.dislikePost
       
       const usernames = post.taggedUsers
+      
       dbService.CheckIfUsernamesExist(usernames, (err, data) => {
         if (err) {
           next(err)
@@ -63,11 +68,11 @@ module.exports = {
               )}`,
               400
             )
-          } else {
+          } else {            
             dbService.insertPost(post, (err, data) => {              
               if (err) {
                 next(err)
-              } else {
+              } else {                
                 res.json(post)
               }
             })
@@ -139,24 +144,29 @@ module.exports = {
   }
 }
 
-const buildPost = function (receivedPost) {
+const buildPost = function (received) {
   var post = { data: {}, imageTags: [], taggedUsers: [] }
-  post.data.latitude = receivedPost.latitude
-  post.data.longitude = receivedPost.longitude
-  post.data.publishedDate = receivedPost.publishedDate
-  post.data.text = receivedPost.text
+  post.data.latitude = received.latitude
+  post.data.longitude = received.longitude
 
-  if (receivedPost.imageTags) {
-    receivedPost.imageTags.split(',').forEach(tag => {
-      post.imageTags.push({ title: tag })
+  if (received.imageTags) {
+    received.imageTags.split(',').forEach(tag => {
+      post.imageTags.push({ imageTag: tag })
     })
   }
 
-  if (receivedPost.taggedUsers) {
-    receivedPost.taggedUsers.split(',').forEach(tag => {
-      post.taggedUsers.push({ username: tag })
+  if (received.taggedUsers) {
+    received.taggedUsers.split(',').forEach(tag => {
+      post.taggedUsers.push({ UN: tag })
     })
   }
+  
+  if (post.taggedUsers.length == 0) {    
+    post.taggedUsers = undefined
+  }
 
+  if (post.imageTags.length == 0) {
+    post.imageTags = undefined
+  }
   return post
 }

@@ -5,7 +5,7 @@ const secretToken = enviroment.secretKey
 
 module.exports = {
     createToken: (id) => {        
-        return jwt.sign({ id: id }, secretToken, { expiresIn: '1h' })
+        return jwt.sign({ id: id }, secretToken, { expiresIn: '4h' })
     },
     validateToken: (req, res, next) => {
         const token = req.headers['access-token']

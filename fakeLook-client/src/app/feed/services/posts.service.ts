@@ -40,8 +40,8 @@ export class PostsService {
   }
 
   publishPost(post: postToUpload, image) {
-    post.latitude = this.currentLatitude + Math.random() - 0.5;
-    post.longitude = this.currentLongitude + Math.random() - 0.5;
+    post.latitude = this.currentLatitude + Math.random()*3 - 1;
+    post.longitude = this.currentLongitude + Math.random()*3 - 1;
     //buffer for check. to remove
 
     const formData = new FormData();

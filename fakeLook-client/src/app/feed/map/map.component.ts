@@ -18,6 +18,7 @@ import { postToShow } from '../models/postToShow';
 export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
+  postsCountToPin = 3;
   latitude = 0;
   longitude = 0;
   radius = 15;
@@ -30,7 +31,7 @@ export class MapComponent implements OnInit, OnDestroy {
   compRef: ComponentRef<InfoWindowComponent>;
 
   constructor(
-   // @Inject(DOCUMENT) private document,
+    // @Inject(DOCUMENT) private document,
     private postService: PostsService,
     private mapsAPILoader: MapsAPILoader,
     private resolver: ComponentFactoryResolver,
@@ -43,7 +44,7 @@ export class MapComponent implements OnInit, OnDestroy {
       this.coordinates = new google.maps.LatLng(this.postService.currentLatitude, this.postService.currentLongitude);
       this.mapOptions = {
         center: this.coordinates,
-        zoom: 7
+        zoom: 6
       };
       this.mapInitializer();
       this.initPosts();
@@ -63,34 +64,44 @@ export class MapComponent implements OnInit, OnDestroy {
 
   initPosts() {
     this.postsSubscription = this.postService.getPostsList().subscribe((res: postToShow[]) => {
-        this.clearMarkers();
-        this.posts = res;
-        this.posts.forEach(post => {
-          const marker = new google.maps.Marker({
-            position: new google.maps.LatLng(post.latitude, post.longitude),
-            map: this.map,
-            icon: this.getIcon(post.imageSrc)
-          });
-          marker.addListener('click', () => {
-            const infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.postId) });
-            infowindow.open(this.map, marker);
-          });
-          this.markers.push(marker);
+      this.clearMarkers();
+      this.posts = res;
+      this.posts.forEach(post => {
+        const marker = new google.maps.Marker({
+          position: new google.maps.LatLng(post.latitude, post.longitude),
+          map: this.map,
+          icon: this.getIcon(post.imageSrc)
         });
-      
+        marker.addListener('click', () => {
+          const infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.postId) });
+          infowindow.open(this.map, marker);
+        });
+        this.markers.push(marker);
+      });
+
     })
-      this.postService.UpdatePosts(new FilterModel);
+    this.postService.UpdatePosts(new FilterModel);
   }
 
   getIcon(url) {
-    const icon = {
-      url: url,
-      scaledSize: new google.maps.Size(100, 70)
+    var icon;
+    if (this.posts.length > this.postsCountToPin) {
+      icon = {
+        path: 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
+        fillColor: '#FFBC3B',
+        fillOpacity: 1,
+      }
     }
+    else {
+      icon = {
+        url: url,
+        scaledSize: new google.maps.Size(100, 70)
+      }
+    }    
     return icon;
   }
 
-  getInfoWindow(postId: string) {    
+  getInfoWindow(postId: string) {
     const compFactory = this.resolver.resolveComponentFactory(InfoWindowComponent);
     this.compRef = compFactory.create(this.injector);
     this.compRef.instance.postId = postId;
@@ -100,7 +111,7 @@ export class MapComponent implements OnInit, OnDestroy {
     return div;
   }
 
-  clearMarkers(){
+  clearMarkers() {
     this.markers.forEach(marker => {
       marker.setMap(null);
     })

@@ -1,5 +1,6 @@
 h5 {
   color: cornflowerblue;
+  margin-bottom: 30px;
 }
 
 h4{
@@ -20,8 +21,8 @@ img {
 }
 
 .line {
-  margin-top: -25px;
-  margin-bottom: -15px;
+  margin-top: -15px;
+  margin-bottom: -20px;
   display: flex;
 }
 
