@@ -12,15 +12,12 @@ export class FriendsComponent implements OnInit {
   public currentUsername: string;
   public msg: string = "";
   public friends: Friend[];
-  public selectedFriend:Friend = new Friend();
+  /*   public selectedFriend:Friend = new Friend(); */
   constructor(private freindsApi: FriendsApiService) {
-    this.friends = []
-    let friend1 = new Friend();
-    friend1.username = "mushky";
-    let friend2 = new Friend();
-    friend2.username = "shmulik";
-    this.friends.push(friend1);
-    this.friends.push(friend2);
+    freindsApi.getFriends().subscribe(data => {
+      console.log(data)
+      this.friends = data
+    })
 
   }
 
@@ -43,14 +40,15 @@ export class FriendsComponent implements OnInit {
   //remove freind to the active user
   removeFriend(friend) {//?
     console.log(friend)
-/*     this.freindsApi.removeFriend(this.currentUsername).subscribe(data => {
+    /*     this.freindsApi.removeFriend(this.currentUsername).subscribe(data => {
+    
+        }) */
+  }
 
-    }) */
-  }
-  onSelect(friend: Friend): void {
-/*     this.selectedFriend = friend; */
-    console.log(friend)
-  }
+/*   onSelect(friend: Friend): void {
+    /*     this.selectedFriend = friend; */
+/*     console.log(friend)
+  } */
 
 
 }

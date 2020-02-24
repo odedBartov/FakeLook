@@ -59,7 +59,6 @@ module.exports = {
        /*  const userId = req.user.id; */
         const userId = 1;
         const friends = await dbService.getFriends(userId).catch(err => console.log(err))
-        console.log(friends)
         res.status(200).json(friends);
     },
 

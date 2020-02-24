@@ -20,4 +20,6 @@ router.post('/addFriendToGroup', friendsAPI.addFriendToGroup)
 
 router.post('/removeFriendFromGroup', friendsAPI.removeFriendFromGroup)
 
+router.get('/getFriends', friendsAPI.getFriends)
+
 module.exports = router

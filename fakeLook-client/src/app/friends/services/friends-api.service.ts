@@ -20,4 +20,8 @@ export class FriendsApiService {
     return this.httpClient.delete<any>(`${this.friendsUrl}/removeFriend/${username}`);
   }
 
+  getFriends(): Observable<any> {
+    return this.httpClient.get<any>(`${this.friendsUrl}/getFriends`);
+  }
+
 }

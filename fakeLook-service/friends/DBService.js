@@ -42,7 +42,8 @@ module.exports = {
     getFriends: async function (userId) {
         var dbreq = (await dbPool).request()
         dbreq.input("userId", userId)
-        const result = await dbreq.execute("RemoveFriend").catch(err => console.log(err))
-        return result.rescordsets[0];
+        const result = await dbreq.execute("GetFriends").catch(err => console.log(err))
+        const friends = result.recordsets[0]
+        return friends;
     }
 }
