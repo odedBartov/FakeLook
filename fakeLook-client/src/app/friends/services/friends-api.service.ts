@@ -16,8 +16,8 @@ export class FriendsApiService {
     return this.httpClient.post<any>(`${this.friendsUrl}/addFriend`, username);
   }
 
-  removeFriend(username): Observable<any> {
-    return this.httpClient.delete<any>(`${this.friendsUrl}/removeFriend/${username}`);
+  removeFriend(friendId): Observable<any> {
+    return this.httpClient.delete<any>(`${this.friendsUrl}/removeFriend/${friendId}`);
   }
 
   getFriends(): Observable<any> {

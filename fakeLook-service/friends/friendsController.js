@@ -10,7 +10,7 @@ router.post('/acceptFriendRequest', friendsAPI.acceptFriendRequest)
 
 router.post('/addFriend',friendsAPI.addFriend)
 
-router.post('/removeFriend/:friendUsername', friendsAPI.removeFriend)
+router.delete('/removeFriend/:friendId', friendsAPI.removeFriend)
 
 router.post('/followFriend', friendsAPI.followFriend)
 

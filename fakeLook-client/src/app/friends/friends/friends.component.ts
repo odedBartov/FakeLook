@@ -39,16 +39,23 @@ export class FriendsComponent implements OnInit {
 
   //remove freind to the active user
   removeFriend(friend) {//?
-    console.log(friend)
+    this.freindsApi.removeFriend(friend.userId).subscribe(data => {
+      if (data.success) {
+        this.friends = this.friends.filter(f => f.userId !== friend.userId);
+      }
+      else {
+
+      }
+    })
     /*     this.freindsApi.removeFriend(this.currentUsername).subscribe(data => {
     
         }) */
   }
 
-/*   onSelect(friend: Friend): void {
-    /*     this.selectedFriend = friend; */
-/*     console.log(friend)
-  } */
+  /*   onSelect(friend: Friend): void {
+      /*     this.selectedFriend = friend; */
+  /*     console.log(friend)
+    } */
 
 
 }

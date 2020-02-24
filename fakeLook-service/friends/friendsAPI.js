@@ -10,7 +10,7 @@ module.exports = {
     //add friend to specific user
     addFriend: async function (req, res, next) {
         const friendUsername = req.body.friendUsername
-        const userId = 1//?from token
+        const userId = req.user.id;
         response = {}
         const friendId = await dbService.CheckIfUserExist(friendUsername)
         if (friendId) {
@@ -37,26 +37,20 @@ module.exports = {
     },
     //?
     removeFriend: async function (req, res, next) {
-        let response = {}
-        const friendUsername = req.params.friendUsername;
-        const friendId = await dbService.CheckIfUserExist(friendUsername)
-        if (friendId) {
-            userId = 1//?token
-            await dbService.removeFriend(friendId, userId).catch(err => console.log(err))
-            response = {
-                success: true
-            }
+        /*         const userId = req.user.id */
+        let response = {
+            success: true
         }
-        else {
-            response = {
-                success: false,
-                errorMsg: "Username is not exist"
-            }
-        }
+        const userId = 1;
+        const friendId = req.params.friendId
+        await dbService.removeFriend(friendId, userId).catch(err => {
+            response.success = false
+            console.log(err)
+        })
         res.status(200).json(response)
     },
     getFriends: async function (req, res, next) {
-       /*  const userId = req.user.id; */
+        /*  const userId = req.user.id; */
         const userId = 1;
         const friends = await dbService.getFriends(userId).catch(err => console.log(err))
         res.status(200).json(friends);
