@@ -8,7 +8,7 @@ import { FriendsComponent } from './friends/friends/friends.component';
 import { ScrollFeedComponent } from './feed/scroll-feed/scroll-feed.component';
 
 const routes:  Routes = [
-    { path: '', redirectTo: 'feed', pathMatch: 'prefix' },
+    { path: '', redirectTo: 'login', pathMatch: 'prefix' },
     { path: 'login', component: LoginComponent },
     { path: 'signUp', component: SignUpComponent },
     { path: 'feed', component: FeedComponent},
