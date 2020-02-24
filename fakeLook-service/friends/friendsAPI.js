@@ -35,24 +35,8 @@ module.exports = {
         }
         res.status(200).json(response)
     },
-
-    removeFriend: function () {
-
-    },
-
-    followFriend: function () {
-
-    },
-
-    createGroup: function () {
-
-    },
-
-    addFriendToGroup: function () {
-
-    },
-    //remove friend for specific user
-    removeFriendFromGroup: async function (req, res, next) {
+    //?
+    removeFriend: async function (req, res, next) {
         let response = {}
         const friendUsername = req.params.friendUsername;
         const friendId = await dbService.CheckIfUserExist(friendUsername)
@@ -70,5 +54,28 @@ module.exports = {
             }
         }
         res.status(200).json(response)
+    },
+    getFriends: async function (req, res, next) {
+       /*  const userId = req.user.id; */
+        const userId = 1;
+        const friends = await dbService.getFriends(userId).catch(err => console.log(err))
+        console.log(friends)
+        res.status(200).json(friends);
+    },
+
+    followFriend: function () {
+
+    },
+
+    createGroup: function () {
+
+    },
+
+    addFriendToGroup: function () {
+
+    },
+    //remove friend for specific user
+    removeFriendFromGroup: async function (req, res, next) {
+
     }
 }

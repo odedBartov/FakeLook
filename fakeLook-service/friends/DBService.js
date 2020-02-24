@@ -29,14 +29,20 @@ module.exports = {
     CheckIfUserExist: async function (username) {
         var dbreq = (await dbPool).request();
         dbreq.input("username", username);
-        dbreq.output("userId",sql.BigInt)
+        dbreq.output("userId", sql.BigInt)
         const result = await dbreq.execute("IsUserExist").catch(err => console.log(err))
         return result.output.userId
     },
-    removeFriend:async function(friendId,userId){
+    removeFriend: async function (friendId, userId) {
         var dbreq = (await dbPool).request()
-        dbreq.input("friendId",friendId)
-        dbreq.input("userId",userId)
+        dbreq.input("friendId", friendId)
+        dbreq.input("userId", userId)
         await dbreq.execute("RemoveFriend").catch(err => console.log(err))
+    },
+    getFriends: async function (userId) {
+        var dbreq = (await dbPool).request()
+        dbreq.input("userId", userId)
+        const result = await dbreq.execute("RemoveFriend").catch(err => console.log(err))
+        return result.rescordsets[0];
     }
 }

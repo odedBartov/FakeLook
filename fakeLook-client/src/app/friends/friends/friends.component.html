@@ -7,5 +7,11 @@
 </div>
 <div>
     <button class="btn btn-primary mb-2" (click)="addFriend()">Add freind</button>
-    <button class="btn btn-primary mb-2" (click)="removeFreind">Remove freind</button>
 </div>
+<h2>My Friends</h2>
+<ul *ngFor="let friend of friends" class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span class="badge">{{friend.username}}</span>
+        <button class="btn btn-primary mb-2" (click)="removeFriend(friend)">Remove freind</button>
+    </li>
+</ul>

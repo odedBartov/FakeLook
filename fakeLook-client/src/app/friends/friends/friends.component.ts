@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FriendsApiService } from '../services/friends-api.service';
+import { Friend } from '../models/friend';
 
 @Component({
   selector: 'app-friends',
@@ -9,8 +10,19 @@ import { FriendsApiService } from '../services/friends-api.service';
 export class FriendsComponent implements OnInit {
 
   public currentUsername: string;
-  public msg: string = "hgs";
-  constructor(private freindsApi: FriendsApiService) { }
+  public msg: string = "";
+  public friends: Friend[];
+  public selectedFriend:Friend = new Friend();
+  constructor(private freindsApi: FriendsApiService) {
+    this.friends = []
+    let friend1 = new Friend();
+    friend1.username = "mushky";
+    let friend2 = new Friend();
+    friend2.username = "shmulik";
+    this.friends.push(friend1);
+    this.friends.push(friend2);
+
+  }
 
   ngOnInit() {
   }
@@ -29,10 +41,16 @@ export class FriendsComponent implements OnInit {
   }
 
   //remove freind to the active user
-  removeFriend() {//?
-    this.freindsApi.removeFriend(this.currentUsername).subscribe(data => {
+  removeFriend(friend) {//?
+    console.log(friend)
+/*     this.freindsApi.removeFriend(this.currentUsername).subscribe(data => {
 
-    })
+    }) */
   }
+  onSelect(friend: Friend): void {
+/*     this.selectedFriend = friend; */
+    console.log(friend)
+  }
+
 
 }
