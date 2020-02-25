@@ -1,1 +1,17 @@
-<p>friends works!</p>
+<h1>freinds</h1>
+<div>{{msg}}</div>
+<div class="form-group mb-2" id="searchInput">
+    <label for="staticEmail2" class="sr-only">Search Freind</label>
+    <input [(ngModel)]="currentUsername" type="text" class="form-control-plaintext" placeholder="Insert username"
+        id="staticEmail2">
+</div>
+<div>
+    <button class="btn btn-primary mb-2" (click)="addFriend()">Add freind</button>
+</div>
+<h2>My Friends</h2>
+<ul *ngFor="let friend of friends" class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span class="badge">{{friend.username}}</span>
+        <button class="btn btn-primary mb-2" (click)="removeFriend(friend)">Remove freind</button>
+    </li>
+</ul>

@@ -8,7 +8,9 @@ router.post('/sendFriendRequest', friendsAPI.sendFriendRequest)
 
 router.post('/acceptFriendRequest', friendsAPI.acceptFriendRequest)
 
-router.post('/removeFriend', friendsAPI.removeFriend)
+router.post('/addFriend',friendsAPI.addFriend)
+
+router.delete('/removeFriend/:friendId', friendsAPI.removeFriend)
 
 router.post('/followFriend', friendsAPI.followFriend)
 
@@ -17,5 +19,7 @@ router.post('/createGroup', friendsAPI.createGroup)
 router.post('/addFriendToGroup', friendsAPI.addFriendToGroup)
 
 router.post('/removeFriendFromGroup', friendsAPI.removeFriendFromGroup)
+
+router.get('/getFriends', friendsAPI.getFriends)
 
 module.exports = router

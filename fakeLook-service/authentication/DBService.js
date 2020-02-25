@@ -2,14 +2,14 @@ const sql = require('mssql')
 
 const config = require('../credentials').usersDB_Config
 
-const dbPool = new sql.ConnectionPool(config, err => {
+/* const dbPool = new sql.ConnectionPool(config, err => {
   if (err) {
     console.log(err)
   } else {
     console.log('connected to DB from Authentication!')
   }
 })
-
+ */
 module.exports = {
   CheckIfUserExist: function (userName, callback) {
     var dbreq = dbPool.request()

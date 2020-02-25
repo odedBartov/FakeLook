@@ -1,0 +1,12 @@
+button{
+    margin: 5px;
+}
+
+#searchInput{
+    height: 40px;
+    width: 200px;
+}
+.list-group{
+    width: 45%;
+    height: 50%;
+}
