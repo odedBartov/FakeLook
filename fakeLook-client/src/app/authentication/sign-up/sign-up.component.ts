@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpService } from "../services/http-service.service"
-import { NavigatorService } from "../../utils/navigator.service"
+import { NavigatorService } from "../../shared/navigator.service"
 
 @Component({
   selector: 'app-sign-up',
@@ -23,7 +23,8 @@ export class SignUpComponent implements OnInit {
     }
     else{
       this.httpService.SignUp(this.userName, this.password, this.email).subscribe(res => {
-        this.navigatorService.navigateToFeed();
+        alert("New user created successfuly")
+        this.goBack();
       }, error => {
         alert(error.message + "\n\n" + error.error)
       })

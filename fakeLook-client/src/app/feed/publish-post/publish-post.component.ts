@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../services/posts.service';
+import { NavigatorService } from '../../shared/navigator.service'
+import { postToUpload } from '../models/postToUpload';
 
 @Component({
   selector: 'app-publish-post',
@@ -8,17 +11,32 @@ import { Component, OnInit } from '@angular/core';
 export class PublishPostComponent implements OnInit {
   uploadedImage;
   date = new Date();
-  dateString = `${this.date.getFullYear()}/${this.date.getMonth()+1}/${this.date.getDate()}`
-  taggedFriends = '';
-  imageTags = '';
+  dateString = `${this.date.getDate()}/${this.date.getMonth()+1}/${this.date.getFullYear()}`
+  post: postToUpload = new postToUpload();
 
-  constructor() { }
+  constructor(private postService: PostsService, private navigationService: NavigatorService) { 
+  }
 
   ngOnInit() {
   }
 
   fileUploaded(event){
-    debugger;
-    this.uploadedImage = event.target.files[0]
+    this.uploadedImage = event.target.files[0];
+  }
+
+  upload(){
+    this.post.publishedDate = this.date;    
+    this.postService.publishPost(this.post, this.uploadedImage).subscribe(
+      res => { 
+        alert('Your post uploaded successfuly!');      
+        this.goBackToFeed();
+     },
+    err => {
+      alert('An error occured:\n\n' + err.error)
+    })
+  }
+
+  goBackToFeed(){
+    this.navigationService.navigateToFeed();
   }
 }

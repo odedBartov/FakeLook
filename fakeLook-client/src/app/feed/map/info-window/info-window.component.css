@@ -1,0 +1,82 @@
+h5 {
+  color: cornflowerblue;
+  margin-bottom: 30px;
+}
+
+h4{
+  margin-left: 30px;
+}
+
+h3{
+  word-break: break-all;
+
+}
+
+img {
+  height: 200px;
+}
+
+.main{
+  margin-bottom: 20px
+}
+
+.line {
+  margin-top: -15px;
+  margin-bottom: -20px;
+  display: flex;
+}
+
+.icon {
+  height: 40px;
+  cursor: pointer;
+  margin-bottom: -15px;
+}
+
+.text {
+  margin-top: 5px;
+  margin-bottom: 30px;
+  justify-content: space-between;
+}
+
+.likes{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment{
+  padding: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+.rotate{
+  animation: rotation 0.2s forwards;
+}
+
+.straight{
+  animation: straight 0.2s forwards;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes straight {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}

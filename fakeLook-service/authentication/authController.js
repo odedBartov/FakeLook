@@ -1,6 +1,6 @@
 const express = require('express')
-
 const authAPI = require('./authAPI')
+
 const router = express.Router();
 
 router.get('/login', authAPI.Login)

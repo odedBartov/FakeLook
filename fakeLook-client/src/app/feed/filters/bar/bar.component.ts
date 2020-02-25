@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavigatorService } from "../../../utils/navigator.service"
-import { from } from 'rxjs';
+import { NavigatorService } from "../../../shared/navigator.service"
 
 @Component({
   selector: 'app-bar',
@@ -17,5 +16,13 @@ export class BarComponent implements OnInit {
 
   goToPublishPost(){
     this.navigatorService.navigateToPublishPost();
+  }
+
+  goToFriends(){
+    this.navigatorService.navigateToFriends();
+  }
+
+  goToScrollFeed(){
+    this.navigatorService.navigateToScrollFeed();
   }
 }

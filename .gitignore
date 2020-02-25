@@ -1,1 +1,5 @@
 fakeLook-service/credentials.js
+fakeLook-service/node_modules
+
+
+fakeLook-client/credentials.js

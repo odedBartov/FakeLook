@@ -1,3 +1,20 @@
-agm-map{
-    height: 700px;
+agm-map {
+  height: 700px;
+}
+
+agm-info-window {
+  height: 200px;
+}
+
+.tags {
+  display: flex;
+}
+
+.tag {
+  color: cornflowerblue;
+}
+
+#myMap {
+  height: 700px;
+  width: 100%;
 }

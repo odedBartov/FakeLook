@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from "./app-routing.module"
 import { AgmCoreModule } from '@agm/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './authentication/login/login.component';
@@ -16,6 +17,9 @@ import { GroupsComponent } from './friends/groups/groups.component';
 import { FilterComponent } from './feed/filters/filter/filter.component';
 import { BarComponent } from './feed/filters/bar/bar.component';
 import { PublishPostComponent } from './feed/publish-post/publish-post.component';
+import { Credentials } from '../../credentials';
+import { InfoWindowComponent } from './feed/map/info-window/info-window.component';
+import { ScrollFeedComponent } from './feed/scroll-feed/scroll-feed.component';
 
 @NgModule({
   declarations: [
@@ -29,15 +33,20 @@ import { PublishPostComponent } from './feed/publish-post/publish-post.component
     GroupsComponent,
     FilterComponent,
     BarComponent,
-    PublishPostComponent
+    PublishPostComponent,
+    InfoWindowComponent,
+    ScrollFeedComponent
   ],
+  entryComponents: [InfoWindowComponent],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDRU_ENlCIyblA3pyCHqoPoaAJhsaQGv98'
+       apiKey: Credentials.API_Key,
+       libraries: ['geometry']
     })
   ],
   providers: [],

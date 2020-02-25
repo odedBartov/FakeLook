@@ -8,12 +8,19 @@
   
   .line {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+  }
+  
+  .fields{
+    display: flex; 
+    flex-direction: row
   }
   
   input {
     margin-left: 1%;
+    height: 20px;
+    align-self: center;
   }
   
   button {
@@ -30,4 +37,10 @@
       width: 150px;
       margin: 3%;
       font-size: 25px;
+  }
+
+  .error{
+    color: red;
+    font-size: 10px;
+    margin-left: 10px;
   }

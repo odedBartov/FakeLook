@@ -1,18 +1,12 @@
 const sql = require('mssql')
 
-const config = require('../credentials')
-//  {
-//   server: 'localhost',
-//   database: 'UsersDB',
-//   user: 'oded',
-//   password: '1234'
-// }
+const config = require('../credentials').usersDB_Config
 
 const dbPool = new sql.ConnectionPool(config, err => {
   if (err) {
     console.log(err)
   } else {
-    console.log('connected to DB!')
+    console.log('connected to DB from Authentication!')
   }
 })
 
@@ -30,15 +24,15 @@ module.exports = {
   },
 
   InsertUser: function (user, callback) {
-    dbreq = dbPool.request()
-    dbreq.input('UserName', sql.NVarChar(15), user.userName)
+    var dbreq = dbPool.request()
+    dbreq.input('UserName', sql.NVarChar(20), user.userName)
     dbreq.input('Password', sql.NVarChar(60), user.password)
     dbreq.input('email', sql.NVarChar(30), user.email)
-    dbreq.execute('SP_Inse rtUser', (err, data) => {
+    dbreq.execute('SP_InsertUser', (err, data) => {
       if (err) {
         callback(err, undefined)
-      } else {
-        callback(undefined, user)
+      } else {        
+        callback(undefined, data.recordset[0])
       }
     })
   },
@@ -50,7 +44,7 @@ module.exports = {
       if (err) {
         callback(err, undefined)
       } else {
-        callback(undefined, data.recordset[0].Password)
+        callback(undefined, data.recordset[0])
       }
     })
   }

@@ -7,10 +7,23 @@
 }
 
 .line{
-    margin: 15px;
     display: flex;
+    justify-content: start;
+    margin: 15px;
 }
 
 h2{
     margin: 0 10px;
+}
+
+.error{
+    color: red;
+    font-size: 10px;
+}
+
+.back{
+    background-color: rgb(211, 154, 30);
+    font-size: 30px;
+    padding: 10px;
+    margin-top: 100px;
 }
