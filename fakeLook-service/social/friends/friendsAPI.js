@@ -7,6 +7,7 @@ module.exports = {
     acceptFriendRequest: function () {
 
     },
+    
     //add friend to specific user
     addFriend: async function (req, res, next) {
         const friendUsername = req.body.friendUsername
@@ -35,6 +36,7 @@ module.exports = {
         }
         res.status(200).json(response)
     },
+
     //?
     removeFriend: async function (req, res, next) {
         /*         const userId = req.user.id */
@@ -49,6 +51,7 @@ module.exports = {
         })
         res.status(200).json(response)
     },
+
     getFriends: async function (req, res, next) {
         /*  const userId = req.user.id; */
         const userId = 1;

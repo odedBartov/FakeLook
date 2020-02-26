@@ -17,12 +17,12 @@ module.exports = {
         return result.output.success
     },
 
-    CheckUserIsFriend: async function (friendId, userId) {
+    CheckFriendship: async function (friendId, userId) {
         var dbreq = (await dbPool).request();
         dbreq.input("friendId", friendId);
         dbreq.input("userId", userId);
         /*      dbreq.output('outputJson', sql.NVarChar);//? */
-        const result = await dbreq.execute("CheckUserIsFriend").catch(err => console.log(err))
+        const result = await dbreq.execute("CheckFriendship").catch(err => console.log(err))
         return result.rescordsets[0][0]
     },
 
