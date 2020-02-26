@@ -10,6 +10,7 @@ import { FilterModel } from '../filters/filter/models/filterModel';
 import { InfoWindowComponent } from './info-window/info-window.component';
 import { postToShow } from '../models/postToShow';
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',

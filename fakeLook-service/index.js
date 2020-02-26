@@ -41,7 +41,7 @@ app.use('/friends', friendsController)
 /* app.use('/social', socialController) */
 
 app.use((err, req, res, next) => {
-    fs.appendFile('Log.txt', `Error thrown at ${new Date()}${err}` + "\n\n\n", () => { })
+    fs.appendFile('Log.txt', `Error thrown at ${new Date()}${err}` + "\n\n\n"}, () => { })
 
 app.use((err, req, res, next) => {
     res.status(err.status ? err.status : 500).send(err.message)
