@@ -9,9 +9,9 @@ import { NavigatorService } from "../../shared/navigator.service"
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  userName: string = 'oded';
-  password: string = '12';
-  email: string = 'bla@gmail.com';
+  userName: string = '';
+  password: string = '';
+  email: string = '';
   constructor(private httpService: HttpService, private navigatorService: NavigatorService) { }
 
   ngOnInit() {

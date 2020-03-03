@@ -12,25 +12,24 @@ const errorHandler = require('./common/errorHandler')
 
 app.use(cors())
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Expose-Headers', '*')
-    next()
+  res.setHeader('Access-Control-Expose-Headers', '*')
+  next()
 })
 
 app.use(bp.json())
 
 app.use((req, res, next) => {
-    errorHandler.setNext(next)
+  errorHandler.setNext(next)
 })
-/* const socialController = require('./social/socialController') */
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 
-/* const FRIENDaPI = require('./friends/DBService');
- FRIENDaPI.InsertFreind(2,3).then(res=>console.log(res)) */
-//convertion of body to json object
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(bodyParser.json())
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
+app.use('/assets', express.static(path.join(__dirname, 'assets')))
 
 app.use('/authentication', authController)
 
@@ -38,15 +37,11 @@ app.use('/posts', postsController)
 
 app.use('/friends', friendsController)
 
-/* app.use('/social', socialController) */
-
 app.use((err, req, res, next) => {
-    fs.appendFile('Log.txt', `Error thrown at ${new Date()}${err}` + "\n\n\n", () => { })
+  fs.appendFile('Log.txt', `Error thrown at ${new Date()}${err}` + '\n\n\n', () => {})
 
-app.use((err, req, res, next) => {
-    res.status(err.status ? err.status : 500).send(err.message)
+  res.status(err.status ? err.status : 500).send(err.message)
 })
-
 app.listen(1000, () => {
-    console.log("server is working")
+  console.log('server is working')
 })

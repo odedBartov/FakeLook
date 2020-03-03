@@ -19,7 +19,7 @@
   
   input {
     margin-left: 1%;
-    height: 20px;
+    height: 25px;
     align-self: center;
   }
   
@@ -34,7 +34,7 @@
   }
   
   label{
-      width: 150px;
+      width: 250px;
       margin: 3%;
       font-size: 25px;
   }

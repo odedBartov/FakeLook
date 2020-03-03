@@ -12,7 +12,7 @@
   <div class="line">
     <div class="fields">
       <label for="pass">Password:</label>
-      <input [(ngModel)]="password" type="password" id="pass" name="password" required #pass="ngModel" />
+      <input class="form-control" [(ngModel)]="password" type="password" id="pass" name="password" required #pass="ngModel" />
     </div>
     <div [hidden]="pass.pristine || pass.valid" class="error">Password is required
     </div>

@@ -1,43 +1,30 @@
 const dbService = require('./DBService')
 const errorHandler = require('../../common/errorHandler')
+const currentUrl = require('../../common/strings').currentUrl
 module.exports = {
   GetPosts: function (req, res, next) {
-    const recievedFilter = req.body     
+    const recievedFilter = req.body
     var filter = buildPost(recievedFilter)
     filter.data.dateFrom = recievedFilter.dateFrom
     filter.data.dateTo = recievedFilter.dateTo
-    filter.data.radius = recievedFilter.radius*1000
+    filter.data.radius = recievedFilter.radius * 1000
     dbService.getPosts(filter, (error, data) => {
       if (error) {
         next(error)
-      } else {        
-        res.send(data[0])
+      } else {
+        res.send(data)
       }
     })
   },
 
   GetPost: function (req, res, next) {
     dbService.getPost(req.query.postId, (error, data) => {
-      if (error) {     
+      if (error) {
         next(error)
       } else {
-        var post = data[0][0]
-        post.imageTags = []
-        post.taggedUsers = []
-        post.comments = []
+        var post = data[0]
+        post.postId = req.query.postId
 
-        data[1].forEach(tag => {
-          post.imageTags.push(tag.title)
-        })
-
-        data[2].forEach(tag => {
-          post.taggedUsers.push(tag.username)
-        })
-
-        data[4].forEach(comment => {
-          post.comments.push(comment)
-        })
-        post.likes = data[3][0].likes    
         res.send(post)
       }
     })
@@ -52,28 +39,32 @@ module.exports = {
       var post = buildPost(receivedPost)
       post.data.publishedDate = receivedPost.publishedDate
       post.data.text = receivedPost.text
-      post.data.imageSrc = `http://localhost:1000/${req.file.path}`
+      post.data.imageSrc = `${currentUrl}/${req.file.path}`
       post.data.userUpId = req.user.id
-      
-      const usernames = post.taggedUsers
-      
-      dbService.CheckIfUsernamesExist(usernames, (err, data) => {
+
+      dbService.CheckIfUsernamesExist(post.taggedUsers, (err, data) => {
         if (err) {
           next(err)
         } else {
-          if (data[0].length) {
+          if (data.length) {
             errorHandler.throwException(
               `You tagged users whom does not exist!\nNames: ${data[0].map(
                 u => u.username
               )}`,
               400
             )
-          } else {            
-            dbService.insertPost(post, (err, data) => {              
+          } else {
+            dbService.insertTags(post.imageTags, (err, data) => {
               if (err) {
                 next(err)
-              } else {                
-                res.json(post)
+              } else {
+                dbService.insertPost(post, (err, data) => {
+                  if (err) {
+                    next(err)
+                  } else {
+                    res.json(post)
+                  }
+                })
               }
             })
           }
@@ -85,12 +76,12 @@ module.exports = {
   LikePost: function (req, res, next) {
     const postId = req.query.postId
     const userId = req.user.id
-    
+
     dbService.checkIfLikedPost(postId, userId, (err, data) => {
       if (err) {
         next(err)
-      } else {        
-        const isLiked = data[0].length > 0
+      } else {
+        const isLiked = data.length != 0
         const like = isLiked ? dbService.dislikePost : dbService.likepost
         like(postId, userId, (err, data) => {
           if (err) {
@@ -106,25 +97,22 @@ module.exports = {
   checkIfLikedPost: function (req, res, next) {
     const postId = req.query.postId
     const userId = req.user.id
-    //from JWT
     dbService.checkIfLikedPost(postId, userId, (err, data) => {
       if (err) {
         next(err)
       } else {
-        res.send(data[0].length > 0)
+        res.send(data.length != 0)
       }
     })
   },
 
   PublishComment: function (req, res, next) {
-    var comment = req.body  
-    comment.userId = req.user.id       
+    var comment = req.body
+    comment.userId = req.user.id
     dbService.publishComment(comment, (error, data) => {
       if (error) {
-        console.log(error);
         next(error)
-      }
-      else{        
+      } else {
         res.send(data)
       }
     })
@@ -136,8 +124,7 @@ module.exports = {
     dbService.createUser(user, (error, data) => {
       if (error) {
         callback(error, undefined)
-      }
-      else{
+      } else {
         callback(undefined, user)
       }
     })
@@ -150,18 +137,18 @@ const buildPost = function (received) {
   post.data.longitude = received.longitude
 
   if (received.imageTags) {
-    received.imageTags.split(',').forEach(tag => {
-      post.imageTags.push({ imageTag: tag })
+    post.imageTags = received.imageTags.split(',').map(tag => {
+      return {imageTag: tag}
     })
   }
 
   if (received.taggedUsers) {
-    received.taggedUsers.split(',').forEach(tag => {
-      post.taggedUsers.push({ UN: tag })
+    post.taggedUsers = received.taggedUsers.split(',').map(tag => {
+     return {UN: tag}
     })
   }
-  
-  if (post.taggedUsers.length == 0) {    
+
+  if (post.taggedUsers.length == 0) {
     post.taggedUsers = undefined
   }
 

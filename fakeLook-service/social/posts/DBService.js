@@ -13,7 +13,7 @@ const dbPool = new sql.ConnectionPool(config, err => {
 })
 
 module.exports = {
-  getPosts: function (filter, callback) {    
+  getPosts: function (filter, callback) {
     var dbreq = dbPool.request()
     dbreq.input('dateFrom', sql.Date, filter.data.dateFrom)
     dbreq.input('dateTo', sql.Date, filter.data.dateTo)
@@ -39,8 +39,7 @@ module.exports = {
   },
 
   insertPost: function (post, callback) {    
-    var dbreq = dbPool.request()    
-    
+    var dbreq = dbPool.request()        
     dbreq.input('postData', JSON.stringify(post.data))
     dbreq.input('taggedUsers', JSON.stringify(post.taggedUsers))
     dbreq.input('imageTags', JSON.stringify(post.imageTags))
@@ -108,6 +107,21 @@ module.exports = {
         callback(undefined, data)
       }
     })
+  },
+
+  insertTags: function(tags, callback){
+    console.log(tags);
+    
+    var dbreq = dbPool.request()
+    dbreq.input('tags', JSON.stringify(tags))
+    dbreq.execute('SP_InsertImageTags', (error, data) => {
+      if (error) {
+        callback(error, undefined)
+      }
+      else{
+        callback(undefined, data)
+      }
+    })
   }
 }
 
@@ -115,6 +129,6 @@ const handleDbResponses = function (err, data, callback) {
   if (err) {
     callback(err, undefined)
   } else {
-    callback(undefined, data.recordsets)
+    callback(undefined, data.recordset)
   }
 }

@@ -20,8 +20,8 @@ export class HttpService {
     return this.httpClient.get(environment.URL + this.currentAPI + url, { headers: tokenHeader })
       .pipe(tap(res => {
       }, err => {
-        alert(err.error);
         if (err.status == 403) {
+          alert(err.error);
           this.navigatorService.navigateToLogin();
         }
       }));
@@ -32,8 +32,8 @@ export class HttpService {
     return this.httpClient.post(environment.URL + this.currentAPI + url, body, { headers: tokenHeader })
       .pipe(tap(res => {
       }, err => {
-        alert(err.error);
         if (err.status == 403) {
+          alert(err.error);
           this.navigatorService.navigateToLogin();
         }
       }));

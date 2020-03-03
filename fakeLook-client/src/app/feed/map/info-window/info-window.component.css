@@ -1,15 +1,18 @@
 h5 {
   color: cornflowerblue;
   margin-bottom: 30px;
+  font-size: 15px;
 }
 
 h4{
   margin-left: 30px;
+  margin-top: 15px;
+  font-size: 15px;
 }
 
 h3{
   word-break: break-all;
-
+  font-size: 20px;
 }
 
 img {
@@ -27,9 +30,10 @@ img {
 }
 
 .icon {
-  height: 40px;
+  height: 25px;
   cursor: pointer;
   margin-bottom: -15px;
+  margin-top: 10px;
 }
 
 .text {

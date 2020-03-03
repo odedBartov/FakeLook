@@ -28,8 +28,8 @@ export class InfoWindowComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.postServiec.getPost(this.postId).subscribe((res: PostModel) => {
-      this.currentPost = res;
+    this.postServiec.getPost(this.postId).subscribe((res: any) => {     
+      this.currentPost = this.buildPostFromServer(res);          
     },
       error => {
         alert("can't get post\n\n" + error.error);
@@ -67,5 +67,20 @@ export class InfoWindowComponent implements OnInit {
         this.text = '';
       })
     }
+  }
+
+  buildPostFromServer(post){    
+    if (post.imageTags) {
+      post.imageTags = JSON.parse(post.imageTags);
+      post.imageTags = post.imageTags.tags.map(tag => tag.title);
+    }
+    
+    if (post.taggedUsers) {      
+      post.taggedUsers = JSON.parse(post.taggedUsers);
+      post.taggedUsers = post.taggedUsers.tags.map(tag => tag.username);
+    }
+    
+
+    return post;
   }
 }

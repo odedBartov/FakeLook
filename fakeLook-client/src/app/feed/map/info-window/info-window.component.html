@@ -3,7 +3,7 @@
     <div class="line text">
         <h2>{{currentPost.text}}</h2>
         <div class="likes">
-            <img class="icon" [@rotation]="liked? 'rotate' : 'straight'" (click)="like($event)" src="https://cdn4.vectorstock.com/i/thumbs/97/58/like-icon-like-in-flat-style-like-icon-thumb-up-vector-22509758.jpg"/>
+            <img class="icon" [@rotation]="liked? 'rotate' : 'straight'" (click)="like()" src="http://localhost:1000/assets/likeIcon.png"/>
             <h4>{{currentPost.likes}}</h4>
         </div>
     </div>

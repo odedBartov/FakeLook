@@ -2,7 +2,7 @@
   <div class="line">
     <div class="fields">
       <label for="name">User name:</label>
-      <input [(ngModel)]="userName" type="text" id="name" name="userName" required
+      <input class="form-control" [(ngModel)]="userName" type="text" id="name" name="userName" required
         #name="ngModel" />
     </div>
     <div [hidden]="name.pristine || name.valid" class="error">User name is required
@@ -12,7 +12,7 @@
   <div class="line">
     <div class="fields">
       <label for="pass">Password:</label>
-      <input [(ngModel)]="password" type="password" id="pass" name="password" required #pass="ngModel" />
+      <input class="form-control" [(ngModel)]="password" type="password" id="pass" name="password" required #pass="ngModel" />
     </div>
     <div [hidden]="pass.pristine || pass.valid" class="error">password is required
       </div>
@@ -21,7 +21,7 @@
   <div class="line">
     <div class="fields">
       <label for="mail">Email:</label>
-      <input [(ngModel)]="email" type="email" id="mail" name="email" email="true" required #mail="ngModel" />
+      <input class="form-control" [(ngModel)]="email" type="email" id="mail" name="email" email="true" required #mail="ngModel" />
     </div>
     <div [hidden]="mail.pristine || mail.valid" class="error">Enter valid Email
       </div>

@@ -1,10 +1,7 @@
 const sql = require('mssql')
-const config = require('../credentials')
+const config = require('../../credentials')
 
-const dbPool = new sql.ConnectionPool(config).
-    connect().
-    then(pool => pool).
-    catch(err => console.log(err));
+const dbPool = new sql.ConnectionPool(config)
 
 module.exports = {
     InsertFreind: async function (friendId, userId) {
