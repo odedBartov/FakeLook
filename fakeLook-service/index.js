@@ -40,7 +40,7 @@ app.use('/friends', friendsController)
 app.use((err, req, res, next) => {
   fs.appendFile('Log.txt', `Error thrown at ${new Date()}${err}` + '\n\n\n', () => {})
 
-  res.status(err.status ? err.status : 500).send(err.message)
+  res.status(err.status ? err.status : 500).send(err)
 })
 app.listen(1000, () => {
   console.log('server is working')

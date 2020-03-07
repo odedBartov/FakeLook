@@ -1,4 +1,5 @@
-const dbService = require('./DBService')
+const container = require('../containerConfig')
+const dbService = container.get('authenticationDB') // require('./DBService')
 const bcryptServiceType = require('./bcryptService')
 const errorHandler = require('../common/errorHandler')
 const jwtService = require('../common/JWT_Service')
@@ -11,10 +12,9 @@ module.exports = {
       if (error) {
         next(error)
       } else {
-        
         if (bcryptServiceType.comparePassword(user.password, data.Password)) {
           const token = jwtService.createToken(data.ID)
-          
+
           res.setHeader('access-token', token)
           res.send(user)
         } else {
@@ -44,12 +44,12 @@ module.exports = {
             } else {
               data.createdUserId
               data.email = user.email
-              data.userName = user.userName              
+              data.userName = user.userName
               socialApi.createUser(data, (error, result) => {
                 if (error) {
                   next(error)
                 }
-                else{
+                else {
                   res.send(user)
                 }
               })

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       this.httpService.Login(this.userName, this.password).subscribe(res => {
         this.navigatorService.navigateToFeed();
       }, error => {
-        alert(error.message + "\n\n" + error.error)
+        alert(error.message + "\n\n" + error.error.message)
       })
     }
   }

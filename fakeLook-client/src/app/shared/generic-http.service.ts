@@ -33,7 +33,7 @@ export class GenericHttpService {
 
   errorFunction() {
     return err => {
-      alert(err.error);
+      alert(err.error.message);
       if (err.status == 403) {
         this.navigatorService.navigateToLogin();
       }

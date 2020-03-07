@@ -32,7 +32,7 @@ export class PublishPostComponent implements OnInit {
         this.goBackToFeed();
      },
     err => {
-      alert('An error occured:\n\n' + err.error)
+      alert('An error occured:\n\n' + err.error.message)
     })
   }
 

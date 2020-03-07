@@ -99,13 +99,8 @@ module.exports = {
     dbreq.input('userId', sql.BigInt, comment.userId)
     dbreq.input('text', sql.NVarChar(200), comment.text)
     dbreq.input('date', sql.Date, comment.date)
-    dbreq.execute('SP_PublishComment', (error, data) => {
-      if (error) {
-        callback(error, undefined)
-      }
-      else{
-        callback(undefined, data)
-      }
+    dbreq.execute('SP_PublishComment', (err, data) => {
+      handleDbResponses(err, data, callback)
     })
   },
 

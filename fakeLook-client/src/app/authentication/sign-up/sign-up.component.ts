@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
         alert("New user created successfuly")
         this.goBack();
       }, error => {
-        alert(error.message + "\n\n" + error.error)
+        alert(error.message + "\n\n" + error.error.message)
       })
     }
   }

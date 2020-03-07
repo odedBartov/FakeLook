@@ -28,17 +28,17 @@ export class InfoWindowComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.postServiec.getPost(this.postId).subscribe((res: any) => {     
-      this.currentPost = this.buildPostFromServer(res);          
+    this.postServiec.getPost(this.postId).subscribe((res: any) => {      
+      this.currentPost = this.buildPostFromServer(res);                
     },
-      error => {
-        alert("can't get post\n\n" + error.error);
+      err => {
+        alert("can't get post\n\n" + err.error.message);
       })
 
     this.postServiec.checkIfLikedPost(this.postId).subscribe((res: boolean) => {
       this.liked = res
     }, err => {
-      alert(err.error);
+      alert(err.error.message);
     })
   }
 
@@ -47,7 +47,7 @@ export class InfoWindowComponent implements OnInit {
       this.liked = res;
       this.currentPost.likes += this.liked ? 1 : -1;
     }, err => {
-      alert(err.error)
+      alert(err.error.message)
     })
   }
 
@@ -65,6 +65,8 @@ export class InfoWindowComponent implements OnInit {
       this.postServiec.publishComment(comment).subscribe(res => {
         alert('Your comment published successfuly');
         this.text = '';
+        console.log(res);
+        
       })
     }
   }
@@ -79,8 +81,11 @@ export class InfoWindowComponent implements OnInit {
       post.taggedUsers = JSON.parse(post.taggedUsers);
       post.taggedUsers = post.taggedUsers.tags.map(tag => tag.username);
     }
-    
 
+    if (post.comments) {
+      post.comments = JSON.parse(post.comments);      
+      post.comments = post.comments.comments;
+    }    
     return post;
   }
 }

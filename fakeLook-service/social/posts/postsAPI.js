@@ -19,11 +19,12 @@ module.exports = {
 
   GetPost: function (req, res, next) {
     dbService.getPost(req.query.postId, (error, data) => {
-      if (error) {
+      if (error) {        
         next(error)
       } else {
         var post = data[0]
         post.postId = req.query.postId
+        console.log(post);
 
         res.send(post)
       }
@@ -112,8 +113,8 @@ module.exports = {
     dbService.publishComment(comment, (error, data) => {
       if (error) {
         next(error)
-      } else {
-        res.send(data)
+      } else {        
+        res.send(data[0])
       }
     })
   },

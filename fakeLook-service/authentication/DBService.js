@@ -37,6 +37,8 @@ module.exports = {
   },
 
   GetPassword: function (userName, callback) {
+    console.log(dbreq);
+    
     dbreq = dbPool.request()
     dbreq.input('UserName', sql.NVarChar(15), userName)
     dbreq.execute('SP_GetPassword', (err, data) => {

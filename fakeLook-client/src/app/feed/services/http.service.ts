@@ -21,7 +21,7 @@ export class HttpService {
       .pipe(tap(res => {
       }, err => {
         if (err.status == 403) {
-          alert(err.error);
+          alert(err.error.message);
           this.navigatorService.navigateToLogin();
         }
       }));
@@ -33,7 +33,7 @@ export class HttpService {
       .pipe(tap(res => {
       }, err => {
         if (err.status == 403) {
-          alert(err.error);
+          alert(err.error.message);
           this.navigatorService.navigateToLogin();
         }
       }));
