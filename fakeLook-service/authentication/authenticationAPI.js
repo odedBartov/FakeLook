@@ -5,10 +5,12 @@ class authenticationAPI {
   dbService
   errorHandler
   jwtService
-  constructor(AuthDAO, ErrorHandler, JWTservice) {    
+  socialApi
+  constructor(AuthDAO, ErrorHandler, JWTservice, SocialApi) {    
     this.dbService = AuthDAO
     this.errorHandler = ErrorHandler
     this.jwtService = JWTservice
+    this.socialApi = SocialApi
   }
 
   Login (req, res, next) {
@@ -50,7 +52,7 @@ class authenticationAPI {
               data.createdUserId
               data.email = user.email
               data.userName = user.userName
-              socialApi.createUser(data, (error, result) => {
+              this.socialApi.createUser(data, (error, result) => {
                 if (error) {
                   next(error)
                 }
