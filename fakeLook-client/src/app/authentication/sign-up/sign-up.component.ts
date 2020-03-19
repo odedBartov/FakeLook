@@ -25,7 +25,7 @@ export class SignUpComponent implements OnInit {
       this.httpService.SignUp(this.userName, this.password, this.email).subscribe(res => {
         alert("New user created successfuly")
         this.goBack();
-      }, error => {
+      }, error => {        
         alert(error.message + "\n\n" + error.error.message)
       })
     }

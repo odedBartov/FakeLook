@@ -14,24 +14,36 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage: storage})
 
-const jwtService = require('../../common/JWT_Service')
-const postAPI = require('./postsAPI')
+const container = require('../../containerConfig')
+
+const jwtService = container.get('JWTservice')
+const postAPI = container.get('postsAPI')
 const router = express.Router()
 
 router.use(jwtService.validateToken)
 
-router.post('/getPosts', postAPI.GetPosts)
+router.post('/getPosts', (req, res, next) => {
+    postAPI.GetPosts(req, res, next)
+})
 
-router.get('/getPost', postAPI.GetPost)
+router.get('/getPost', (req, res, next) => {
+    postAPI.GetPost(req, res, next)
+})
 
-router.post('/publishPost', upload.single('image'), postAPI.PublishPost)
+router.post('/publishPost', upload.single('image'),  (req, res, next) => {
+    postAPI.PublishPost(req, res, next)
+})
 
-router.get('/likePost', postAPI.LikePost)
+router.get('/likePost', (req, res, next) => {
+    postAPI.LikePost(req, res, next)
+})
 
-router.get('/checkIfLikedPost', postAPI.checkIfLikedPost)
+router.get('/checkIfLikedPost', (req, res, next) => {
+    postAPI.checkIfLikedPost(req, res, next)
+})
 
-router.post('/publishComment', postAPI.PublishComment)
-
-router.get('/likeComment', postAPI.LikeComment)
+router.post('/publishComment', (req, res, next) => {
+    postAPI.PublishComment(req, res, next)
+})
 
 module.exports = router

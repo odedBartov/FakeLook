@@ -5,7 +5,7 @@ const path = require('path')
 const fs = require('fs')
 const cors = require('cors')
 
-const authController = require('./authentication/authController')
+const authController = require('./authentication/authenticationController')
 const postsController = require('./social/posts/postsController')
 const friendsController = require('./social/friends/friendsController')
 const errorHandler = require('./common/errorHandler')
@@ -42,6 +42,7 @@ app.use((err, req, res, next) => {
 
   res.status(err.status ? err.status : 500).send(err)
 })
+
 app.listen(1000, () => {
   console.log('server is working')
 })

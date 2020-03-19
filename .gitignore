@@ -1,9 +1,6 @@
 fakeLook-service/credentials.js
-<<<<<<< HEAD
 fakeLook-service/node_modules
+fakeLook-service/dbConfig
 
 
 fakeLook-client/credentials.js
-=======
-fakeLook-client/credentials.ts
->>>>>>> freinds

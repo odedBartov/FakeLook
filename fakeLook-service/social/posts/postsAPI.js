@@ -1,65 +1,69 @@
-const dbService = require('./DBService')
-const errorHandler = require('../../common/errorHandler')
-const currentUrl = require('../../common/strings').currentUrl
-module.exports = {
-  GetPosts: function (req, res, next) {
+class postsAPI {
+  dbService
+  errorHandler
+  currentUrl
+  constructor(postsDAO, ErrorHandler, CurrentUrl) {
+    this.dbService = postsDAO
+    this.errorHandler = ErrorHandler
+    this.currentUrl = CurrentUrl
+  }
+
+  GetPosts(req, res, next) {
     const recievedFilter = req.body
     var filter = buildPost(recievedFilter)
     filter.data.dateFrom = recievedFilter.dateFrom
     filter.data.dateTo = recievedFilter.dateTo
     filter.data.radius = recievedFilter.radius * 1000
-    dbService.getPosts(filter, (error, data) => {
+    this.dbService.getPosts(filter, (error, data) => {
       if (error) {
         next(error)
       } else {
         res.send(data)
       }
     })
-  },
+  }
 
-  GetPost: function (req, res, next) {
-    dbService.getPost(req.query.postId, (error, data) => {
-      if (error) {        
+  GetPost(req, res, next) {
+    this.dbService.getPost(req.query.postId, (error, data) => {
+      if (error) {
         next(error)
       } else {
         var post = data[0]
         post.postId = req.query.postId
-        console.log(post);
-
         res.send(post)
       }
     })
-  },
+  }
 
-  PublishPost: function (req, res, next) {
+  PublishPost(req, res, next) {
     const image = req.file
     if (!image) {
-      errorHandler.throwException('No image provided', 400)
+      this.errorHandler.throwException('No image provided', 400)
     } else {
       var receivedPost = JSON.parse(req.body.post)
       var post = buildPost(receivedPost)
       post.data.publishedDate = receivedPost.publishedDate
       post.data.text = receivedPost.text
-      post.data.imageSrc = `${currentUrl}/${req.file.path}`
+      post.data.imageSrc = `${this.currentUrl}/${req.file.path}`
       post.data.userUpId = req.user.id
 
-      dbService.CheckIfUsernamesExist(post.taggedUsers, (err, data) => {
+      this.dbService.CheckIfUsernamesExist(post.taggedUsers, (err, data) => {
         if (err) {
           next(err)
         } else {
           if (data.length) {
-            errorHandler.throwException(
+            this.errorHandler.throwException(
               `You tagged users whom does not exist!\nNames: ${data[0].map(
                 u => u.username
               )}`,
               400
             )
           } else {
-            dbService.insertTags(post.imageTags, (err, data) => {
+            this.dbService.insertTags(post.imageTags, (err, data) => {
               if (err) {
                 next(err)
               } else {
-                dbService.insertPost(post, (err, data) => {
+                this.dbService.insertPost(post, (err, data) => {
                   if (err) {
                     next(err)
                   } else {
@@ -72,18 +76,18 @@ module.exports = {
         }
       })
     }
-  },
+  }
 
-  LikePost: function (req, res, next) {
+  LikePost(req, res, next) {
     const postId = req.query.postId
     const userId = req.user.id
 
-    dbService.checkIfLikedPost(postId, userId, (err, data) => {
+    this.dbService.checkIfLikedPost(postId, userId, (err, data) => {
       if (err) {
         next(err)
       } else {
         const isLiked = data.length != 0
-        const like = isLiked ? dbService.dislikePost : dbService.likepost
+        const like = isLiked ? this.dbService.dislikePost : this.dbService.likepost
         like(postId, userId, (err, data) => {
           if (err) {
             next(err)
@@ -93,36 +97,34 @@ module.exports = {
         })
       }
     })
-  },
+  }
 
-  checkIfLikedPost: function (req, res, next) {
+  checkIfLikedPost(req, res, next) {
     const postId = req.query.postId
     const userId = req.user.id
-    dbService.checkIfLikedPost(postId, userId, (err, data) => {
+    this.dbService.checkIfLikedPost(postId, userId, (err, data) => {
       if (err) {
         next(err)
       } else {
         res.send(data.length != 0)
       }
     })
-  },
+  }
 
-  PublishComment: function (req, res, next) {
+  PublishComment(req, res, next) {
     var comment = req.body
     comment.userId = req.user.id
-    dbService.publishComment(comment, (error, data) => {
+    this.dbService.publishComment(comment, (error, data) => {
       if (error) {
         next(error)
-      } else {        
+      } else {
         res.send(data[0])
       }
     })
-  },
+  }
 
-  LikeComment: function (user, comment) {},
-
-  createUser: function (user, callback) {
-    dbService.createUser(user, (error, data) => {
+  createUser(user, callback) {
+    this.dbService.createUser(user, (error, data) => {
       if (error) {
         callback(error, undefined)
       } else {
@@ -139,13 +141,13 @@ const buildPost = function (received) {
 
   if (received.imageTags) {
     post.imageTags = received.imageTags.split(',').map(tag => {
-      return {imageTag: tag}
+      return { imageTag: tag }
     })
   }
 
   if (received.taggedUsers) {
     post.taggedUsers = received.taggedUsers.split(',').map(tag => {
-     return {UN: tag}
+      return { UN: tag }
     })
   }
 
@@ -158,3 +160,5 @@ const buildPost = function (received) {
   }
   return post
 }
+
+module.exports = postsAPI
