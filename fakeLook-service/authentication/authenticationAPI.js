@@ -5,31 +5,32 @@ class authenticationAPI {
   dbService
   errorHandler
   jwtService
-  constructor(AuthDAO, ErrorHandler, JWTservice) {    
+  constructor(AuthDAO, ErrorHandler, JWTservice) {
     this.dbService = AuthDAO
     this.errorHandler = ErrorHandler
     this.jwtService = JWTservice
   }
 
-  Login (req, res, next) {
+  Login(req, res, next) {
     const user = { userName: req.query.userName, password: req.query.password }
     this.dbService.GetPassword(user.userName, (error, data) => {
       if (error) {
         next(error)
       } else {
-        if (bcryptServiceType.comparePassword(user.password, data.Password)) {
-          const token = this.jwtService.createToken(data.ID)
-
-          res.setHeader('access-token', token)
-          res.send(user)
-        } else {
+        console.log(data)
+          if (data && bcryptServiceType.comparePassword(user.password, data.password)) {
+            const token = this.jwtService.createToken(data.ID)
+            res.setHeader('access-token', token)
+            res.send(user)
+          }
+        else {
           this.errorHandler.throwException('Wrong username or password', 400)
         }
       }
     })
   }
 
-  SignUp (req, res, next) {
+  SignUp(req, res, next) {
     var user = {
       userName: req.query.userName,
       password: req.query.password,
@@ -50,14 +51,15 @@ class authenticationAPI {
               data.createdUserId
               data.email = user.email
               data.userName = user.userName
-              socialApi.createUser(data, (error, result) => {
+              res.send(user)
+/*               socialApi.createUser(data, (error, result) => {
                 if (error) {
                   next(error)
                 }
                 else {
                   res.send(user)
                 }
-              })
+              }) */
             }
           })
         }
