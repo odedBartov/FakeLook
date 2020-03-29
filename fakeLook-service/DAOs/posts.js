@@ -59,20 +59,18 @@ class postsDAO {
     insertPost = (post, callback) => {
         elasticClient.index({
             index: 'users',
-            id: '123',
-            routing: 1,
+            id: '123',// created id
+            routing: post.publisherId,
             body: {
-                "post_id": '123',
-                "post_text": "this is new post!!!",
-                "post_publish_date": "2019/02/01",
-                "image_url": "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
-                "location": {
-                    "lat": 31.55,
-                    "lon": 31.55
-                },
+                "post_id": '123',// created id
+                "post_text": post.text,
+                "post_publish_date": post.publishedDate,
+                "image_url": post.image_url,
+                "location": post.location,
+                "user_tags": post,
                 "join_field": {
                     "name": "post",
-                    "parent": 1
+                    "parent": post.publisherId
                 }
             }
         }, (err, data) => {

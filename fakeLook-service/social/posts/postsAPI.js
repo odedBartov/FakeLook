@@ -42,10 +42,10 @@ class postsAPI {
     } else {
       var receivedPost = JSON.parse(req.body.post)
       var post = buildPost(receivedPost)
-      post.data.publishedDate = receivedPost.publishedDate
-      post.data.text = receivedPost.text
-      post.data.imageSrc = `${this.currentUrl}/${req.file.path}`
-      post.data.userUpId = req.user.id
+      post.publishedDate = receivedPost.publishedDate
+      post.text = receivedPost.text
+      post.image_url = `${this.currentUrl}/${req.file.path}`
+      post.publisherId = req.user.id
 
       this.dbService.CheckIfUsernamesExist(post.taggedUsers, (err, data) => {
         if (err) {
