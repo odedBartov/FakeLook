@@ -28,7 +28,8 @@ module.exports = {
         dbreq.input("username", username);
         dbreq.output("userId", sql.BigInt)
         const result = await dbreq.execute("IsUserExist").catch(err => console.log(err))
-        return result.output.userId
+        console.log(result)
+        return result.rescordsets[0][0]
     },
     removeFriend: async function (friendId, userId) {
         var dbreq = (await dbPool).request()

@@ -3,4 +3,5 @@ export class postToShow{
     imageSrc: string;
     latitude: number;
     longitude: number;
+    text:string;
 }

@@ -10,6 +10,8 @@ module.exports = {
     
     //add friend to specific user
     addFriend: async function (req, res, next) {
+        console.log("friend method");
+        
         const friendUsername = req.body.friendUsername
         const userId = req.user.id;
         response = {}
