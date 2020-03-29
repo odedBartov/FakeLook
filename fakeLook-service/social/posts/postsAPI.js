@@ -46,6 +46,7 @@ class postsAPI {
       post.data.text = receivedPost.text
       post.data.imageSrc = `${this.currentUrl}/${req.file.path}`
       post.data.userUpId = req.user.id
+      console.log(req.user)
 
       this.dbService.CheckIfUsernamesExist(post.taggedUsers, (err, data) => {
         if (err) {
@@ -67,6 +68,7 @@ class postsAPI {
                   if (err) {
                     next(err)
                   } else {
+                    console.log(data)
                     res.json(post)
                   }
                 })

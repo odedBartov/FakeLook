@@ -10,7 +10,7 @@ class authenticationAPI {
     this.jwtService = JWTservice
   }
 
-  Login (req, res, next) {
+  Login(req, res, next) {
     const user = { userName: req.query.userName, password: req.query.password }
     this.dbService.GetPassword(user.userName, (error, data) => {
       if (error) {        
@@ -28,7 +28,7 @@ class authenticationAPI {
     })
   }
 
-  SignUp (req, res, next) {
+  SignUp(req, res, next) {
     var user = {
       userName: req.query.userName,
       password: req.query.password,
@@ -47,17 +47,6 @@ class authenticationAPI {
               next(error)
             } else {
               res.send(user)
-              // data.createdUserId
-              // data.email = user.email
-              // data.userName = user.userName
-              // this.socialApi.createUser(data, (error, result) => {
-              //   if (error) {
-              //     next(error)
-              //   }
-              //   else {
-              //     res.send(user)
-              //   }
-              // })
             }
           })
         }

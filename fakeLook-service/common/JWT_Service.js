@@ -16,7 +16,7 @@ module.exports = {
             }
             else {
                 req.user = data
-                next()
+                next()      
             }
         })
     }

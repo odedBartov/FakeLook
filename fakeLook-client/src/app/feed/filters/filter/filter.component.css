@@ -14,4 +14,8 @@ h4{
 
 input{
     margin: 0 10px;
+    font-size: 15px;
+}
+.date{
+    width: 150px;
 }
