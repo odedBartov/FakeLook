@@ -1,10 +1,12 @@
 const sql = require('mssql')
-const elasticsearch = require('elasticsearch')
-const elasticClient = new elasticsearch.Client({ node: 'http://localhost:5601' })
 
 class postsDAO {
     dbPool
-    constructor(socialConfig) {
+    elasticSearch
+    UUID
+    constructor(socialConfig, elasticSearchClient, idCreator) {
+        this.elasticSearch = elasticSearchClient
+        this.UUID = idCreator
         this.dbPool = new sql.ConnectionPool(socialConfig, err => {
             if (err) {
                 console.log(err)
@@ -15,7 +17,7 @@ class postsDAO {
     }
 
     getPosts = (filter, callback) => {
-        elasticClient.search({
+        this.elasticSearch.search({
             index: 'users',
             _source: ['post_id', 'image_url', 'location'],
             body: {
@@ -57,24 +59,26 @@ class postsDAO {
     }
 
     insertPost = (post, callback) => {
-        elasticClient.index({
+        const generatedId = this.UUID.v4()
+        this.elasticSearch.index({
             index: 'users',
-            id: '123',// created id
+            id: generatedId,
             routing: post.publisherId,
             body: {
-                "post_id": '123',// created id
+                "post_id": generatedId,
                 "post_text": post.text,
                 "post_publish_date": post.publishedDate,
                 "image_url": post.image_url,
                 "location": post.location,
-                "user_tags": post,
+                "user_tags": post.user_tags.split(','),
+                "image_tags": post.image_tags.split(','),
                 "join_field": {
                     "name": "post",
                     "parent": post.publisherId
                 }
             }
         }, (err, data) => {
-            handleElasticResponses()
+            handleElasticResponses(err, data, callback)
         })
 
 
@@ -122,15 +126,15 @@ class postsDAO {
         })
     }
 
-    createUser = (user, callback) => {
-        var dbreq = this.dbPool.request()
-        dbreq.input('userId', sql.BigInt, user.createdUserId)
-        dbreq.input('userName', sql.NVarChar(20), user.userName)
-        dbreq.input('email', sql.NVarChar(30), user.email)
-        dbreq.execute('SP_InsertUser', (err, data) => {
-            handleDbResponses(err, data, callback)
-        })
-    }
+    // createUser = (user, callback) => {
+    //     var dbreq = this.dbPool.request()
+    //     dbreq.input('userId', sql.BigInt, user.createdUserId)
+    //     dbreq.input('userName', sql.NVarChar(20), user.userName)
+    //     dbreq.input('email', sql.NVarChar(30), user.email)
+    //     dbreq.execute('SP_InsertUser', (err, data) => {
+    //         handleDbResponses(err, data, callback)
+    //     })
+    // }
 
     publishComment = (comment, callback) => {
         var dbreq = this.dbPool.request()

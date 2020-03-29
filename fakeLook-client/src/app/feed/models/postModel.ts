@@ -4,8 +4,8 @@ export class PostModel{
     post_id: string;
     image_url: string;
     publishDate: Date;
-    taggedUsers: string;
-    imageTags: string;
+    user_tags: string;
+    image_tags: string;
     text: string;
     location: {lat: number, lon: number}
     likes: number;

@@ -13,19 +13,21 @@ export class PublishPostComponent implements OnInit {
   date = new Date();
   dateString = `${this.date.getDate()}/${this.date.getMonth()+1}/${this.date.getFullYear()}`
   post: postToUpload = new postToUpload();
-
+  
   constructor(private postService: PostsService, private navigationService: NavigatorService) { 
   }
 
   ngOnInit() {
+    this.post.image_tags = "cat,fur";
+    this.post.text = "this is some text";
+    this.post.user_tags = "oded,mushki"
   }
 
   fileUploaded(event){
     this.uploadedImage = event.target.files[0];
   }
 
-  upload(){
-    this.post.publishedDate = this.date;    
+  upload(){      
     this.postService.publishPost(this.post, this.uploadedImage).subscribe(
       res => { 
         alert('Your post uploaded successfuly!');      

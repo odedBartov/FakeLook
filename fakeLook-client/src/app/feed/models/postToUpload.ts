@@ -1,7 +1,6 @@
 export class postToUpload {
     text: string;
-    imageTags: string;
-    taggedUsers: string;
-    publishedDate: Date;
+    image_tags: string;
+    user_tags: string;
     location: { lat: number, lon: number }
 }

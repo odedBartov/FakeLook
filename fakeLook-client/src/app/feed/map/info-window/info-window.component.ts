@@ -43,7 +43,7 @@ export class InfoWindowComponent implements OnInit {
   }
 
   like() {
-    this.postServiec.likePost(this.currentPost.postId).subscribe((res: boolean) => {
+    this.postServiec.likePost(this.currentPost.post_id).subscribe((res: boolean) => {
       this.liked = res;
       this.currentPost.likes += this.liked ? 1 : -1;
     }, err => {
@@ -60,7 +60,7 @@ export class InfoWindowComponent implements OnInit {
       var comment = {
         date: dat.getFullYear() + '-' + (dat.getMonth() + 1) + '-' + dat.getDate(),
         text: this.text,
-        postId: this.currentPost.postId
+        postId: this.currentPost.post_id
       };      
       this.postServiec.publishComment(comment).subscribe(res => {
         alert('Your comment published successfuly');

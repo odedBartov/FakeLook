@@ -17,7 +17,7 @@ class postsAPI {
     this.dbService.getPosts(filter, (error, data) => {
       if (error) {
         next(error)
-      } else {        
+      } else {
         res.send(data)
       }
     })
@@ -40,11 +40,10 @@ class postsAPI {
     if (!image) {
       this.errorHandler.throwException('No image provided', 400)
     } else {
-      var receivedPost = JSON.parse(req.body.post)
-      var post = buildPost(receivedPost)
-      post.publishedDate = receivedPost.publishedDate
-      post.text = receivedPost.text
+      var post = JSON.parse(req.body.post)
       post.image_url = `${this.currentUrl}/${req.file.path}`
+      const date = new Date();
+      post.publishedDate = `${date.getFullYear()}/${("0" + (date.getMonth() + 1)).slice(-2)}/${("0" + date.getDate()).slice(-2)}`
       post.publisherId = req.user.id
 
       this.dbService.CheckIfUsernamesExist(post.taggedUsers, (err, data) => {
@@ -67,7 +66,6 @@ class postsAPI {
                   if (err) {
                     next(err)
                   } else {
-                    console.log(data)
                     res.json(post)
                   }
                 })

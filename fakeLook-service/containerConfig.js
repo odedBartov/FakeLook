@@ -21,7 +21,7 @@ container.register('elasticClient', [], elasticClient)
 container.register('uuid', [], { v4: uuidv4 })
 
 container.register('socialConfig', [], socialConfig)
-container.register('postsDB', ['socialConfig'], postsDAO)
+container.register('postsDB', ['socialConfig', 'elasticClient', 'uuid'], postsDAO)
 container.register('postsAPI', ['postsDB', 'errorHandler', 'currentUrl'], postsAPI)
 
 container.register('authenticationDB', ['elasticClient', 'uuid'], authenticationDAO)
