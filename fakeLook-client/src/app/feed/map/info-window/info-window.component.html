@@ -1,25 +1,29 @@
 <div *ngIf="currentPost" class="main">
     <img [src]="currentPost.imageSrc"/>
     <div class="line text">
-        <h2>{{currentPost.text}}</h2>
+        <div class="postText">{{currentPost.text}}</div>
         <div class="likes">
             <img class="icon" [@rotation]="liked? 'rotate' : 'straight'" (click)="like()" src="http://localhost:1000/assets/likeIcon.png"/>
-            <h4>{{currentPost.likes}}</h4>
+            <div class="likesSum">{{currentPost.likes}}</div>
         </div>
     </div>
     <div class="comment" *ngFor="let comment of currentPost.comments">
-        <h3>{{comment.text}}</h3>
-        <h5>{{comment.username}}</h5>
+        <div class="commentText">{{comment.text}}</div>
+        <div class="commentPublisherName">{{comment.publisherName}}</div>
     </div>
-    <form class="line text form-group" #commentForm="ngForm">
+    <form class="line text form-group publishComment" #commentForm="ngForm">
         <input class="form-control" placeholder="Comment" [(ngModel)]="text" type="text" name="text" required
         #name="ngModel"/>
-        <button (click)="publishComment()" [disabled]="!commentForm.form.valid">Publish</button>
+        <button class="far fa-share-square publishBtn" (click)="publishComment()" [disabled]="!commentForm.form.valid"></button>
     </form>
     <div class="line">
-        <h5 *ngFor="let tag of currentPost.imageTags">{{tag}},</h5>
+        <div class="tag" *ngFor="let tag of currentPost.imageTags; let i = index">{{tag}}
+            <span *ngIf="currentPost.imageTags && i < currentPost.imageTags.length - 1">,</span>
+        </div>
     </div>
     <div class="line">
-        <h5 *ngFor="let tag of currentPost.taggedUsers">{{tag}},</h5>
+        <div class="tag" *ngFor="let tag of currentPost.taggedUsers; let i = index">{{tag}}
+            <span *ngIf="currentPost.taggedUsers && i < currentPost.taggedUsers.length">,</span>
+        </div>
     </div>
 </div>

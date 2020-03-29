@@ -1,26 +1,23 @@
 const bcryptServiceType = require('./bcryptService')
-const socialApi = require('../social/posts/postsAPI')
 
 class authenticationAPI {
   dbService
   errorHandler
   jwtService
-  socialApi
-  constructor(AuthDAO, ErrorHandler, JWTservice, SocialApi) {    
+  constructor(AuthDAO, ErrorHandler, JWTservice) {    
     this.dbService = AuthDAO
     this.errorHandler = ErrorHandler
     this.jwtService = JWTservice
-    this.socialApi = SocialApi
   }
 
   Login (req, res, next) {
     const user = { userName: req.query.userName, password: req.query.password }
     this.dbService.GetPassword(user.userName, (error, data) => {
-      if (error) {
+      if (error) {        
         next(error)
       } else {
-        if (bcryptServiceType.comparePassword(user.password, data.Password)) {
-          const token = this.jwtService.createToken(data.ID)
+        if (bcryptServiceType.comparePassword(user.password, data.password)) {
+          const token = this.jwtService.createToken(data.user_id)
 
           res.setHeader('access-token', token)
           res.send(user)
@@ -49,17 +46,18 @@ class authenticationAPI {
             if (error) {
               next(error)
             } else {
-              data.createdUserId
-              data.email = user.email
-              data.userName = user.userName
-              this.socialApi.createUser(data, (error, result) => {
-                if (error) {
-                  next(error)
-                }
-                else {
-                  res.send(user)
-                }
-              })
+              res.send(user)
+              // data.createdUserId
+              // data.email = user.email
+              // data.userName = user.userName
+              // this.socialApi.createUser(data, (error, result) => {
+              //   if (error) {
+              //     next(error)
+              //   }
+              //   else {
+              //     res.send(user)
+              //   }
+              // })
             }
           })
         }

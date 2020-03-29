@@ -85,7 +85,7 @@ export class InfoWindowComponent implements OnInit {
     if (post.comments) {
       post.comments = JSON.parse(post.comments);      
       post.comments = post.comments.comments;
-    }    
+    }     
     return post;
   }
 }

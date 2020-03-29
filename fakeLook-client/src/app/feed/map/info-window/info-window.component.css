@@ -1,20 +1,3 @@
-h5 {
-  color: cornflowerblue;
-  margin-bottom: 30px;
-  font-size: 15px;
-}
-
-h4{
-  margin-left: 30px;
-  margin-top: 15px;
-  font-size: 15px;
-}
-
-h3{
-  word-break: break-all;
-  font-size: 20px;
-}
-
 img {
   height: 200px;
 }
@@ -24,8 +7,7 @@ img {
 }
 
 .line {
-  margin-top: -15px;
-  margin-bottom: -20px;
+  margin-bottom: 10px;
   display: flex;
 }
 
@@ -40,6 +22,13 @@ img {
   margin-top: 5px;
   margin-bottom: 30px;
   justify-content: space-between;
+  word-break: break-all;
+}
+
+.postText{
+  padding-top: 10px;
+  color: black;
+  font-size: 19px;
 }
 
 .likes{
@@ -49,14 +38,48 @@ img {
   justify-content: center;
 }
 
+.likesSum{
+  margin-left: 10px;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.publishBtn{
+  margin-left: 5px;
+  font-size: 20px;
+  font-family: 'FontAwesome';
+}
+
+.publishComment{
+  margin-top: 30px;
+}
+
 .comment{
-  padding: 5px;
-  margin-bottom: 10px;
+  padding: 10px;
+  margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
   border: 1px solid black;
-  margin-bottom: 10px;
-  width: 300px;
+}
+
+.commentText{
+  color: black;
+  font-size: 15px;
+  margin-right: 3px;
+  word-break: break-all;
+}
+
+.commentPublisherName{
+  color: red;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.tag{
+  color: rgb(89, 145, 248);
+  margin-bottom: 15px;
+  margin-left: 5px;
+  font-size: 12px;
 }
 
 .rotate{
