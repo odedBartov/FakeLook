@@ -3,6 +3,5 @@ export class postToUpload {
     imageTags: string;
     taggedUsers: string;
     publishedDate: Date;
-    latitude: number;
-    longitude: number;
+    location: { lat: number, lon: number }
 }

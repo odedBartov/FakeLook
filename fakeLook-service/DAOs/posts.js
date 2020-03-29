@@ -1,5 +1,5 @@
 const sql = require('mssql')
-const elasticsearch  = require('elasticsearch')
+const elasticsearch = require('elasticsearch')
 const elasticClient = new elasticsearch.Client({ node: 'http://localhost:5601' })
 
 class postsDAO {
@@ -16,24 +16,36 @@ class postsDAO {
 
     getPosts = (filter, callback) => {
         elasticClient.search({
-            
+            index: 'users',
+            _source: ['post_id', 'image_url', 'location'],
+            body: {
+                "query": {
+                    "term": {
+                        "join_field": "post"
+                    }
+                }
+            }
+        }, (err, res) => {
+            // if (err) {
+            //     callback(err, undefined)
+            // } else {
+            //     callback(undefined, res.hits.hits.map(p => p._source))
+            // }
+            handleElasticResponses(err, res.hits.hits.map(p => p._source), callback)
         })
 
+        // var dbreq = this.dbPool.request()
+        // dbreq.input('dateFrom', sql.Date, filter.data.dateFrom)
+        // dbreq.input('dateTo', sql.Date, filter.data.dateTo)
+        // dbreq.input('radius', sql.Float, filter.data.radius)
+        // dbreq.input('currentLongitude', sql.Float, filter.data.longitude)
+        // dbreq.input('currentLatitude', sql.Float, filter.data.latitude)
+        // dbreq.input('users', JSON.stringify(filter.taggedUsers))
+        // dbreq.input('imageTags', JSON.stringify(filter.imageTags))
 
-        var dbreq = this.dbPool.request()
-        dbreq.input('dateFrom', sql.Date, filter.data.dateFrom)
-        dbreq.input('dateTo', sql.Date, filter.data.dateTo)
-        dbreq.input('radius', sql.Float, filter.data.radius)
-        dbreq.input('currentLongitude', sql.Float, filter.data.longitude)
-        dbreq.input('currentLatitude', sql.Float, filter.data.latitude)
-        dbreq.input('users', JSON.stringify(filter.taggedUsers))
-        dbreq.input('imageTags', JSON.stringify(filter.imageTags))
-
-        // dbreq.input('groups', sql.Float, filter.latitude)
-
-        dbreq.execute('SP_GetPosts', (err, data) => {
-            handleDbResponses(err, data, callback)
-        })
+        // dbreq.execute('SP_GetPosts', (err, data) => {
+        //     handleDbResponses(err, data, callback)
+        // })
     }
 
     getPost = (postId, callback) => {
@@ -45,13 +57,36 @@ class postsDAO {
     }
 
     insertPost = (post, callback) => {
-        var dbreq = this.dbPool.request()
-        dbreq.input('postData', JSON.stringify(post.data))
-        dbreq.input('taggedUsers', JSON.stringify(post.taggedUsers))
-        dbreq.input('imageTags', JSON.stringify(post.imageTags))
-        dbreq.execute('SP_InsertPost', (err, data) => {
-            handleDbResponses(err, data, callback)
+        elasticClient.index({
+            index: 'users',
+            id: '123',
+            routing: 1,
+            body: {
+                "post_id": '123',
+                "post_text": "this is new post!!!",
+                "post_publish_date": "2019/02/01",
+                "image_url": "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
+                "location": {
+                    "lat": 31.55,
+                    "lon": 31.55
+                },
+                "join_field": {
+                    "name": "post",
+                    "parent": 1
+                }
+            }
+        }, (err, data) => {
+            handleElasticResponses()
         })
+
+
+        // var dbreq = this.dbPool.request()
+        // dbreq.input('postData', JSON.stringify(post.data))
+        // dbreq.input('taggedUsers', JSON.stringify(post.taggedUsers))
+        // dbreq.input('imageTags', JSON.stringify(post.imageTags))
+        // dbreq.execute('SP_InsertPost', (err, data) => {
+        //     handleDbResponses(err, data, callback)
+        // })
     }
 
     likepost = (postId, userId, callback) => {
@@ -128,6 +163,14 @@ handleDbResponses = (err, data, callback) => {
         callback(err, undefined)
     } else {
         callback(undefined, data.recordset)
+    }
+}
+
+handleElasticResponses = (err, data, callback) => {
+    if (err) {
+        callback(err, undefined)
+    } else {
+        callback(undefined, data)
     }
 }
 

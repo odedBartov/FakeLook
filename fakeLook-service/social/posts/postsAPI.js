@@ -17,7 +17,7 @@ class postsAPI {
     this.dbService.getPosts(filter, (error, data) => {
       if (error) {
         next(error)
-      } else {
+      } else {        
         res.send(data)
       }
     })
@@ -46,7 +46,6 @@ class postsAPI {
       post.data.text = receivedPost.text
       post.data.imageSrc = `${this.currentUrl}/${req.file.path}`
       post.data.userUpId = req.user.id
-      console.log(req.user)
 
       this.dbService.CheckIfUsernamesExist(post.taggedUsers, (err, data) => {
         if (err) {

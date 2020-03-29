@@ -1,11 +1,8 @@
-// ///<reference types="@types/googlemaps" />
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Inject, OnDestroy, ComponentRef, ComponentFactoryResolver, ApplicationRef, Injector } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy, ComponentRef, ComponentFactoryResolver, ApplicationRef, Injector } from '@angular/core';
 import { PostModel } from '../models/postModel'
 import { PostsService } from '../services/posts.service'
-//import {} from '@types/googlemaps';
 import { } from "googlemaps";
 import { MapsAPILoader } from '@agm/core';
-//import { DOCUMENT } from '@angular/common';
 import { FilterModel } from '../filters/filter/models/filterModel';
 import { InfoWindowComponent } from './info-window/info-window.component';
 import { postToShow } from '../models/postToShow';
@@ -32,7 +29,6 @@ export class MapComponent implements OnInit, OnDestroy {
   compRef: ComponentRef<InfoWindowComponent>;
 
   constructor(
-    // @Inject(DOCUMENT) private document,
     private postService: PostsService,
     private mapsAPILoader: MapsAPILoader,
     private resolver: ComponentFactoryResolver,
@@ -64,17 +60,17 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   initPosts() {
-    this.postsSubscription = this.postService.getPostsList().subscribe((res: postToShow[]) => {
+    this.postsSubscription = this.postService.getPostsList().subscribe((res: postToShow[]) => {      
       this.clearMarkers();
       this.posts = res;
       this.posts.forEach(post => {
         const marker = new google.maps.Marker({
-          position: new google.maps.LatLng(post.latitude, post.longitude),
+          position: new google.maps.LatLng(post.location.lat, post.location.lon),
           map: this.map,
-          icon: this.getIcon(post.imageSrc)
+          icon: this.getIcon(post.image_url)
         });
         marker.addListener('click', () => {
-          const infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.postId) });
+          const infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.post_id) });
           infowindow.open(this.map, marker);
         });
         this.markers.push(marker);

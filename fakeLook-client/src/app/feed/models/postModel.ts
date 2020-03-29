@@ -1,14 +1,13 @@
 import { CommentModel } from './commentModel';
 
 export class PostModel{
-    postId: string;
-    imageSrc: string;
+    post_id: string;
+    image_url: string;
     publishDate: Date;
     taggedUsers: string;
     imageTags: string;
     text: string;
-    latitude: number;
-    longitude: number;
+    location: {lat: number, lon: number}
     likes: number;
     comments: CommentModel;
 }

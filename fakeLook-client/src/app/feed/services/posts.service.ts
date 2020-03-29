@@ -34,14 +34,14 @@ export class PostsService {
   UpdatePosts(filter: FilterModel) {
     filter.latitude = this.currentLatitude;
     filter.longitude = this.currentLongitude;
-    this.httpService.getPosts(filter).subscribe((res: PostModel[]) => {     
+    this.httpService.getPosts(filter).subscribe((res: PostModel[]) => {      
       this.posts.next(res);
     })
   }
 
   publishPost(post: postToUpload, image) {
-    post.latitude = this.currentLatitude + Math.random()*3 - 1;
-    post.longitude = this.currentLongitude + Math.random()*3 - 1;
+    post.location.lat = this.currentLatitude + Math.random()*3 - 1;
+    post.location.lon = this.currentLongitude + Math.random()*3 - 1;
     //buffer for check. to remove
 
     const formData = new FormData();
