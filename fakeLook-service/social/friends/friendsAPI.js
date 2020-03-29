@@ -43,7 +43,7 @@ module.exports = {
         let response = {
             success: true
         }
-        const userId = 1;
+        const userId = req.user.id;
         const friendId = req.params.friendId
         await dbService.removeFriend(friendId, userId).catch(err => {
             response.success = false
@@ -54,7 +54,8 @@ module.exports = {
 
     getFriends: async function (req, res, next) {
         /*  const userId = req.user.id; */
-        const userId = 1;
+        const userId = req.user.id;
+        console.log(userId) 
         const friends = await dbService.getFriends(userId).catch(err => console.log(err))
         res.status(200).json(friends);
     },

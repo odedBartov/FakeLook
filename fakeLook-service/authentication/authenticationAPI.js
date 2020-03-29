@@ -5,10 +5,12 @@ class authenticationAPI {
   dbService
   errorHandler
   jwtService
-  constructor(AuthDAO, ErrorHandler, JWTservice) {
+  socialApi
+  constructor(AuthDAO, ErrorHandler, JWTservice, SocialApi) {    
     this.dbService = AuthDAO
     this.errorHandler = ErrorHandler
     this.jwtService = JWTservice
+    this.socialApi = SocialApi
   }
 
   Login(req, res, next) {
@@ -17,9 +19,9 @@ class authenticationAPI {
       if (error) {
         next(error)
       } else {
-        console.log(data)
           if (data && bcryptServiceType.comparePassword(user.password, data.password)) {
-            const token = this.jwtService.createToken(data.ID)
+            console.log(data)
+            const token = this.jwtService.createToken(data.userId)
             res.setHeader('access-token', token)
             res.send(user)
           }

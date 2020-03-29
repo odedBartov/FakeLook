@@ -2,6 +2,9 @@ const express = require('express')
 
 const router = express.Router();
 const friendsAPI = require('./friendsAPI')
+const container = require('../../containerConfig')
+const jwtService = container.get('JWTservice')
+router.use(jwtService.validateToken)
 
 
 router.post('/sendFriendRequest', friendsAPI.sendFriendRequest)

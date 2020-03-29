@@ -16,12 +16,13 @@ container.register('errorHandler', [], errorHandler)
 container.register('JWTservice', [], JWTservice)
 container.register('currentUrl', [], strings.currentUrl)
 
-container.register('authenticationConfig', [], authenticationConfig)
-container.register('authenticationDB', ['authenticationConfig'], authenticationDAO)
-container.register('authenticationAPI', ['authenticationDB', 'errorHandler', 'JWTservice'], authenticationAPI)
-
 container.register('socialConfig', [], socialConfig)
 container.register('postsDB', ['socialConfig'], postsDAO)
 container.register('postsAPI', ['postsDB', 'errorHandler', 'currentUrl'], postsAPI)
+
+container.register('authenticationConfig', [], authenticationConfig)
+container.register('authenticationDB', ['authenticationConfig'], authenticationDAO)
+container.register('authenticationAPI', ['authenticationDB', 'errorHandler', 'JWTservice', 'postsAPI'], authenticationAPI)
+
 
 module.exports = container
