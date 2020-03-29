@@ -1,4 +1,6 @@
 const sql = require('mssql')
+const elasticsearch  = require('elasticsearch')
+const elasticClient = new elasticsearch.Client({ node: 'http://localhost:5601' })
 
 class postsDAO {
     dbPool
@@ -13,6 +15,11 @@ class postsDAO {
     }
 
     getPosts = (filter, callback) => {
+        elasticClient.search({
+            
+        })
+
+
         var dbreq = this.dbPool.request()
         dbreq.input('dateFrom', sql.Date, filter.data.dateFrom)
         dbreq.input('dateTo', sql.Date, filter.data.dateTo)
