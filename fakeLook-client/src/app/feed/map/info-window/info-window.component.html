@@ -1,15 +1,16 @@
 <div *ngIf="currentPost" class="main">
-    <img [src]="currentPost.imageSrc" />
+    <img [src]="currentPost.image_url"/>
     <div class="line text">
-        <div class="postText">{{currentPost.text}}</div>
+        <div class="postText">{{currentPost.post_text}}</div>
         <div class="likes">
-            <img class="icon" [@rotation]="liked? 'rotate' : 'straight'" (click)="like()" src="http://localhost:1000/assets/likeIcon.png"/>
+            <button hidden="true" [disabled]="!enableLike" (click)="like()" #likeButton></button>
+            <img [class]="enableLike? 'icon enabled' : 'icon disabled'" [@rotation]="liked? 'rotate' : 'straight'" (click)="likeButton.click()" [src]="enableLike? 'http://localhost:1000/assets/likeIcon.png' : 'http://localhost:1000/assets/likeIconDisabled.png'"/>
             <div class="likesSum">{{currentPost.likes}}</div>
         </div>
     </div>
     <div class="comment" *ngFor="let comment of currentPost.comments">
-        <div class="commentText">{{comment.text}}</div>
-        <div class="commentPublisherName">{{comment.publisherName}}</div>
+        <div class="commentText">{{comment.comment_text}}</div>
+        <div class="commentPublisherName">{{comment.comment_publisher}}</div>
     </div>
     <form class="line text form-group publishComment" #commentForm="ngForm">
         <input class="form-control" placeholder="Comment" [(ngModel)]="text" type="text" name="text" required
@@ -17,13 +18,13 @@
         <button class="far fa-share-square publishBtn" (click)="publishComment()" [disabled]="!commentForm.form.valid"></button>
     </form>
     <div class="line">
-        <div class="tag" *ngFor="let tag of currentPost.imageTags; let i = index">{{tag}}
-            <span *ngIf="currentPost.imageTags && i < currentPost.imageTags.length - 1">,</span>
+        <div class="tag" *ngFor="let tag of currentPost.image_tags; let i = index">{{tag}}
+            <span *ngIf="currentPost.image_tags && i < currentPost.image_tags.length - 1">,</span>
         </div>
     </div>
     <div class="line">
-        <div class="tag" *ngFor="let tag of currentPost.taggedUsers; let i = index">{{tag}}
-            <span *ngIf="currentPost.taggedUsers && i < currentPost.taggedUsers.length">,</span>
+        <div class="tag" *ngFor="let tag of currentPost.user_tags; let i = index">{{tag}}
+            <span *ngIf="currentPost.user_tags && i < currentPost.user_tags.length - 1">,</span>
         </div>
     </div>
 </div>

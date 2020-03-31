@@ -20,7 +20,7 @@ const jwtService = container.get('JWTservice')
 const postAPI = container.get('postsAPI')
 const router = express.Router()
 
-router.use(jwtService.validateToken)
+router.use((req, res, next) => jwtService.validateToken(req, res, next))
 
 router.post('/getPosts', (req, res, next) => {
     postAPI.GetPosts(req, res, next)

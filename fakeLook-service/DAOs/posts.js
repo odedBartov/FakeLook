@@ -92,7 +92,7 @@ class postsDAO {
     getPosts = (filter, callback) => {
         let filteres = this.generateAllFilters(filter)
         this.elasticSearch.search({
-            index: 'fake_look_db',
+            index: "fake_look",
             _source: ['post_id', 'image_url', 'location'],
             body: {
                 "query": {
@@ -109,40 +109,29 @@ class postsDAO {
                 ]
             }
         }, (err, res) => {
-            if (err) {
-                callback(err, undefined)
-            } else {
-                callback(undefined, res.hits.hits.map(p => p._source))
-            }
-            /*  handleElasticResponses(err, res.hits.hits.map(p => p._source), callback) */
+            handleElasticResponses(err, res.hits.hits.map(p => p._source), callback)
         })
-
-        // var dbreq = this.dbPool.request()
-        // dbreq.input('dateFrom', sql.Date, filter.data.dateFrom)
-        // dbreq.input('dateTo', sql.Date, filter.data.dateTo)
-        // dbreq.input('radius', sql.Float, filter.data.radius)
-        // dbreq.input('currentLongitude', sql.Float, filter.data.longitude)
-        // dbreq.input('currentLatitude', sql.Float, filter.data.latitude)
-        // dbreq.input('users', JSON.stringify(filter.taggedUsers))
-        // dbreq.input('imageTags', JSON.stringify(filter.imageTags))
-
-        // dbreq.execute('SP_GetPosts', (err, data) => {
-        //     handleDbResponses(err, data, callback)
-        // })
     }
 
     getPost = (postId, callback) => {
-        var dbreq = this.dbPool.request()
-        dbreq.input('postId', sql.BigInt, postId)
-        dbreq.execute('SP_GetPost', (err, data) => {
-            handleDbResponses(err, data, callback)
+        this.elasticSearch.search({
+            index: "fake_look",
+            body: {
+                query: {
+                    term: {
+                        'post_id': postId
+                    }
+                }
+            }
+        }, (err, res) => {
+            handleElasticResponses(err, res.hits.hits[0]._source, callback)
         })
     }
 
-    insertPost = (post, callback) => {
+    publishPost = (post, callback) => {
         const generatedId = this.UUID.v4()
         this.elasticSearch.index({
-            index: 'users',
+            index: "fake_look",
             id: generatedId,
             routing: post.publisherId,
             body: {
@@ -153,6 +142,8 @@ class postsDAO {
                 "location": post.location,
                 "user_tags": post.user_tags.split(','),
                 "image_tags": post.image_tags.split(','),
+                "likes": [],
+                "comments": [],
                 "join_field": {
                     "name": "post",
                     "parent": post.publisherId
@@ -161,85 +152,147 @@ class postsDAO {
         }, (err, data) => {
             handleElasticResponses(err, data, callback)
         })
-
-
-        // var dbreq = this.dbPool.request()
-        // dbreq.input('postData', JSON.stringify(post.data))
-        // dbreq.input('taggedUsers', JSON.stringify(post.taggedUsers))
-        // dbreq.input('imageTags', JSON.stringify(post.imageTags))
-        // dbreq.execute('SP_InsertPost', (err, data) => {
-        //     handleDbResponses(err, data, callback)
-        // })
     }
 
     likepost = (postId, userId, callback) => {
-        var dbreq = this.dbPool.request()
-        dbreq.input('postId', sql.BigInt, postId)
-        dbreq.input('userId', sql.BigInt, userId)
-        dbreq.execute('SP_LikePost', (err, data) => {
-            handleDbResponses(err, data, callback)
+        this.elasticSearch.update({
+            index: "fake_look",
+            id: postId,
+            body: {
+                "script": {
+                    "source": "ctx._source.likes.add(params.user)",
+                    "params": {
+                        "user": userId
+                    }
+                }
+            }
+        }, (err, res) => {
+            handleElasticResponses(err, res, callback)
         })
     }
 
     dislikePost = (postId, userId, callback) => {
-        var dbreq = this.dbPool.request()
-        dbreq.input('postId', sql.BigInt, postId)
-        dbreq.input('userId', sql.BigInt, userId)
-        dbreq.execute('SP_DisLikePost', (err, data) => {
-            handleDbResponses(err, data, callback)
+        this.elasticSearch.update({
+            index: "fake_look",
+            id: postId,
+            body: {
+                "script": {
+                    "inline": "ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))",
+                    "params": {
+                        "user": userId
+                    }
+                }
+            }
+        }, (err, res) => {
+            handleElasticResponses(err, res, callback)
         })
     }
 
-    checkIfLikedPost = (postId, userId, callback) => {
-        var dbreq = this.dbPool.request()
-        dbreq.input('postId', sql.BigInt, postId)
-        dbreq.input('userId', sql.BigInt, userId)
-        dbreq.execute('SP_CheckIfUserLikedPost', (err, data) => {
-            handleDbResponses(err, data, callback)
+    checkIfLikedPost = (postId, callback) => {
+        this.elasticSearch.search({
+            index: "fake_look",
+            _source: 'likes',
+            body: {
+                query: {
+                    "bool": {
+                        "must": [
+                            {
+                                "term": {
+                                    "join_field": "post"
+                                }
+                            },
+                            {
+                                "term": {
+                                    "post_id": postId
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }, (err, res) => {
+            handleElasticResponses(err, res.hits.hits[0]._source.likes, callback)
         })
     }
 
-    CheckIfUsernamesExist = (usernames, callback) => {
-        var dbreq = this.dbPool.request()
-        dbreq.input('usernames', JSON.stringify(usernames))
-        dbreq.execute('SP_CheckIfUsernamesExist', (err, data) => {
-            handleDbResponses(err, data, callback)
+    CheckIfUsernamesExist = async (usernames, callback) => {
+        var wrongUsers = []
+        var promises = usernames.map(async (tag) => {
+            var user = await this.elasticSearch.search({
+                index: "fake_look",
+                _source: "user_name",
+                body: {
+                    "query": {
+                        "bool": {
+                            "must": [
+                                {
+                                    "term": {
+                                        "join_field": "user"
+                                    }
+                                },
+                                {
+                                    "term": {
+                                        "user_name": tag
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            })
+            if (user.hits.hits.length == 0) {
+                wrongUsers.push(tag)
+            }
         })
+        try {
+            await Promise.all(promises)
+        } catch (err) {
+            callback(err, undefined)
+        }
+        callback(undefined, wrongUsers)
     }
-
-    // createUser = (user, callback) => {
-    //     var dbreq = this.dbPool.request()
-    //     dbreq.input('userId', sql.BigInt, user.createdUserId)
-    //     dbreq.input('userName', sql.NVarChar(20), user.userName)
-    //     dbreq.input('email', sql.NVarChar(30), user.email)
-    //     dbreq.execute('SP_InsertUser', (err, data) => {
-    //         handleDbResponses(err, data, callback)
-    //     })
-    // }
 
     publishComment = (comment, callback) => {
-        var dbreq = this.dbPool.request()
-        dbreq.input('postId', sql.BigInt, comment.postId)
-        dbreq.input('userId', sql.BigInt, comment.userId)
-        dbreq.input('text', sql.NVarChar(200), comment.text)
-        dbreq.input('date', sql.Date, comment.date)
-        dbreq.execute('SP_PublishComment', (err, data) => {
-            handleDbResponses(err, data, callback)
+        const generatedId = this.UUID.v4()
+        this.elasticSearch.update({
+            index: "fake_look",
+            id: comment.postId,
+            body: {
+                "script": {
+                    "source": "ctx._source.comments.add(['comment_id': params.comment_id, 'comment_text': params.comment_text, 'comment_publisher': params.comment_publisher, 'comment_publish_date': params.comment_publish_date])",
+                    "params": {
+                        "comment_id": generatedId,
+                        "comment_text": comment.comment_text,
+                        "comment_publisher": comment.comment_publisher,
+                        "comment_publish_date": comment.comment_publish_date
+                    }
+                }
+            }
+        }, (err, res) => {
+            handleElasticResponses(err, res, callback)
         })
+        // var dbreq = this.dbPool.request()
+        // dbreq.input('postId', sql.BigInt, comment.postId)
+        // dbreq.input('userId', sql.BigInt, comment.userId)
+        // dbreq.input('text', sql.NVarChar(200), comment.text)
+        // dbreq.input('date', sql.Date, comment.date)
+        // dbreq.execute('SP_PublishComment', (err, data) => {
+        //     handleDbResponses(err, data, callback)
+        // })
     }
 
-    insertTags = (tags, callback) => {
-        var dbreq = this.dbPool.request()
-        dbreq.input('tags', JSON.stringify(tags))
-        dbreq.execute('SP_InsertImageTags', (error, data) => {
-            if (error) {
-                callback(error, undefined)
-            }
-            else {
-                callback(undefined, data)
-            }
-        })
-    }
+    // insertTags = (tags, callback) => {
+    //     var dbreq = this.dbPool.request()
+    //     dbreq.input('tags', JSON.stringify(tags))
+    //     dbreq.execute('SP_InsertImageTags', (error, data) => {
+    //         if (error) {
+    //             callback(error, undefined)
+    //         }
+    //         else {
+    //             callback(undefined, data)
+    //         }
+    //     })
+    // }
 }
 handleDbResponses = (err, data, callback) => {
     if (err) {

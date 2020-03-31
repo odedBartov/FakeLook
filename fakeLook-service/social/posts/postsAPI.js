@@ -1,11 +1,13 @@
-class postsAPI {
+class postsAPI{
   dbService
   errorHandler
   currentUrl
-  constructor(postsDAO, ErrorHandler, CurrentUrl) {
+  enviroment
+  constructor(postsDAO, ErrorHandler, CurrentUrl, enviroment) {
     this.dbService = postsDAO
     this.errorHandler = ErrorHandler
     this.currentUrl = CurrentUrl
+    this.enviroment = enviroment
   }
 
   GetPosts(req, res, next) {
@@ -17,7 +19,7 @@ class postsAPI {
     this.dbService.getPosts(filter, (error, data) => {
       if (error) {
         next(error)
-      } else {
+      } else {        
         res.send(data)
       }
     })
@@ -28,9 +30,8 @@ class postsAPI {
       if (error) {
         next(error)
       } else {
-        var post = data[0]
-        post.postId = req.query.postId
-        res.send(post)
+        data.likes = data.likes? data.likes.length : 0
+        res.send(data)
       }
     })
   }
@@ -46,29 +47,21 @@ class postsAPI {
       post.publishedDate = `${date.getFullYear()}/${("0" + (date.getMonth() + 1)).slice(-2)}/${("0" + date.getDate()).slice(-2)}`
       post.publisherId = req.user.id
 
-      this.dbService.CheckIfUsernamesExist(post.taggedUsers, (err, data) => {
+      this.dbService.CheckIfUsernamesExist(post.user_tags.split(','), (err, data) => {
         if (err) {
           next(err)
         } else {
           if (data.length) {
             this.errorHandler.throwException(
-              `You tagged users whom does not exist!\nNames: ${data[0].map(
-                u => u.username
-              )}`,
+              `You tagged users whom does not exist!\nNames: ${data}`,
               400
             )
           } else {
-            this.dbService.insertTags(post.imageTags, (err, data) => {
+            this.dbService.publishPost(post, (err, data) => {
               if (err) {
                 next(err)
               } else {
-                this.dbService.insertPost(post, (err, data) => {
-                  if (err) {
-                    next(err)
-                  } else {
-                    res.json(post)
-                  }
-                })
+                res.json(post)
               }
             })
           }
@@ -80,13 +73,13 @@ class postsAPI {
   LikePost(req, res, next) {
     const postId = req.query.postId
     const userId = req.user.id
-
-    this.dbService.checkIfLikedPost(postId, userId, (err, data) => {
+    setTimeout(() => {  
+    this.dbService.checkIfLikedPost(postId, (err, data) => {
       if (err) {
         next(err)
       } else {
-        const isLiked = data.length != 0
-        const like = isLiked ? this.dbService.dislikePost : this.dbService.likepost
+        const isLiked = data && data.includes(userId)
+        const like = isLiked ? this.dbService.dislikePost : this.dbService.likepost        
         like(postId, userId, (err, data) => {
           if (err) {
             next(err)
@@ -96,38 +89,29 @@ class postsAPI {
         })
       }
     })
+  }, 600);
   }
 
   checkIfLikedPost(req, res, next) {
     const postId = req.query.postId
     const userId = req.user.id
-    this.dbService.checkIfLikedPost(postId, userId, (err, data) => {
+    this.dbService.checkIfLikedPost(postId, (err, data) => {
       if (err) {
         next(err)
-      } else {
-        res.send(data.length != 0)
+      } else {        
+        res.send(data && data.includes(userId))
       }
     })
   }
 
   PublishComment(req, res, next) {
     var comment = req.body
-    comment.userId = req.user.id
+    comment.comment_publisher = this.enviroment.currentUserName
     this.dbService.publishComment(comment, (error, data) => {
       if (error) {
         next(error)
       } else {
         res.send(data[0])
-      }
-    })
-  }
-
-  createUser(user, callback) {
-    this.dbService.createUser(user, (error, data) => {
-      if (error) {
-        callback(error, undefined)
-      } else {
-        callback(undefined, user)
       }
     })
   }

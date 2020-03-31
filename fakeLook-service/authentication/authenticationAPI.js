@@ -4,10 +4,12 @@ class authenticationAPI {
   dbService
   errorHandler
   jwtService
-  constructor(AuthDAO, ErrorHandler, JWTservice) {
+  enviroment
+  constructor(AuthDAO, ErrorHandler, JWTservice, _enviroment) {
     this.dbService = AuthDAO
     this.errorHandler = ErrorHandler
     this.jwtService = JWTservice
+    this.enviroment = _enviroment
   }
 
   Login(req, res, next) {
@@ -19,6 +21,7 @@ class authenticationAPI {
         if (bcryptServiceType.comparePassword(user.password, data.password)) {
           const token = this.jwtService.createToken(data.user_id)
 
+          this.enviroment.currentUserName = user.userName
           res.setHeader('access-token', token)
           res.send(user)
         } else {
