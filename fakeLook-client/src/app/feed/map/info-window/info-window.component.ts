@@ -3,6 +3,8 @@ import { trigger, state, style, animate, transition, } from '@angular/animations
 
 import { PostModel } from '../../models/postModel';
 import { PostsService } from '../../services/posts.service';
+import { ActivatedRoute } from '@angular/router';
+import { NavigatorService } from 'src/app/shared/navigator.service';
 
 @Component({
   selector: 'app-info-window',
@@ -23,13 +25,22 @@ export class InfoWindowComponent implements OnInit {
   currentPost: PostModel;
   text: string;
   liked = false;
+  isShown = false;
 
-  constructor(private postServiec: PostsService) {  
+  constructor(private postServiec: PostsService,
+    private activatedRouter: ActivatedRoute,
+    private routerService: NavigatorService) {
+   
   }
-  
+
   ngOnInit() {
-    this.postServiec.getPost(this.postId).subscribe((res: any) => {      
-      this.currentPost = this.buildPostFromServer(res);                
+    let postId = this.activatedRouter.snapshot.paramMap.get("postId")
+    if (postId) {
+      this.postId = postId
+      this.isShown = true
+    }
+    this.postServiec.getPost(this.postId).subscribe((res: any) => {
+      this.currentPost = this.buildPostFromServer(res);
     },
       err => {
         alert("can't get post\n\n" + err.error.message);
@@ -66,26 +77,30 @@ export class InfoWindowComponent implements OnInit {
         alert('Your comment published successfuly');
         this.text = '';
         console.log(res);
-        
+
       })
     }
   }
 
-  buildPostFromServer(post){    
+  buildPostFromServer(post) {
     if (post.imageTags) {
       post.imageTags = JSON.parse(post.imageTags);
       post.imageTags = post.imageTags.tags.map(tag => tag.title);
     }
-    
-    if (post.taggedUsers) {      
+
+    if (post.taggedUsers) {
       post.taggedUsers = JSON.parse(post.taggedUsers);
       post.taggedUsers = post.taggedUsers.tags.map(tag => tag.username);
     }
 
     if (post.comments) {
-      post.comments = JSON.parse(post.comments);      
+      post.comments = JSON.parse(post.comments);
       post.comments = post.comments.comments;
     }     
     return post;
+  }
+  navToFeed() {
+    console.log("nav")
+    this.routerService.navigateToScrollFeed();
   }
 }

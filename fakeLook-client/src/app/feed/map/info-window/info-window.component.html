@@ -1,5 +1,5 @@
 <div *ngIf="currentPost" class="main">
-    <img [src]="currentPost.imageSrc"/>
+    <img [src]="currentPost.imageSrc" />
     <div class="line text">
         <div class="postText">{{currentPost.text}}</div>
         <div class="likes">
@@ -26,4 +26,7 @@
             <span *ngIf="currentPost.taggedUsers && i < currentPost.taggedUsers.length">,</span>
         </div>
     </div>
+</div>
+<div *ngIf="isShown">
+    <button type="button" class="btn btn-primary" (click)="navToFeed()">Back to feed</button>
 </div>

@@ -1,1 +1,11 @@
-<p>scroll-feed works!</p>
+<h1>Feed</h1>
+<div *ngFor="let post of posts">
+  <div class="card">
+    <img [src]="post.imageSrc" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">{{post.text}}</p>
+      <button type="button" class="btn btn-primary" (click)="showDetails(post.postId)">Show Details</button>
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-primary" (click)="navToFeed()"> Back </button>

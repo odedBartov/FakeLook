@@ -178,3 +178,438 @@ Error thrown at Tue Mar 31 2020 18:07:37 GMT+0300 (GMT+03:00)[parsing_exception]
 Error thrown at Tue Mar 31 2020 18:07:40 GMT+0300 (GMT+03:00)[parsing_exception] [term] query does not support [imageTag], with { line=1 & col=229 } :: {"path":"/users/_search","query":{"_source":"post_id,image_url,location"},"body":"{\"query\":{\"bool\":{\"must\":[{\"match\":{\"join_field\":\"post\"}},{\"range\":{\"post_publish_date\":{\"gte\":\"2020/03/10\"}}},{\"geo_distance\":{\"distance\":\"2km\",\"location\":{\"lat\":31.9415696,\"lon\":34.8756373}}},{\"term\":{\"image_tags\":{\"imageTag\":\"cat\"}}},{\"term\":{\"image_tags\":{\"imageTag\":\"furry\"}}},{\"term\":{\"user_tags\":{\"UN\":\"mushki\"}}},{\"term\":{\"user_tags\":{\"UN\":\"oded\"}}}]}},\"sort\":[{\"post_publish_date\":{\"order\":\"desc\"}}]}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":229}],\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":229},\"status\":400}"}
 
 
+Error thrown at Sun Mar 29 2020 11:29:28 GMT+0300 (GMT+03:00)Error: Wrong username or password
+
+
+Error thrown at Sun Mar 29 2020 11:29:35 GMT+0300 (GMT+03:00)Error: Wrong username or password
+
+
+Error thrown at Sun Mar 29 2020 11:37:17 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:37:22 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:37:49 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:38:01 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:39:22 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:39:44 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:40:01 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:40:05 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:40:45 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:44:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:44:25 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:44:25 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:44:45 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:44:59 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:45:03 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:45:31 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:45:35 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:46:55 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:47:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 11:47:18 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 12:29:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 12:40:48 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 12:52:16 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:08:03 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:11:08 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:12:32 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:14:07 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:14:33 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:16:50 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:17:14 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:17:34 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:18:09 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:18:37 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:19:03 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:20:17 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:20:43 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:21:05 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:21:46 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:22:31 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:23:43 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:24:05 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:24:47 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:25:39 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:26:06 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:26:40 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:28:26 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:29:01 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:29:38 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:30:28 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:31:16 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:31:45 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 13:34:12 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 14:03:46 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 14:06:44 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 14:09:13 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 14:19:09 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 14:53:56 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 14:54:52 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 15:01:49 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:22:03 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:22:55 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:23:07 GMT+0300 (GMT+03:00)RequestError: Validation failed for parameter 'postId'. Invalid number.
+
+
+Error thrown at Sun Mar 29 2020 16:23:58 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:24:08 GMT+0300 (GMT+03:00)RequestError: Validation failed for parameter 'postId'. Invalid number.
+
+
+Error thrown at Sun Mar 29 2020 16:26:18 GMT+0300 (GMT+03:00)RequestError: Validation failed for parameter 'postId'. Invalid number.
+
+
+Error thrown at Sun Mar 29 2020 16:27:23 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:27:37 GMT+0300 (GMT+03:00)RequestError: Validation failed for parameter 'postId'. Invalid number.
+
+
+Error thrown at Sun Mar 29 2020 16:29:30 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:30:11 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:31:05 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:31:05 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:31:39 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:32:01 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:32:23 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:32:23 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:33:06 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:47:56 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:48:34 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:49:01 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:49:26 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:49:51 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:51:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:51:42 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:53:34 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 16:54:46 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:00:19 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:02:23 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:05:21 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:18:29 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:38:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:38:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:38:53 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:38:53 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:39:31 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:39:31 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:41:02 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:41:02 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:41:26 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:41:26 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:42:38 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:42:38 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:46:12 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:46:12 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:46:50 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:46:50 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:47:25 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:47:25 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:48:23 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:48:23 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:48:54 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:48:54 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:50:15 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:50:15 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:51:14 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:51:14 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:51:41 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:51:41 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:52:03 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:52:03 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:52:46 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:52:46 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:53:24 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:53:24 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:54:27 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:54:27 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:55:04 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 17:55:04 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:19:17 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:20:42 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:22:43 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:22:43 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:24:19 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:27:04 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:27:44 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:29:51 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:33:41 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:33:41 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:41:18 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:43:29 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:44:30 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:45:06 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 18:51:07 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Sun Mar 29 2020 23:05:07 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+

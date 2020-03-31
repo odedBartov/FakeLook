@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
+import { $ } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,9 @@ export class NavigatorService {
   navigateToScrollFeed(){
     this.router.navigateByUrl('scrollFeed');
   }
+
+  navigateToInfoWindow(postId){
+    this.router.navigateByUrl(`infoWindow/${postId}`)  
+  }
+  
 }

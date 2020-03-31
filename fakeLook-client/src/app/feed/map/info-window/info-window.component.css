@@ -5,12 +5,14 @@ img {
 .main{
   margin-bottom: 20px
 }
+input{
+  width: 200px;
+}
 
 .line {
   margin-bottom: 10px;
   display: flex;
 }
-
 .icon {
   height: 25px;
   cursor: pointer;
@@ -21,14 +23,7 @@ img {
 .text {
   margin-top: 5px;
   margin-bottom: 30px;
-  justify-content: space-between;
-  word-break: break-all;
-}
-
-.postText{
-  padding-top: 10px;
-  color: black;
-  font-size: 19px;
+/*   justify-content: space-between; */
 }
 
 .likes{
