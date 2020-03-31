@@ -79,3 +79,6 @@ Error thrown at Tue Mar 31 2020 19:35:05 GMT+0300 (GMT+03:00)TypeError: Cannot r
 Error thrown at Tue Mar 31 2020 19:47:56 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'request' of undefined
 
 
+Error thrown at Tue Mar 31 2020 19:52:05 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
