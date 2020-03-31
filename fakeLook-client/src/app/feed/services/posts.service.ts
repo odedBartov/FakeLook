@@ -34,7 +34,7 @@ export class PostsService {
   UpdatePosts(filter: FilterModel) {
     filter.latitude = this.currentLatitude;
     filter.longitude = this.currentLongitude;
-    this.httpService.getPosts(filter).subscribe((res: PostModel[]) => {      
+    this.httpService.getPosts(filter).subscribe((res: postToShow[]) => {      
       this.posts.next(res);
     })
   }
