@@ -7,33 +7,118 @@ class postsDAO {
     constructor(socialConfig, elasticSearchClient, idCreator) {
         this.elasticSearch = elasticSearchClient
         this.UUID = idCreator
-        this.dbPool = new sql.ConnectionPool(socialConfig, err => {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log('connected to DB from posts!')
+        /*  this.dbPool = new sql.ConnectionPool(socialConfig, err => {
+             if (err) {
+                 console.log(err)
+             } else {
+                 console.log('connected to DB from posts!')
+             }
+         }) */
+    }
+
+    getfilterByDates(dateFrom, dateTo) {
+        if (dateFrom)
+            dateFrom = dateFrom.toString().replace(/-/g, "/")
+        if (dateTo)
+            dateTo = dateTo.toString().replace(/-/g, "/")
+
+        let filter =
+        {
+            "range": {
+                "post_publish_date": {
+                    "gte": dateFrom,
+                    "lt": dateTo
+                }
             }
-        })
+        }
+        return filter
+    }
+
+    getfilterByRadius(radius, latitude, longitude) {
+        let filter =
+        {
+            "geo_distance": {
+                "distance": `${radius}km`,
+                "location": {
+                    "lat": latitude,
+                    "lon": longitude
+                }
+            }
+        }
+        return filter
+    }
+
+    getFilterByImageTags(imagesTags, filteres) {
+        imagesTags.map(tag => filteres.push({
+            "term": {
+                "image_tags": tag.imageTag
+            }
+        }))
+    }
+
+    getFilterByUserTags(userTags, filteres) {
+        userTags.map(tag => filteres.push({
+            "term": {
+                "user_tags": tag.UN
+            }
+        }))
+    }
+
+    generateAllFilters(filter) {
+        let dateFrom = filter.data.dateFrom
+        let dateTo = filter.data.dateTo
+        let radius = filter.data.radius
+        let longitude = filter.data.longitude
+        let latitude = filter.data.latitude
+        let imageTags = filter.imageTags
+        let taggedUsers = filter.taggedUsers
+        let filteres = [{
+            "match": {
+                "join_field": "post"
+            }
+        }]
+
+        if (dateFrom || dateTo)
+            filteres.push(this.getfilterByDates(dateFrom, dateTo))
+        console.log(radius)
+        if (radius)
+            filteres.push(this.getfilterByRadius(radius, latitude, longitude))
+
+        console.log(imageTags)
+        if (imageTags)
+            this.getFilterByImageTags(imageTags, filteres)
+        console.log(taggedUsers)
+        if (taggedUsers)
+            this.getFilterByUserTags(taggedUsers, filteres)
+        return filteres
     }
 
     getPosts = (filter, callback) => {
+        let filteres = this.generateAllFilters(filter)
         this.elasticSearch.search({
             index: 'users',
             _source: ['post_id', 'image_url', 'location'],
             body: {
                 "query": {
-                    "term": {
-                        "join_field": "post"
+                    "bool": {
+                        "must": filteres
                     }
-                }
+                },
+                "sort": [
+                    {
+                        "post_publish_date": {
+                            "order": "desc"
+                        }
+                    }
+                ]
             }
         }, (err, res) => {
-            // if (err) {
-            //     callback(err, undefined)
-            // } else {
-            //     callback(undefined, res.hits.hits.map(p => p._source))
-            // }
-            handleElasticResponses(err, res.hits.hits.map(p => p._source), callback)
+            if (err) {
+                callback(err, undefined)
+            } else {
+                callback(undefined, res.hits.hits.map(p => p._source))
+            }
+            /*  handleElasticResponses(err, res.hits.hits.map(p => p._source), callback) */
         })
 
         // var dbreq = this.dbPool.request()

@@ -4,7 +4,7 @@ class authenticationAPI {
   dbService
   errorHandler
   jwtService
-  constructor(AuthDAO, ErrorHandler, JWTservice) {    
+  constructor(AuthDAO, ErrorHandler, JWTservice) {
     this.dbService = AuthDAO
     this.errorHandler = ErrorHandler
     this.jwtService = JWTservice
@@ -13,7 +13,7 @@ class authenticationAPI {
   Login(req, res, next) {
     const user = { userName: req.query.userName, password: req.query.password }
     this.dbService.GetPassword(user.userName, (error, data) => {
-      if (error) {        
+      if (error) {
         next(error)
       } else {
         if (bcryptServiceType.comparePassword(user.password, data.password)) {

@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     }
     else {
       this.httpService.Login(this.userName, this.password).subscribe(res => {
+        console.log(res)
         this.navigatorService.navigateToFeed();
       }, error => {
         alert(error.message + "\n\n" + error.error.message)

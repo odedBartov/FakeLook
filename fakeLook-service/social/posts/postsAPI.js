@@ -13,7 +13,7 @@ class postsAPI {
     var filter = buildPost(recievedFilter)
     filter.data.dateFrom = recievedFilter.dateFrom
     filter.data.dateTo = recievedFilter.dateTo
-    filter.data.radius = recievedFilter.radius * 1000
+    filter.data.radius = recievedFilter.radius
     this.dbService.getPosts(filter, (error, data) => {
       if (error) {
         next(error)

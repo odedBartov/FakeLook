@@ -4,3 +4,177 @@ Error thrown at Sun Mar 29 2020 17:35:27 GMT+0300 (Israel Daylight Time)RequestE
 Error thrown at Sun Mar 29 2020 17:35:27 GMT+0300 (Israel Daylight Time)RequestError: Validation failed for parameter 'postId'. Invalid number.
 
 
+Error thrown at Tue Mar 31 2020 11:48:47 GMT+0300 (GMT+03:00)Error: Wrong username or password
+
+
+Error thrown at Tue Mar 31 2020 11:50:41 GMT+0300 (GMT+03:00)Error: Wrong username or password
+
+
+Error thrown at Tue Mar 31 2020 11:51:15 GMT+0300 (GMT+03:00)Error: Wrong username or password
+
+
+Error thrown at Tue Mar 31 2020 11:52:41 GMT+0300 (GMT+03:00)Error: Wrong username or password
+
+
+Error thrown at Tue Mar 31 2020 11:56:14 GMT+0300 (GMT+03:00)Error: Wrong username or password
+
+
+Error thrown at Tue Mar 31 2020 11:56:41 GMT+0300 (GMT+03:00)Error: Wrong username or password
+
+
+Error thrown at Tue Mar 31 2020 11:58:35 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'request' of undefined
+
+
+Error thrown at Tue Mar 31 2020 12:01:09 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'request' of undefined
+
+
+Error thrown at Tue Mar 31 2020 12:05:36 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'request' of undefined
+
+
+Error thrown at Tue Mar 31 2020 12:05:36 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'request' of undefined
+
+
+Error thrown at Tue Mar 31 2020 15:27:53 GMT+0300 (GMT+03:00)Error: Wrong username or password
+
+
+Error thrown at Tue Mar 31 2020 15:27:56 GMT+0300 (GMT+03:00)Error: Wrong username or password
+
+
+Error thrown at Tue Mar 31 2020 15:32:39 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Tue Mar 31 2020 15:40:05 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'toString' of undefined
+
+
+Error thrown at Tue Mar 31 2020 15:41:29 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'toString' of undefined
+
+
+Error thrown at Tue Mar 31 2020 15:45:44 GMT+0300 (GMT+03:00)TypeError: recievedFilter.dateFrom.replaceAll is not a function
+
+
+Error thrown at Tue Mar 31 2020 15:46:29 GMT+0300 (GMT+03:00)TypeError: recievedFilter.dateFrom.replaceAll is not a function
+
+
+Error thrown at Tue Mar 31 2020 15:49:02 GMT+0300 (GMT+03:00)TypeError: recievedFilter.dateFrom.replaceAll is not a function
+
+
+Error thrown at Tue Mar 31 2020 17:18:57 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Tue Mar 31 2020 17:19:06 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'toString' of undefined
+
+
+Error thrown at Tue Mar 31 2020 17:20:02 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'toString' of undefined
+
+
+Error thrown at Tue Mar 31 2020 17:20:39 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'toString' of undefined
+
+
+Error thrown at Tue Mar 31 2020 17:21:00 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'toString' of undefined
+
+
+Error thrown at Tue Mar 31 2020 17:21:42 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'toString' of undefined
+
+
+Error thrown at Tue Mar 31 2020 17:30:48 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:32:13 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:34:09 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:35:06 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:35:45 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:37:13 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:37:20 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:37:59 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:38:38 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:38:52 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:39:22 GMT+0300 (GMT+03:00)ReferenceError: generateAllFilters is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:40:53 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:43:17 GMT+0300 (GMT+03:00)ReferenceError: dateFrom is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:44:24 GMT+0300 (GMT+03:00)ReferenceError: dateTo is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:46:01 GMT+0300 (GMT+03:00)ReferenceError: getfilterByDates is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:46:17 GMT+0300 (GMT+03:00)ReferenceError: getfilterByDates is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:47:13 GMT+0300 (GMT+03:00)ReferenceError: getfilterByDates is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:47:51 GMT+0300 (GMT+03:00)ReferenceError: filter is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:48:40 GMT+0300 (GMT+03:00)ReferenceError: filter is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:49:41 GMT+0300 (GMT+03:00)ReferenceError: filter is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:50:54 GMT+0300 (GMT+03:00)ReferenceError: filter is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:51:02 GMT+0300 (GMT+03:00)ReferenceError: filter is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:52:08 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'map' of undefined
+
+
+Error thrown at Tue Mar 31 2020 17:53:00 GMT+0300 (GMT+03:00)ReferenceError: userTags is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:53:18 GMT+0300 (GMT+03:00)ReferenceError: userTags is not defined
+
+
+Error thrown at Tue Mar 31 2020 17:54:11 GMT+0300 (GMT+03:00)ReferenceError: userTags is not defined
+
+
+Error thrown at Tue Mar 31 2020 18:03:02 GMT+0300 (GMT+03:00)[parsing_exception] [term] query does not support [imageTag], with { line=1 & col=146 } :: {"path":"/users/_search","query":{"_source":"post_id,image_url,location"},"body":"{\"query\":{\"bool\":{\"must\":[{\"match\":{\"join_field\":\"post\"}},{\"range\":{\"post_publish_date\":{\"gte\":\"2019/02/01\"}}},{\"term\":{\"image_tags\":{\"imageTag\":\"cat\"}}}]}},\"sort\":[{\"post_publish_date\":{\"order\":\"desc\"}}]}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":146}],\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":146},\"status\":400}"}
+
+
+Error thrown at Tue Mar 31 2020 18:03:07 GMT+0300 (GMT+03:00)[parsing_exception] [term] query does not support [imageTag], with { line=1 & col=146 } :: {"path":"/users/_search","query":{"_source":"post_id,image_url,location"},"body":"{\"query\":{\"bool\":{\"must\":[{\"match\":{\"join_field\":\"post\"}},{\"range\":{\"post_publish_date\":{\"gte\":\"2019/02/01\"}}},{\"term\":{\"image_tags\":{\"imageTag\":\"cat\"}}},{\"term\":{\"image_tags\":{\"imageTag\":\"popo\"}}}]}},\"sort\":[{\"post_publish_date\":{\"order\":\"desc\"}}]}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":146}],\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":146},\"status\":400}"}
+
+
+Error thrown at Tue Mar 31 2020 18:03:39 GMT+0300 (GMT+03:00)[parsing_exception] [term] query does not support [UN], with { line=1 & col=139 } :: {"path":"/users/_search","query":{"_source":"post_id,image_url,location"},"body":"{\"query\":{\"bool\":{\"must\":[{\"match\":{\"join_field\":\"post\"}},{\"range\":{\"post_publish_date\":{\"gte\":\"2019/02/01\"}}},{\"term\":{\"user_tags\":{\"UN\":\"mushki\"}}}]}},\"sort\":[{\"post_publish_date\":{\"order\":\"desc\"}}]}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [UN]\",\"line\":1,\"col\":139}],\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [UN]\",\"line\":1,\"col\":139},\"status\":400}"}
+
+
+Error thrown at Tue Mar 31 2020 18:03:45 GMT+0300 (GMT+03:00)[parsing_exception] [term] query does not support [UN], with { line=1 & col=139 } :: {"path":"/users/_search","query":{"_source":"post_id,image_url,location"},"body":"{\"query\":{\"bool\":{\"must\":[{\"match\":{\"join_field\":\"post\"}},{\"range\":{\"post_publish_date\":{\"gte\":\"2019/02/01\"}}},{\"term\":{\"user_tags\":{\"UN\":\"yogev\"}}}]}},\"sort\":[{\"post_publish_date\":{\"order\":\"desc\"}}]}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [UN]\",\"line\":1,\"col\":139}],\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [UN]\",\"line\":1,\"col\":139},\"status\":400}"}
+
+
+Error thrown at Tue Mar 31 2020 18:06:14 GMT+0300 (GMT+03:00)[parsing_exception] [term] query does not support [imageTag], with { line=1 & col=229 } :: {"path":"/users/_search","query":{"_source":"post_id,image_url,location"},"body":"{\"query\":{\"bool\":{\"must\":[{\"match\":{\"join_field\":\"post\"}},{\"range\":{\"post_publish_date\":{\"gte\":\"2019/02/04\"}}},{\"geo_distance\":{\"distance\":\"2km\",\"location\":{\"lat\":31.9415696,\"lon\":34.8756373}}},{\"term\":{\"image_tags\":{\"imageTag\":\"cat\"}}},{\"term\":{\"image_tags\":{\"imageTag\":\"furry\"}}}]}},\"sort\":[{\"post_publish_date\":{\"order\":\"desc\"}}]}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":229}],\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":229},\"status\":400}"}
+
+
+Error thrown at Tue Mar 31 2020 18:06:24 GMT+0300 (GMT+03:00)[parsing_exception] [term] query does not support [imageTag], with { line=1 & col=229 } :: {"path":"/users/_search","query":{"_source":"post_id,image_url,location"},"body":"{\"query\":{\"bool\":{\"must\":[{\"match\":{\"join_field\":\"post\"}},{\"range\":{\"post_publish_date\":{\"gte\":\"2019/02/04\"}}},{\"geo_distance\":{\"distance\":\"2km\",\"location\":{\"lat\":31.9415696,\"lon\":34.8756373}}},{\"term\":{\"image_tags\":{\"imageTag\":\"cat\"}}},{\"term\":{\"image_tags\":{\"imageTag\":\"furry\"}}},{\"term\":{\"user_tags\":{\"UN\":\"mushki\"}}},{\"term\":{\"user_tags\":{\"UN\":\"oded\"}}}]}},\"sort\":[{\"post_publish_date\":{\"order\":\"desc\"}}]}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":229}],\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":229},\"status\":400}"}
+
+
+Error thrown at Tue Mar 31 2020 18:07:37 GMT+0300 (GMT+03:00)[parsing_exception] [term] query does not support [imageTag], with { line=1 & col=176 } :: {"path":"/users/_search","query":{"_source":"post_id,image_url,location"},"body":"{\"query\":{\"bool\":{\"must\":[{\"match\":{\"join_field\":\"post\"}},{\"geo_distance\":{\"distance\":\"2km\",\"location\":{\"lat\":31.9415696,\"lon\":34.8756373}}},{\"term\":{\"image_tags\":{\"imageTag\":\"cat\"}}},{\"term\":{\"image_tags\":{\"imageTag\":\"furry\"}}},{\"term\":{\"user_tags\":{\"UN\":\"mushki\"}}},{\"term\":{\"user_tags\":{\"UN\":\"oded\"}}}]}},\"sort\":[{\"post_publish_date\":{\"order\":\"desc\"}}]}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":176}],\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":176},\"status\":400}"}
+
+
+Error thrown at Tue Mar 31 2020 18:07:40 GMT+0300 (GMT+03:00)[parsing_exception] [term] query does not support [imageTag], with { line=1 & col=229 } :: {"path":"/users/_search","query":{"_source":"post_id,image_url,location"},"body":"{\"query\":{\"bool\":{\"must\":[{\"match\":{\"join_field\":\"post\"}},{\"range\":{\"post_publish_date\":{\"gte\":\"2020/03/10\"}}},{\"geo_distance\":{\"distance\":\"2km\",\"location\":{\"lat\":31.9415696,\"lon\":34.8756373}}},{\"term\":{\"image_tags\":{\"imageTag\":\"cat\"}}},{\"term\":{\"image_tags\":{\"imageTag\":\"furry\"}}},{\"term\":{\"user_tags\":{\"UN\":\"mushki\"}}},{\"term\":{\"user_tags\":{\"UN\":\"oded\"}}}]}},\"sort\":[{\"post_publish_date\":{\"order\":\"desc\"}}]}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":229}],\"type\":\"parsing_exception\",\"reason\":\"[term] query does not support [imageTag]\",\"line\":1,\"col\":229},\"status\":400}"}
+
+
