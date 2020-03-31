@@ -93,7 +93,7 @@ class postsDAO {
         let filteres = this.generateAllFilters(filter)
         this.elasticSearch.search({
             index: "fake_look",
-            _source: ['post_id', 'image_url', 'location'],
+            _source: ['post_id', 'image_url', 'location','post_text'],
             body: {
                 "query": {
                     "bool": {
