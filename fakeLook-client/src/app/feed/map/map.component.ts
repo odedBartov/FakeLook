@@ -65,12 +65,12 @@ export class MapComponent implements OnInit, OnDestroy {
       this.posts = res;
       this.posts.forEach(post => {
         const marker = new google.maps.Marker({
-          position: new google.maps.LatLng(post.latitude, post.longitude),
+          position: new google.maps.LatLng(post.location.lat, post.location.lon),
           map: this.map,
-          icon: this.getIcon(post.imageSrc)
+          icon: this.getIcon(post.image_url)
         });
         marker.addListener('click', () => {
-          const infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.postId) });
+          const infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.post_id) });
           infowindow.open(this.map, marker);
         });
         this.markers.push(marker);

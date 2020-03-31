@@ -31,19 +31,16 @@ export class InfoWindowComponent implements OnInit {
   constructor(private postServiec: PostsService,
     private activatedRouter: ActivatedRoute,
     private routerService: NavigatorService) {
-   
   }
 
   ngOnInit() {
-    let postId = this.activatedRouter.snapshot.paramMap.get("postId")
-    if (postId) {
-      this.postId = postId
-      this.isShown = true
-    }
-
+    // let postId = this.activatedRouter.snapshot.paramMap.get("postId")
+    // if (postId) {
+    //   this.postId = postId
+    //   this.isShown = true
+    // }
     this.postServiec.getPost(this.postId).subscribe((res: any) => {    
       this.currentPost = res;
-      //this.currentPost = this.buildPostFromServer(res);                
     },
       err => {
         alert("can't get post\n\n" + err.error.message);

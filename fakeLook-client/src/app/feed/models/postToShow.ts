@@ -1,7 +1,6 @@
 export class postToShow{
-    postId: string;
-    imageSrc: string;
-    latitude: number;
-    longitude: number;
-    text:string;
+    post_id: string;
+    image_url: string;
+    location: {lon: number, lat: number}
+    //text:string;
 }
