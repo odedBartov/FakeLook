@@ -4,7 +4,8 @@ img {
   }
 
 .card{
-width: 300px;
+width: 400px;
+height: 400px;
 margin-top: 5px;
 font-size: 15px;
 }
