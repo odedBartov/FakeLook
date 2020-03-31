@@ -34,11 +34,11 @@ export class InfoWindowComponent implements OnInit {
   }
 
   ngOnInit() {
-    // let postId = this.activatedRouter.snapshot.paramMap.get("postId")
-    // if (postId) {
-    //   this.postId = postId
-    //   this.isShown = true
-    // }
+    let postId = this.activatedRouter.snapshot.paramMap.get("postId")
+    if (postId) {
+      this.postId = postId
+      this.isShown = true
+    }
     this.postServiec.getPost(this.postId).subscribe((res: any) => {    
       this.currentPost = res;
     },
@@ -85,25 +85,25 @@ export class InfoWindowComponent implements OnInit {
     }
   }
 
-  buildPostFromServer(post){
-    if (post.imageTags) {
-      post.imageTags = JSON.parse(post.imageTags);
-      post.imageTags = post.imageTags.tags.map(tag => tag.title);
-    }
+  // buildPostFromServer(post){
+  //   if (post.imageTags) {
+  //     post.imageTags = JSON.parse(post.imageTags);
+  //     post.imageTags = post.imageTags.tags.map(tag => tag.title);
+  //   }
 
-    if (post.taggedUsers) {
-      post.taggedUsers = JSON.parse(post.taggedUsers);
-      post.taggedUsers = post.taggedUsers.tags.map(tag => tag.username);
-    }
+  //   if (post.taggedUsers) {
+  //     post.taggedUsers = JSON.parse(post.taggedUsers);
+  //     post.taggedUsers = post.taggedUsers.tags.map(tag => tag.username);
+  //   }
 
-    if (post.comments) {
-      post.comments = JSON.parse(post.comments);
-      post.comments = post.comments.comments;
-    }     
-    return post;
-  }
+  //   if (post.comments) {
+  //     post.comments = JSON.parse(post.comments);
+  //     post.comments = post.comments.comments;
+  //   }     
+  //   return post;
+  // }
+
   navToFeed() {
-    console.log("nav")
     this.routerService.navigateToScrollFeed();
   }
 }

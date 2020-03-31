@@ -22,3 +22,27 @@ Error thrown at Tue Mar 31 2020 19:21:04 GMT+0300 (Israel Daylight Time)Error: L
 Error thrown at Tue Mar 31 2020 19:22:47 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
+Error thrown at Tue Mar 31 2020 19:29:35 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
+
+
+Error thrown at Tue Mar 31 2020 19:30:23 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
+
+
+Error thrown at Tue Mar 31 2020 19:34:02 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
+
+
+Error thrown at Tue Mar 31 2020 19:34:02 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
+
+
+Error thrown at Tue Mar 31 2020 19:40:22 GMT+0300 (Israel Daylight Time)TypeError: Cannot read property 'jwt' of undefined
+
+
+Error thrown at Tue Mar 31 2020 19:42:21 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
+
+
+Error thrown at Tue Mar 31 2020 19:44:46 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
+
+
+Error thrown at Tue Mar 31 2020 19:45:56 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
+
+

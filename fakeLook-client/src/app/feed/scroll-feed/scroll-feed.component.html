@@ -1,10 +1,10 @@
 <h1>Feed</h1>
 <div *ngFor="let post of posts">
   <div class="card">
-    <img [src]="post.imageSrc" class="card-img-top" alt="...">
+    <img [src]="post.image_url" class="card-img-top" alt="...">
     <div class="card-body">
-      <p class="card-text">{{post.text}}</p>
-      <button type="button" class="btn btn-primary" (click)="showDetails(post.postId)">Show Details</button>
+      <p class="card-text">{{post.post_text}}</p>
+      <button type="button" class="btn btn-primary" (click)="showDetails(post.post_id)">Show Details</button>
     </div>
   </div>
 </div>

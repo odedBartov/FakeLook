@@ -12,13 +12,11 @@ export class ScrollFeedComponent implements OnInit, OnDestroy {
   posts: postToShow[]
   postsSubscription;
   constructor(private postService: PostsService, private routeService: NavigatorService) {
-
   }
 
   ngOnInit() {
     this.postsSubscription = this.postService.getPostsList().subscribe((res: postToShow[]) => {
       this.posts = res;
-      console.log(this.posts)
     })
     this.postService.UpdatePosts(new FilterModel)
   }
