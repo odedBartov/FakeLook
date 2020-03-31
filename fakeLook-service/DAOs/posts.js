@@ -80,14 +80,10 @@ class postsDAO {
 
         if (dateFrom || dateTo)
             filteres.push(this.getfilterByDates(dateFrom, dateTo))
-        console.log(radius)
         if (radius)
             filteres.push(this.getfilterByRadius(radius, latitude, longitude))
-
-        console.log(imageTags)
         if (imageTags)
             this.getFilterByImageTags(imageTags, filteres)
-        console.log(taggedUsers)
         if (taggedUsers)
             this.getFilterByUserTags(taggedUsers, filteres)
         return filteres
