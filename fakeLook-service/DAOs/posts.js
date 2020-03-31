@@ -92,7 +92,7 @@ class postsDAO {
     getPosts = (filter, callback) => {
         let filteres = this.generateAllFilters(filter)
         this.elasticSearch.search({
-            index: 'users',
+            index: 'fake_look_db',
             _source: ['post_id', 'image_url', 'location'],
             body: {
                 "query": {
