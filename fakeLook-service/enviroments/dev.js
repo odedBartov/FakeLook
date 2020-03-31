@@ -11,5 +11,6 @@
 // module.exports = res.parsed;
 
 module.exports = {
-    secretKey: 'fakeLookSecret'
+    secretKey: 'fakeLookSecret',
+    currentUserName: 'defaultUser'
 }

@@ -8,7 +8,7 @@ class authenticationDAO {
 
     CheckIfUserExist(userName, callback) {
         this.elasticClient.count({
-            index: 'users',
+            index: "fake_look",
             body: {
                 query: {
                     term: {
@@ -28,7 +28,7 @@ class authenticationDAO {
     InsertUser(user, callback) {
         const generatedId = this.UUID.v4()
         this.elasticClient.index({
-            index: 'users',
+            index: "fake_look",
             id: generatedId,
             body: {
                 "user_id": generatedId,
@@ -48,7 +48,7 @@ class authenticationDAO {
 
     GetPassword(userName, callback) {
         this.elasticClient.search({
-            index: 'users',
+            index: "fake_look",
             _source: ['password', 'user_id'],
             body: {
                 query: {

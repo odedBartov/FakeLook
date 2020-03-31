@@ -1,23 +1,30 @@
-const jwt = require('jsonwebtoken')
-const errorHandler = require('./errorHandler')
-const enviroment = require('../enviroments/dev')
-const secretToken = enviroment.secretKey
 
-module.exports = {
-    createToken: (id) => {        
-        return jwt.sign({ id: id }, secretToken, { expiresIn: '4h' })
-    },
-    validateToken: (req, res, next) => {
+class JWT_service {
+    jwt
+    errorHandler
+    secretToken
+    constructor(_enviroment, _errorHandler, _jwt) {
+        this.secretToken = _enviroment.secretKey
+        this.errorHandler = _errorHandler
+        this.jwt = _jwt
+    }
+
+    createToken(id) {
+        return this.jwt.sign({ id: id }, this.secretToken, { expiresIn: '4h' })
+    }
+    validateToken(req, res, next) {
         const token = req.headers['access-token']
 
-        jwt.verify(token, secretToken, (err, data) => {            
-            if (err) {                
-                errorHandler.throwException('Login for user has expired!', 403)
+        this.jwt.verify(token, this.secretToken, (err, data) => {
+            if (err) {
+                this.errorHandler.throwException('Login for user has expired!', 403)
             }
             else {
                 req.user = data
-                next()      
+                next()
             }
         })
     }
 }
+
+module.exports = JWT_service

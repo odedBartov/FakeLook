@@ -29,7 +29,7 @@ export class PublishPostComponent implements OnInit {
 
   upload(){      
     this.postService.publishPost(this.post, this.uploadedImage).subscribe(
-      res => { 
+      res => {        
         alert('Your post uploaded successfuly!');      
         this.goBackToFeed();
      },

@@ -13,9 +13,16 @@ img {
 
 .icon {
   height: 25px;
-  cursor: pointer;
   margin-bottom: -15px;
   margin-top: 10px;
+}
+
+.enabled{
+  cursor: pointer;
+}
+
+.disabled{
+  cursor: not-allowed;
 }
 
 .text {

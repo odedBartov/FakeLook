@@ -3,7 +3,7 @@ import { CommentModel } from './commentModel';
 export class PostModel{
     post_id: string;
     image_url: string;
-    publishDate: Date;
+    post_publish_date: Date;
     user_tags: string;
     image_tags: string;
     text: string;
