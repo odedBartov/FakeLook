@@ -27,8 +27,8 @@ img {
 
 .text {
   margin-top: 5px;
-  margin-bottom: 30px;
-  justify-content: space-between;
+  margin-bottom: 10px;
+/*   justify-content: space-between; */
   word-break: break-all;
 }
 
