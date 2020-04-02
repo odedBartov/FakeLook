@@ -9,26 +9,36 @@ import { NavigatorService } from 'src/app/shared/navigator.service';
   styleUrls: ['./scroll-feed.component.css']
 })
 export class ScrollFeedComponent implements OnInit, OnDestroy {
-  posts: postToShow[]
+  posts: postToShow[] = []
   postsSubscription;
+  filter: FilterModel
+
   constructor(private postService: PostsService, private routeService: NavigatorService) {
   }
 
   ngOnInit() {
     this.postsSubscription = this.postService.getPostsList().subscribe((res: postToShow[]) => {
-      this.posts = res;
+      console.log(res)
+      res.map(p => this.posts.push(p))
     })
-    this.postService.UpdatePosts(new FilterModel)
+    this.filter = new FilterModel()
+    this.filter.from = 0
+    this.postService.UpdatePosts(this.filter)
   }
 
   showDetails(postId) {
     this.routeService.navigateToInfoWindow(postId);
   }
 
+  loadMore() {
+    this.filter.from += 2
+    this.postService.UpdatePosts(this.filter)
+  }
+
   ngOnDestroy() {
     this.postsSubscription.unsubscribe();
   }
-  navToFeed(){
+  navToFeed() {
     this.routeService.navigateToFeed();
   }
 

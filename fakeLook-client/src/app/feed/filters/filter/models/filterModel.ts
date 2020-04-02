@@ -7,4 +7,5 @@ export class FilterModel {
     imageTags: string;
     tagedUsers: string;
     groups: string;
+    from: number = -1
 }

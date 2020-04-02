@@ -13,6 +13,7 @@ class postsAPI{
   GetPosts(req, res, next) {
     const recievedFilter = req.body
     var filter = buildPost(recievedFilter)
+    filter.from = recievedFilter.from
     filter.data.dateFrom = recievedFilter.dateFrom
     filter.data.dateTo = recievedFilter.dateTo
     filter.data.radius = recievedFilter.radius

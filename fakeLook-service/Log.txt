@@ -182,3 +182,24 @@ Error thrown at Thu Apr 02 2020 12:28:06 GMT+0300 (GMT+03:00)Error: Login for us
 Error thrown at Thu Apr 02 2020 12:28:48 GMT+0300 (GMT+03:00)[remote_transport_exception] [DESKTOP-2FMQC00][127.0.0.1:9300][indices:data/write/update[s]] :: {"path":"/fake_look/_update/3a145425-5576-4d50-a48d-36cea78f0ecd","query":{},"body":"{\"script\":{\"inline\":\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"params\":{\"user\":\"ea34d23b-d7b8-4683-af38-e725bdd2733c\"}}}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"remote_transport_exception\",\"reason\":\"[DESKTOP-2FMQC00][127.0.0.1:9300][indices:data/write/update[s]]\"}],\"type\":\"illegal_argument_exception\",\"reason\":\"failed to execute script\",\"caused_by\":{\"type\":\"script_exception\",\"reason\":\"runtime error\",\"script_stack\":[\"java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)\",\"java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)\",\"java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)\",\"java.base/java.util.Objects.checkIndex(Objects.java:373)\",\"java.base/java.util.ArrayList.remove(ArrayList.java:502)\",\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"                                                         ^---- HERE\"],\"script\":\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"lang\":\"painless\",\"caused_by\":{\"type\":\"index_out_of_bounds_exception\",\"reason\":\"Index -1 out of bounds for length 0\"}}},\"status\":400}"}
 
 
+Error thrown at Thu Apr 02 2020 12:54:39 GMT+0300 (GMT+03:00)[remote_transport_exception] [DESKTOP-2FMQC00][127.0.0.1:9300][indices:data/write/update[s]] :: {"path":"/fake_look/_update/171d24ef-3b85-4802-a1ad-0a7c82907fae","query":{},"body":"{\"script\":{\"inline\":\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"params\":{\"user\":\"ea34d23b-d7b8-4683-af38-e725bdd2733c\"}}}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"remote_transport_exception\",\"reason\":\"[DESKTOP-2FMQC00][127.0.0.1:9300][indices:data/write/update[s]]\"}],\"type\":\"illegal_argument_exception\",\"reason\":\"failed to execute script\",\"caused_by\":{\"type\":\"script_exception\",\"reason\":\"runtime error\",\"script_stack\":[\"java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)\",\"java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)\",\"java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)\",\"java.base/java.util.Objects.checkIndex(Objects.java:373)\",\"java.base/java.util.ArrayList.remove(ArrayList.java:502)\",\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"                                                         ^---- HERE\"],\"script\":\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"lang\":\"painless\",\"caused_by\":{\"type\":\"index_out_of_bounds_exception\",\"reason\":\"Index -1 out of bounds for length 0\"}}},\"status\":400}"}
+
+
+Error thrown at Thu Apr 02 2020 12:56:49 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Thu Apr 02 2020 12:58:34 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Thu Apr 02 2020 12:59:05 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Thu Apr 02 2020 13:00:07 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Thu Apr 02 2020 13:07:34 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+
+Error thrown at Thu Apr 02 2020 13:21:29 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+

@@ -91,9 +91,8 @@ class postsDAO {
 
     getPosts = (filter, callback) => {
         let filteres = this.generateAllFilters(filter)
-        this.elasticSearch.search({
+        let searchJson = {
             index: "fake_look",
-            _source: ['post_id', 'image_url', 'location','post_text'],
             body: {
                 "query": {
                     "bool": {
@@ -108,7 +107,13 @@ class postsDAO {
                     }
                 ]
             }
-        }, (err, res) => {
+        }
+        if(filter.from!=-1)
+        {
+            searchJson.from = filter.from
+            searchJson.size = 2
+        }
+        this.elasticSearch.search(searchJson, (err, res) => {
             handleElasticResponses(err, res.hits.hits.map(p => p._source), callback)
         })
     }
