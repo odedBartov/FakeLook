@@ -1,6 +1,6 @@
 module.exports = {
     server: 'localhost',
-    database: 'fakeLookDB',
+    database: 'UsersDb',
     user: 'oded',
     password: '1234'
 }

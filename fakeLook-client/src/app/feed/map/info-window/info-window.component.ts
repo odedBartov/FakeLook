@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { trigger, state, style, animate, transition, } from '@angular/animations';
+import { Socket } from 'ngx-socket-io';
 
 import { PostModel } from '../../models/postModel';
 import { PostsService } from '../../services/posts.service';
@@ -19,9 +20,10 @@ import { NavigatorService } from 'src/app/shared/navigator.service';
   templateUrl: './info-window.component.html',
   styleUrls: ['./info-window.component.css']
 })
-export class InfoWindowComponent implements OnInit {
+export class InfoWindowComponent implements OnInit, OnDestroy {
 
   @Input() postId: string;
+  @Input() closeWindow: Function;
   currentPost: PostModel;
   text: string;
   liked = false;
@@ -30,16 +32,27 @@ export class InfoWindowComponent implements OnInit {
 
   constructor(private postServiec: PostsService,
     private activatedRouter: ActivatedRoute,
-    private routerService: NavigatorService) {
+    private routerService: NavigatorService,
+    private socket: Socket) {
   }
 
   ngOnInit() {
+    this.closeWindow();
+    this.socket.emit('msgFromClient', 'data from client');
+    this.socket.on('msgFromServer', (data) => {
+      console.log(data);
+      
+    })
+
+    this.closeWindow = () => {
+      console.log("close from infow window!!");
+    }
     let postId = this.activatedRouter.snapshot.paramMap.get("postId")
     if (postId) {
       this.postId = postId
       this.isShown = true
     }
-    this.postServiec.getPost(this.postId).subscribe((res: any) => {    
+    this.postServiec.getPost(this.postId).subscribe((res: any) => {
       this.currentPost = res;
     },
       err => {
@@ -85,25 +98,12 @@ export class InfoWindowComponent implements OnInit {
     }
   }
 
-  // buildPostFromServer(post){
-  //   if (post.imageTags) {
-  //     post.imageTags = JSON.parse(post.imageTags);
-  //     post.imageTags = post.imageTags.tags.map(tag => tag.title);
-  //   }
-
-  //   if (post.taggedUsers) {
-  //     post.taggedUsers = JSON.parse(post.taggedUsers);
-  //     post.taggedUsers = post.taggedUsers.tags.map(tag => tag.username);
-  //   }
-
-  //   if (post.comments) {
-  //     post.comments = JSON.parse(post.comments);
-  //     post.comments = post.comments.comments;
-  //   }     
-  //   return post;
-  // }
-
   navToFeed() {
     this.routerService.navigateToScrollFeed();
+  }
+
+  ngOnDestroy(){
+    console.log("info window out");
+    debugger
   }
 }

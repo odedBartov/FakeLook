@@ -89,7 +89,7 @@ class postsAPI{
         })
       }
     })
-  }, 300);
+  }, 500);
   }
 
   checkIfLikedPost(req, res, next) {

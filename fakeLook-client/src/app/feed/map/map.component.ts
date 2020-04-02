@@ -60,7 +60,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   initPosts() {
-    this.postsSubscription = this.postService.getPostsList().subscribe((res: postToShow[]) => {      
+    this.postsSubscription = this.postService.getPostsList().subscribe((res: postToShow[]) => {
       this.clearMarkers();
       this.posts = res;
       this.posts.forEach(post => {
@@ -70,8 +70,15 @@ export class MapComponent implements OnInit, OnDestroy {
           icon: this.getIcon(post.image_url)
         });
         marker.addListener('click', () => {
-          const infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.post_id) });
+          var closeCallback = () => {console.log("close from map");
+          };
+          var infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.post_id, closeCallback) });
           infowindow.open(this.map, marker);
+          infowindow.addListener('closeclick', () => {
+            //infowindow.destroy()
+            //infowindow.close();
+            //closeCallback();
+          })
         });
         this.markers.push(marker);
       });
@@ -94,14 +101,15 @@ export class MapComponent implements OnInit, OnDestroy {
         url: url,
         scaledSize: new google.maps.Size(100, 70)
       }
-    }    
+    }
     return icon;
   }
 
-  getInfoWindow(postId: string) {
+  getInfoWindow(postId: string, closeCallback) {
     const compFactory = this.resolver.resolveComponentFactory(InfoWindowComponent);
     this.compRef = compFactory.create(this.injector);
     this.compRef.instance.postId = postId;
+    this.compRef.instance.closeWindow = closeCallback;
     this.appRef.attachView(this.compRef.hostView);
     let div = document.createElement('div');
     div.appendChild(this.compRef.location.nativeElement);
@@ -111,6 +119,7 @@ export class MapComponent implements OnInit, OnDestroy {
   clearMarkers() {
     this.markers.forEach(marker => {
       marker.setMap(null);
+      marker = null;
     })
   }
 

@@ -1,5 +1,4 @@
 Winstone - logs
-feed
 friends
 docker
 swagger

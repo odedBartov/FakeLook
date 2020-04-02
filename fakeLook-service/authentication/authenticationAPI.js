@@ -18,7 +18,7 @@ class authenticationAPI {
       if (error) {
         next(error)
       } else {
-        if (bcryptServiceType.comparePassword(user.password, data.password)) {
+        if (bcryptServiceType.comparePassword(user.password, data.Password)) {
           const token = this.jwtService.createToken(data.user_id)
 
           this.enviroment.currentUserName = user.userName

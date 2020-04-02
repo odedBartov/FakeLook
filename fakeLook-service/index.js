@@ -4,6 +4,7 @@ const bp = require('body-parser')
 const path = require('path')
 const fs = require('fs')
 const cors = require('cors')
+const socketio = require('socket.io')
 
 const authController = require('./authentication/authenticationController')
 const postsController = require('./social/posts/postsController')
@@ -43,6 +44,16 @@ app.use((err, req, res, next) => {
   res.status(err.status ? err.status : 500).send(err)
 })
 
-app.listen(1000, () => {
+server = app.listen(1000, () => {
   console.log('server is working')
 })
+
+const io = socketio(server)
+io.on('connect', (socket => {
+  console.log('in socket')
+  socket.on('msgFromClient', (data) => {
+    console.log(data)
+
+   // io.emit('msgFromServer', 'data from server')
+  })
+}))
