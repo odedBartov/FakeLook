@@ -9,7 +9,7 @@
   </div>
 </div>
 <div>
-  <button type="button" class="btn btn-primary" (click)="loadMore()"> Load More </button>
+  <button type="button" class="btn btn-primary" [disabled]="amountOfPosts<=filter.from" (click)="loadMore()"> Load More </button>
 </div>
 
 <button type="button" class="btn btn-primary" (click)="navToFeed()"> Back </button>

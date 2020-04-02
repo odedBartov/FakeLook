@@ -12,18 +12,22 @@ export class ScrollFeedComponent implements OnInit, OnDestroy {
   posts: postToShow[] = []
   postsSubscription;
   filter: FilterModel
+  amountOfPosts: number
 
   constructor(private postService: PostsService, private routeService: NavigatorService) {
   }
 
   ngOnInit() {
+    this.postService.getAmountOfPosts().subscribe((data: any) => {
+      this.amountOfPosts = data.amount
+    })
     this.postsSubscription = this.postService.getPostsList().subscribe((res: postToShow[]) => {
-      console.log(res)
       res.map(p => this.posts.push(p))
     })
     this.filter = new FilterModel()
     this.filter.from = 0
-    this.postService.UpdatePosts(this.filter)
+    if (this.amountOfPosts != 0)
+      this.loadMore()
   }
 
   showDetails(postId) {
@@ -31,8 +35,10 @@ export class ScrollFeedComponent implements OnInit, OnDestroy {
   }
 
   loadMore() {
-    this.filter.from += 2
+    console.log("hey")
+
     this.postService.UpdatePosts(this.filter)
+    this.filter.from += 2
   }
 
   ngOnDestroy() {

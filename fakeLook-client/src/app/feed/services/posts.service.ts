@@ -64,4 +64,8 @@ export class PostsService {
   likeComment(commentId){
 
   }
+
+  getAmountOfPosts(){
+    return this.httpService.getAmountOfPosts()
+  }
 }
