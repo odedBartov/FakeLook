@@ -35,8 +35,6 @@ export class ScrollFeedComponent implements OnInit, OnDestroy {
   }
 
   loadMore() {
-    console.log("hey")
-
     this.postService.UpdatePosts(this.filter)
     this.filter.from += 2
   }
