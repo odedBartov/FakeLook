@@ -126,7 +126,7 @@ class postsDAO {
         }
         if (filter.from != -1) {
             searchJson.from = filter.from
-            searchJson.size = 2
+            searchJson.size = 10
         }
         this.elasticSearch.search(searchJson, (err, res) => {
             handleElasticResponses(err, res.hits.hits.map(p => p._source), callback)
