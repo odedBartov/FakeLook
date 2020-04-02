@@ -33,6 +33,9 @@ router.get('/getPost', (req, res, next) => {
 router.post('/publishPost', upload.single('image'),  (req, res, next) => {
     postAPI.PublishPost(req, res, next)
 })
+router.get('/getAmountOfPosts',(req,res,next) => {
+    postAPI.getAmountOfPosts(req,res,next)
+})
 
 router.get('/likePost', (req, res, next) => {
     postAPI.LikePost(req, res, next)

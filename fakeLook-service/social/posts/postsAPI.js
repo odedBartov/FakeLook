@@ -1,4 +1,4 @@
-class postsAPI{
+class postsAPI {
   dbService
   errorHandler
   currentUrl
@@ -13,14 +13,26 @@ class postsAPI{
   GetPosts(req, res, next) {
     const recievedFilter = req.body
     var filter = buildPost(recievedFilter)
+    filter.from = recievedFilter.from
     filter.data.dateFrom = recievedFilter.dateFrom
     filter.data.dateTo = recievedFilter.dateTo
     filter.data.radius = recievedFilter.radius
     this.dbService.getPosts(filter, (error, data) => {
       if (error) {
         next(error)
-      } else {        
+      } else {
         res.send(data)
+      }
+    })
+  }
+
+  getAmountOfPosts(req, res, next) {
+    this.dbService.getAmountOfPosts((err, amount) => {
+      if (err) {
+        next(err)
+      }
+      else {
+        res.send({ 'amount': amount })
       }
     })
   }
@@ -30,7 +42,7 @@ class postsAPI{
       if (error) {
         next(error)
       } else {
-        data.likes = data.likes? data.likes.length : 0
+        data.likes = data.likes ? data.likes.length : 0
         res.send(data)
       }
     })
@@ -98,7 +110,7 @@ class postsAPI{
     this.dbService.checkIfLikedPost(postId, (err, data) => {
       if (err) {
         next(err)
-      } else {        
+      } else {
         res.send(data && data.includes(userId))
       }
     })

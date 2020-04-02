@@ -28,7 +28,7 @@ img {
 .text {
   margin-top: 5px;
   margin-bottom: 30px;
-  justify-content: space-between;
+/*   justify-content: space-between; */
   word-break: break-all;
 }
 
@@ -59,11 +59,13 @@ img {
 
 .publishComment{
   margin-top: 30px;
+  width: 70%
 }
 
 .comment{
   padding: 10px;
   margin-bottom: 5px;
+  width: 70%;
   display: flex;
   justify-content: space-between;
   border: 1px solid black;

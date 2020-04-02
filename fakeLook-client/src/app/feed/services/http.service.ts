@@ -59,7 +59,11 @@ export class HttpService {
     return this.getWithHeaders(`checkIfLikedPost?postId=${postId}`);
   }
 
-  publishComment(comment) {    
+  publishComment(comment) {
     return this.postWithHeaders(`publishComment`, comment);
+  }
+
+  getAmountOfPosts() {
+    return this.getWithHeaders(`getAmountOfPosts`);
   }
 }

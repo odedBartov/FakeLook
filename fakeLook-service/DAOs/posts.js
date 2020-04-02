@@ -89,9 +89,24 @@ class postsDAO {
         return filteres
     }
 
+    getAmountOfPosts(callback){
+        this.elasticSearch.count({
+            index: "fake_look",
+            body: {
+                query: {
+                    term: {
+                        'join_field': "post"
+                    }
+                }
+            }
+        }, (err, res) => {
+           handleElasticResponses(err,res.count,callback)
+        })
+    }
+
     getPosts = (filter, callback) => {
         let filteres = this.generateAllFilters(filter)
-        this.elasticSearch.search({
+        let searchJson = {
             index: "fake_look",
             _source: ['post_id', 'image_url', 'location'],
             body: {
@@ -108,7 +123,12 @@ class postsDAO {
                     }
                 ]
             }
-        }, (err, res) => {
+        }
+        if (filter.from != -1) {
+            searchJson.from = filter.from
+            searchJson.size = 10
+        }
+        this.elasticSearch.search(searchJson, (err, res) => {
             handleElasticResponses(err, res.hits.hits.map(p => p._source), callback)
         })
     }
