@@ -27,11 +27,11 @@ container.register('elasticClient', [], elasticClient)
 container.register('uuid', [], { v4: uuidv4 })
 
 container.register('socialConfig', [], socialConfig)
-container.register('postsDB', ['socialConfig', 'elasticClient', 'uuid'], postsDAO)
+container.register('postsDB', ['elasticClient', 'uuid'], postsDAO)
 container.register('postsAPI', ['postsDB', 'errorHandler', 'currentUrl', 'enviroment'], postsAPI)
 
 container.register('authenticationDB', ['authenticationConfig', 'uuid'], authenticationDAO)
-container.register('authenticationAPI', ['authenticationDB', 'errorHandler', 'JWTservice', 'enviroment'], authenticationAPI)
+container.register('authenticationAPI', ['authenticationDB', 'errorHandler', 'JWTservice', 'enviroment', 'uuid', 'postsAPI'], authenticationAPI)
 
 
 module.exports = container

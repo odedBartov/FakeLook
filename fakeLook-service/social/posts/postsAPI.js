@@ -127,6 +127,16 @@ class postsAPI {
       }
     })
   }
+
+  createUser(user, callback) {
+    this.dbService.createUser(user, (error) => {
+      if (error) {
+        callback(error)
+      } else {
+        callback(undefined)
+      }
+    })
+  }
 }
 
 const buildPost = function (received) {

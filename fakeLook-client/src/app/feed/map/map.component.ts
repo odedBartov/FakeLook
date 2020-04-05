@@ -6,6 +6,7 @@ import { MapsAPILoader } from '@agm/core';
 import { FilterModel } from '../filters/filter/models/filterModel';
 import { InfoWindowComponent } from './info-window/info-window.component';
 import { postToShow } from '../models/postToShow';
+import { InfoWindowService } from '../services/info-window.service';
 
 
 @Component({
@@ -33,7 +34,8 @@ export class MapComponent implements OnInit, OnDestroy {
     private mapsAPILoader: MapsAPILoader,
     private resolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
-    private injector: Injector
+    private injector: Injector,
+    private infoWindowService: InfoWindowService
   ) { }
 
   ngOnInit() {
@@ -72,9 +74,14 @@ export class MapComponent implements OnInit, OnDestroy {
         marker.addListener('click', () => {
           var closeCallback = () => {console.log("close from map");
           };
-          var infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.post_id, closeCallback) });
+          var infowindow = this.infoWindowService.getWindow(post.post_id)
+          if (!infowindow) {
+            infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.post_id) });
+            this.infoWindowService.setWindow(post.post_id, infowindow)
+          }
           infowindow.open(this.map, marker);
           infowindow.addListener('closeclick', () => {
+            //this.infoWindowService.deleteWindow(post.post_id);
             //infowindow.destroy()
             //infowindow.close();
             //closeCallback();
@@ -105,11 +112,10 @@ export class MapComponent implements OnInit, OnDestroy {
     return icon;
   }
 
-  getInfoWindow(postId: string, closeCallback) {
+  getInfoWindow(postId: string) {
     const compFactory = this.resolver.resolveComponentFactory(InfoWindowComponent);
     this.compRef = compFactory.create(this.injector);
     this.compRef.instance.postId = postId;
-    this.compRef.instance.closeWindow = closeCallback;
     this.appRef.attachView(this.compRef.hostView);
     let div = document.createElement('div');
     div.appendChild(this.compRef.location.nativeElement);

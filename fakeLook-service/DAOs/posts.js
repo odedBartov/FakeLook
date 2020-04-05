@@ -1,19 +1,11 @@
-const sql = require('mssql')
 
 class postsDAO {
-    dbPool
+    postsIndex = "fake_look"
     elasticSearch
     UUID
-    constructor(socialConfig, elasticSearchClient, idCreator) {
+    constructor(elasticSearchClient, idCreator) {
         this.elasticSearch = elasticSearchClient
         this.UUID = idCreator
-        /*  this.dbPool = new sql.ConnectionPool(socialConfig, err => {
-             if (err) {
-                 console.log(err)
-             } else {
-                 console.log('connected to DB from posts!')
-             }
-         }) */
     }
 
     getfilterByDates(dateFrom, dateTo) {
@@ -89,9 +81,9 @@ class postsDAO {
         return filteres
     }
 
-    getAmountOfPosts(callback){
+    getAmountOfPosts(callback) {
         this.elasticSearch.count({
-            index: "fake_look",
+            index: this.postsIndex,
             body: {
                 query: {
                     term: {
@@ -100,14 +92,14 @@ class postsDAO {
                 }
             }
         }, (err, res) => {
-           handleElasticResponses(err,res.count,callback)
+            handleElasticResponses(err, res.count, callback)
         })
     }
 
     getPosts = (filter, callback) => {
         let filteres = this.generateAllFilters(filter)
         let searchJson = {
-            index: "fake_look",
+            index: this.postsIndex,
             _source: ['post_id', 'image_url', 'location'],
             body: {
                 "query": {
@@ -135,7 +127,7 @@ class postsDAO {
 
     getPost = (postId, callback) => {
         this.elasticSearch.search({
-            index: "fake_look",
+            index: this.postsIndex,
             body: {
                 query: {
                     term: {
@@ -151,7 +143,7 @@ class postsDAO {
     publishPost = (post, callback) => {
         const generatedId = this.UUID.v4()
         this.elasticSearch.index({
-            index: "fake_look",
+            index: this.postsIndex,
             id: generatedId,
             routing: post.publisherId,
             body: {
@@ -176,7 +168,7 @@ class postsDAO {
 
     likepost = (postId, userId, callback) => {
         this.elasticSearch.update({
-            index: "fake_look",
+            index: this.postsIndex,
             id: postId,
             body: {
                 "script": {
@@ -193,7 +185,7 @@ class postsDAO {
 
     dislikePost = (postId, userId, callback) => {
         this.elasticSearch.update({
-            index: "fake_look",
+            index: this.postsIndex,
             id: postId,
             body: {
                 "script": {
@@ -210,7 +202,7 @@ class postsDAO {
 
     checkIfLikedPost = (postId, callback) => {
         this.elasticSearch.search({
-            index: "fake_look",
+            index: this.postsIndex,
             _source: 'likes',
             body: {
                 query: {
@@ -239,7 +231,7 @@ class postsDAO {
         var wrongUsers = []
         var promises = usernames.map(async (tag) => {
             var user = await this.elasticSearch.search({
-                index: "fake_look",
+                index: this.postsIndex,
                 _source: "user_name",
                 body: {
                     "query": {
@@ -275,7 +267,7 @@ class postsDAO {
     publishComment = (comment, callback) => {
         const generatedId = this.UUID.v4()
         this.elasticSearch.update({
-            index: "fake_look",
+            index: this.postsIndex,
             id: comment.postId,
             body: {
                 "script": {
@@ -301,18 +293,21 @@ class postsDAO {
         // })
     }
 
-    // insertTags = (tags, callback) => {
-    //     var dbreq = this.dbPool.request()
-    //     dbreq.input('tags', JSON.stringify(tags))
-    //     dbreq.execute('SP_InsertImageTags', (error, data) => {
-    //         if (error) {
-    //             callback(error, undefined)
-    //         }
-    //         else {
-    //             callback(undefined, data)
-    //         }
-    //     })
-    // }
+    createUser = (user, callback) => {
+        this.elasticSearch.index({
+            index: this.postsIndex,
+            id: user.ID,
+            body: {
+                "user_id": user.ID,
+                "user_name": user.userName,
+                "password": user.password,
+                "email": user.email,
+                "join_field": "user"
+            }
+        }, (err) => {
+            callback(err)
+        })
+    }
 }
 handleDbResponses = (err, data, callback) => {
     if (err) {

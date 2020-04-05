@@ -1,193 +1,45 @@
-Error thrown at Thu Apr 02 2020 17:15:33 GMT+0300 (Israel Daylight Time)RequestError: Could not find stored procedure 'SP_GetPassword'.
+Error thrown at Fri Apr 03 2020 10:55:00 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Thu Apr 02 2020 18:19:06 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
+Error thrown at Fri Apr 03 2020 10:56:03 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Tue Mar 31 2020 19:56:16 GMT+0300 (GMT+03:00)Error: You tagged users whom does not exist!
-Names: oded
+Error thrown at Fri Apr 03 2020 10:57:42 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Tue Mar 31 2020 20:32:04 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'jwt' of undefined
+Error thrown at Fri Apr 03 2020 10:58:55 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Tue Mar 31 2020 20:34:39 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'jwt' of undefined
+Error thrown at Fri Apr 03 2020 11:16:01 GMT+0300 (Israel Daylight Time)Error: Wrong username or password
 
 
-Error thrown at Tue Mar 31 2020 20:35:10 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'jwt' of undefined
+Error thrown at Fri Apr 03 2020 11:16:26 GMT+0300 (Israel Daylight Time)Error: user already exist!
 
 
-Error thrown at Thu Apr 02 2020 11:41:40 GMT+0300 (GMT+03:00)Error: No Living connections
+Error thrown at Fri Apr 03 2020 11:28:37 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Thu Apr 02 2020 11:54:39 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+Error thrown at Fri Apr 03 2020 11:32:31 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Thu Apr 02 2020 11:54:39 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+Error thrown at Fri Apr 03 2020 11:32:31 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Thu Apr 02 2020 11:55:17 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+Error thrown at Fri Apr 03 2020 11:35:01 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Thu Apr 02 2020 11:55:17 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+Error thrown at Fri Apr 03 2020 11:35:01 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Thu Apr 02 2020 12:02:20 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+Error thrown at Fri Apr 03 2020 11:46:18 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Thu Apr 02 2020 12:03:13 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+Error thrown at Fri Apr 03 2020 11:46:18 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Thu Apr 02 2020 12:03:13 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+Error thrown at Fri Apr 03 2020 11:48:29 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
-Error thrown at Thu Apr 02 2020 12:04:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:04:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:06:18 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:06:18 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:07:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:07:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:08:18 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:08:18 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:10:18 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:10:18 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:11:22 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:11:22 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:12:05 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:25:30 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:25:30 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:26:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:26:00 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:26:32 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:26:32 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:28:06 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:28:48 GMT+0300 (GMT+03:00)[remote_transport_exception] [DESKTOP-2FMQC00][127.0.0.1:9300][indices:data/write/update[s]] :: {"path":"/fake_look/_update/3a145425-5576-4d50-a48d-36cea78f0ecd","query":{},"body":"{\"script\":{\"inline\":\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"params\":{\"user\":\"ea34d23b-d7b8-4683-af38-e725bdd2733c\"}}}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"remote_transport_exception\",\"reason\":\"[DESKTOP-2FMQC00][127.0.0.1:9300][indices:data/write/update[s]]\"}],\"type\":\"illegal_argument_exception\",\"reason\":\"failed to execute script\",\"caused_by\":{\"type\":\"script_exception\",\"reason\":\"runtime error\",\"script_stack\":[\"java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)\",\"java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)\",\"java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)\",\"java.base/java.util.Objects.checkIndex(Objects.java:373)\",\"java.base/java.util.ArrayList.remove(ArrayList.java:502)\",\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"                                                         ^---- HERE\"],\"script\":\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"lang\":\"painless\",\"caused_by\":{\"type\":\"index_out_of_bounds_exception\",\"reason\":\"Index -1 out of bounds for length 0\"}}},\"status\":400}"}
-
-
-Error thrown at Thu Apr 02 2020 12:54:39 GMT+0300 (GMT+03:00)[remote_transport_exception] [DESKTOP-2FMQC00][127.0.0.1:9300][indices:data/write/update[s]] :: {"path":"/fake_look/_update/171d24ef-3b85-4802-a1ad-0a7c82907fae","query":{},"body":"{\"script\":{\"inline\":\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"params\":{\"user\":\"ea34d23b-d7b8-4683-af38-e725bdd2733c\"}}}","statusCode":400,"response":"{\"error\":{\"root_cause\":[{\"type\":\"remote_transport_exception\",\"reason\":\"[DESKTOP-2FMQC00][127.0.0.1:9300][indices:data/write/update[s]]\"}],\"type\":\"illegal_argument_exception\",\"reason\":\"failed to execute script\",\"caused_by\":{\"type\":\"script_exception\",\"reason\":\"runtime error\",\"script_stack\":[\"java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)\",\"java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)\",\"java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)\",\"java.base/java.util.Objects.checkIndex(Objects.java:373)\",\"java.base/java.util.ArrayList.remove(ArrayList.java:502)\",\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"                                                         ^---- HERE\"],\"script\":\"ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))\",\"lang\":\"painless\",\"caused_by\":{\"type\":\"index_out_of_bounds_exception\",\"reason\":\"Index -1 out of bounds for length 0\"}}},\"status\":400}"}
-
-
-Error thrown at Thu Apr 02 2020 12:56:49 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:58:34 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 12:59:05 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 13:00:07 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 13:07:34 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 13:21:29 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 13:33:34 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 13:55:59 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:01:46 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:08:07 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:08:08 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:09:11 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:09:11 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:09:13 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:11:25 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:11:25 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:14:54 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:14:54 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:36:03 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:47:22 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:50:19 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:50:19 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:50:19 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 14:50:19 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 15:37:44 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 15:37:44 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 15:37:44 GMT+0300 (GMT+03:00)Error: Login for user has expired!
-
-
-Error thrown at Thu Apr 02 2020 15:37:44 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+Error thrown at Fri Apr 03 2020 11:48:29 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 

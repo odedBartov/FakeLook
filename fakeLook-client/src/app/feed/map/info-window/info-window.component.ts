@@ -23,7 +23,7 @@ import { NavigatorService } from 'src/app/shared/navigator.service';
 export class InfoWindowComponent implements OnInit, OnDestroy {
 
   @Input() postId: string;
-  @Input() closeWindow: Function;
+  //@Input() closeWindow: Function;
   currentPost: PostModel;
   text: string;
   liked = false;
@@ -37,16 +37,20 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.closeWindow();
+    //this.closeWindow();
     this.socket.emit('msgFromClient', 'data from client');
     this.socket.on('msgFromServer', (data) => {
       console.log(data);
+    })
+    this.socket.on('like', (data) => {
+      console.log("got like!" + data);
       
+      this.currentPost.likes += parseInt(data);
     })
 
-    this.closeWindow = () => {
-      console.log("close from infow window!!");
-    }
+    // this.closeWindow = () => {
+    //   console.log("close from infow window!!");
+    // }
     let postId = this.activatedRouter.snapshot.paramMap.get("postId")
     if (postId) {
       this.postId = postId
@@ -71,7 +75,8 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
     this.postServiec.likePost(this.currentPost.post_id).subscribe((res: boolean) => {
       this.liked = res;
       this.currentPost.likes += this.liked ? 1 : -1;
-      this.enableLike = true;   
+      this.enableLike = true;
+      this.socket.emit('like', this.liked ? 1 : -1)
     }, err => {
       alert(err.error.message)
       this.enableLike = true;

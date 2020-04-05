@@ -69,6 +69,7 @@ class authenticationDAO {
 
     InsertUser (user, callback) {
         const dbreq = this.dbPool.request()
+        dbreq.input('ID', sql.NVarChar(60), user.ID)
         dbreq.input('UserName', sql.NVarChar(20), user.userName)
         dbreq.input('Password', sql.NVarChar(60), user.password)
         dbreq.input('email', sql.NVarChar(30), user.email)
@@ -108,7 +109,7 @@ class authenticationDAO {
             if (err) {
                 callback(err, undefined)
             } else {
-                callback(undefined, data.recordset[0])
+                callback(undefined, data.recordset[0]? data.recordset[0] : {Password: ''})
             }
         })
     }
