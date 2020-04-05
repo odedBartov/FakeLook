@@ -281,7 +281,7 @@ class postsDAO {
                 }
             }
         }, (err, res) => {
-            handleElasticResponses(err, res, callback)
+            handleElasticResponses(err, {commentId: generatedId}, callback)
         })
         // var dbreq = this.dbPool.request()
         // dbreq.input('postId', sql.BigInt, comment.postId)

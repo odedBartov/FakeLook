@@ -118,12 +118,11 @@ class postsAPI {
 
   PublishComment(req, res, next) {
     var comment = req.body
-    comment.comment_publisher = this.enviroment.currentUserName
     this.dbService.publishComment(comment, (error, data) => {
       if (error) {
         next(error)
       } else {
-        res.send(data[0])
+        res.send(JSON.stringify(data))
       }
     })
   }
