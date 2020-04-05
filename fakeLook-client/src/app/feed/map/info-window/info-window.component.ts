@@ -6,6 +6,8 @@ import { PostModel } from '../../models/postModel';
 import { PostsService } from '../../services/posts.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavigatorService } from 'src/app/shared/navigator.service';
+import { CommentModel } from '../../models/commentModel';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-info-window',
@@ -23,7 +25,6 @@ import { NavigatorService } from 'src/app/shared/navigator.service';
 export class InfoWindowComponent implements OnInit, OnDestroy {
 
   @Input() postId: string;
-  //@Input() closeWindow: Function;
   currentPost: PostModel;
   text: string;
   liked = false;
@@ -37,20 +38,19 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //this.closeWindow();
     this.socket.emit('msgFromClient', 'data from client');
     this.socket.on('msgFromServer', (data) => {
       console.log(data);
     })
-    this.socket.on('like', (data) => {
-      console.log("got like!" + data);
-      
+    this.socket.on('like', (data) => {      
       this.currentPost.likes += parseInt(data);
     })
 
-    // this.closeWindow = () => {
-    //   console.log("close from infow window!!");
-    // }
+    this.socket.on('newCommentPostId' + this.postId, (comment) => {
+      console.log(comment);
+      this.currentPost.comments.push(comment)
+    })
+
     let postId = this.activatedRouter.snapshot.paramMap.get("postId")
     if (postId) {
       this.postId = postId
@@ -88,17 +88,24 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
       alert('Fill the comment');
     }
     else {
-      var dat = new Date();
+      var date = new Date();
       var comment = {
-        comment_publish_date: dat.getFullYear() + '/' + ("0" + (dat.getMonth() + 1)).slice(-2) + '/' + ("0" + dat.getDate()).slice(-2),
+        comment_publish_date: date.getFullYear() + '/' + ("0" + (date.getMonth() + 1)).slice(-2) + '/' + ("0" + date.getDate()).slice(-2),
         comment_text: this.text,
-        postId: this.currentPost.post_id
+        postId: this.postId,
+        comment_publisher: environment.userName
       };      
-      this.postServiec.publishComment(comment).subscribe(res => {
+      this.postServiec.publishComment(comment).subscribe((res: {commentId: string}) => {
         alert('Your comment published successfuly');
+        const newComment = new CommentModel;
+        newComment.comment_id = res.commentId;
+        newComment.comment_publisher = environment.userName;
+        newComment.comment_publish_date = date;
+        newComment.comment_text = this.text;
+        this.currentPost.comments.push(newComment);
+        console.log(this.currentPost.comments);
+        this.socket.emit('newComment', {postId: this.postId, comment: newComment});
         this.text = '';
-        console.log(res);
-
       })
     }
   }

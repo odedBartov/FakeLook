@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
       alert("please type user name and password")
     }
     else {
-      this.httpService.Login(this.userName, this.password).subscribe(res => {
+      this.httpService.Login(this.userName, this.password).subscribe(res => {        
         this.navigatorService.navigateToFeed();
       }, error => {
         alert(error.message + "\n\n" + error.error.message)

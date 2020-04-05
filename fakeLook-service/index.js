@@ -50,13 +50,11 @@ server = app.listen(1000, () => {
 
 const io = socketio(server)
 io.on('connect', (socket => {
-  console.log('in socket')
-  socket.on('msgFromClient', (data) => {
-    console.log(data)
-    io.emit('msgFromServer', 'data from server')
-  })
-
   socket.on('like', (data) => {    
     socket.broadcast.emit('like', data)
+  })
+
+  socket.on('newComment', (comment) => { 
+    socket.broadcast.emit('newCommentPostId' + comment.postId, comment.comment)
   })
 }))

@@ -24,10 +24,8 @@ class authenticationAPI {
       } else {
         if (bcryptServiceType.comparePassword(user.password, data.Password)) {
           const token = this.jwtService.createToken(data.ID)
-
-          this.enviroment.currentUserName = user.userName
           res.setHeader('access-token', token)
-          res.send(user)
+          res.send(JSON.stringify({userName: user.userName}))
         } else {
           this.errorHandler.throwException('Wrong username or password', 400)
         }

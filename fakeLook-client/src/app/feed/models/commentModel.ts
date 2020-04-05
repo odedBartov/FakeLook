@@ -1,6 +1,6 @@
 export class CommentModel{
-    commentId: number;
-    publisherName: string;
-    publishDate: Date;
-    text: string;
+    comment_id: string;
+    comment_publisher: string;
+    comment_publish_date: Date;
+    comment_text: string;
 }
