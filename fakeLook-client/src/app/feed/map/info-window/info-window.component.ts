@@ -58,6 +58,7 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
     }
     this.postServiec.getPost(this.postId).subscribe((res: any) => {
       this.currentPost = res;
+      console.log(res)
     },
       err => {
         alert("can't get post\n\n" + err.error.message);
