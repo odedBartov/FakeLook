@@ -10,3 +10,9 @@ Error thrown at Mon Apr 06 2020 15:03:12 GMT+0300 (GMT+03:00)RequestError: Error
 Error thrown at Mon Apr 06 2020 15:18:17 GMT+0300 (GMT+03:00)ReferenceError: error is not defined
 
 
+Error thrown at Mon Apr 06 2020 16:17:46 GMT+0300 (GMT+03:00)TypeError: Cannot read property 'GetPassword' of undefined
+
+
+Error thrown at Mon Apr 06 2020 16:21:40 GMT+0300 (GMT+03:00)Error: Login for user has expired!
+
+

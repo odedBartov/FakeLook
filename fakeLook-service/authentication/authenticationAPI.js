@@ -18,6 +18,21 @@ class authenticationAPI {
 
   Login(req, res, next) {
     const user = { userName: req.query.userName, password: req.query.password }
+    this.authenticationAPI.GetPassword(user.userName, (error, data) => {
+      if (error) {
+        next(error)
+      } else {
+          if (data && bcryptServiceType.comparePassword(user.password, data.password)) {
+            const token = this.jwtService.createToken(data.ID)
+            res.setHeader('access-token', token)
+            res.send(JSON.stringify({ userName: user.userName }))
+          }
+        else {
+          this.errorHandler.throwException('Wrong username or password', 400)
+        }
+      }
+    })
+ /*    const user = { userName: req.query.userName, password: req.query.password }
     if (error) {
       next(error)
     } else {
@@ -28,7 +43,7 @@ class authenticationAPI {
       } else {
         this.errorHandler.throwException('Wrong username or password', 400)
       }
-    }
+    } */
   }
 
 

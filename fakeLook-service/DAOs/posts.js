@@ -100,7 +100,7 @@ class postsDAO {
         let filteres = this.generateAllFilters(filter)
         let searchJson = {
             index: this.postsIndex,
-            _source: ['post_id', 'image_url', 'location'],
+            _source: ['post_id', 'image_url', 'location','post_text'],
             body: {
                 "query": {
                     "bool": {

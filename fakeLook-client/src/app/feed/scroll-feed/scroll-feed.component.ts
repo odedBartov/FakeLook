@@ -22,6 +22,7 @@ export class ScrollFeedComponent implements OnInit, OnDestroy {
       this.amountOfPosts = data.amount
     })
     this.postsSubscription = this.postService.getPostsList().subscribe((res: postToShow[]) => {
+      console.log(res)
       res.map(p => this.posts.push(p))
     })
     this.filter = new FilterModel()
