@@ -1,0 +1,12 @@
+Error thrown at Mon Apr 06 2020 14:59:06 GMT+0300 (GMT+03:00)RequestError: Procedure or function SP_InsertUser has too many arguments specified.
+
+
+Error thrown at Mon Apr 06 2020 15:02:23 GMT+0300 (GMT+03:00)RequestError: Cannot insert explicit value for identity column in table 'users' when IDENTITY_INSERT is set to OFF.
+
+
+Error thrown at Mon Apr 06 2020 15:03:12 GMT+0300 (GMT+03:00)RequestError: Error converting data type nvarchar to bigint.
+
+
+Error thrown at Mon Apr 06 2020 15:18:17 GMT+0300 (GMT+03:00)ReferenceError: error is not defined
+
+
