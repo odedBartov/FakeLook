@@ -1,0 +1,116 @@
+swagger: "2.0"
+info:
+  description: API For FaceLook
+  version: "0.2.0"
+  title: Node Rest API documentation
+  termsOfService: "http://swagger.io/terms/"
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: localhost:1000
+basePath: /
+schemes:
+  - http
+
+paths:
+  /authentication/login:
+    get:
+      tags:
+        - authentication
+      summary: login for existing user
+      parameters:
+        - in: query
+          name: userName
+          description: the user name
+          required: true
+        - in: query
+          name: password
+          description: the password for the user
+          required: true
+          schema:
+            $ref: "#/RequestDefinitions/loginModel"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: good
+          schema:
+            $ref: "#/ResponseDefinitions/loginResponse"
+        400:
+          description: wrong userName or password
+
+  /authentication/signup:
+    get:
+      tags:
+        - authentication
+      summary: sign up new user
+      parameters:
+        - in: query
+          name: userName
+          description: name of the created user
+          required: true
+        - in: query
+          name: password
+          description: password for the created user
+          required: true
+        - in: query
+          name: email
+          description: user's email
+          required: true
+      produces:
+        - application/json
+      responses:
+        200:
+          description: new user signed up successfuly
+        400:
+          description: user name already exist
+
+  /posts/getPosts:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - social
+      summary: get all posts by filter
+      produces:
+        - application/json
+      responses:
+        200:
+          description: posts recieved
+        403:
+          description: please provide validate token
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
+RequestDefinitions:
+  loginModel:
+    properties:
+      userName:
+        type: string
+        description: the name of the user
+      password:
+        type: string
+        description: the password of the user
+
+ResponseDefinitions:
+  DefaultApiResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+
+  loginResponse:
+  type: object
+  properties:
+    status:
+      type: integer
+    token:
+      type: string
