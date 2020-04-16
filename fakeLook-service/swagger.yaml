@@ -27,8 +27,8 @@ paths:
           name: password
           description: the password for the user
           required: true
-          schema:
-            $ref: "#/RequestDefinitions/loginModel"
+          # schema:
+          #   $ref: "#/RequestDefinitions/loginModel"
       produces:
         - application/json
       responses:
@@ -71,7 +71,14 @@ paths:
         - Bearer: []
       tags:
         - social
-      summary: get all posts by filter
+      summary: get all posts by filters
+      parameters: 
+      - in: body
+        name: filters
+        description: the filters to the posts
+        required: true
+        schema:
+          $ref: '#/RequestDefinitions/postsFilterModel'
       produces:
         - application/json
       responses:
@@ -80,10 +87,30 @@ paths:
         403:
           description: please provide validate token
 
+  /posts/getPost:
+    get:
+      security:
+        - Bearer: []
+      tags: 
+        - social
+      summary: get a specific post according to given ID
+      parameters:
+      - in: query
+        name: postId
+        description: the ID of the post to retrieve
+        required: true
+      produces:
+        - application/json
+      responses:
+        200:
+          description: post recieved
+        403:
+          description: please provide validate token
+
 securityDefinitions:
   Bearer:
     type: apiKey
-    name: Authorization
+    name: access-token
     in: header
 
 RequestDefinitions:
@@ -95,6 +122,27 @@ RequestDefinitions:
       password:
         type: string
         description: the password of the user
+
+  postsFilterModel:
+    properties:
+      from:
+        type: integer
+        description: index for virtual scrolling
+      dateFrom:
+        type: string
+        description: the start date for for filtering the posts
+      dateTo:
+        type: string
+        description: the end date for for filtering the posts
+      latitude:
+        type: number
+        description: the latitude to relate on the filters as cuurent position
+      longitude:
+        type: number
+        description: the longitude to relate on the filters as cuurent position
+      radius:
+        type: integer
+        description: the radius in kiloneter for the posts
 
 ResponseDefinitions:
   DefaultApiResponse:

@@ -17,6 +17,7 @@ class postsAPI {
     filter.data.dateFrom = recievedFilter.dateFrom
     filter.data.dateTo = recievedFilter.dateTo
     filter.data.radius = recievedFilter.radius
+    
     this.dbService.getPosts(filter, (error, data) => {
       if (error) {
         next(error)
@@ -42,8 +43,13 @@ class postsAPI {
       if (error) {
         next(error)
       } else {
-        data.likes = data.likes ? data.likes.length : 0
-        res.send(data)
+        if (data) {
+          data.likes = data.likes ? data.likes.length : 0
+          res.send(data)
+        }
+        else{
+          this.errorHandler.throwException(`post with such ID could not be found\npostId: ${req.query.postId}`, 400)
+        }
       }
     })
   }

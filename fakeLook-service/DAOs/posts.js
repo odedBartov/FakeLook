@@ -136,7 +136,7 @@ class postsDAO {
                 }
             }
         }, (err, res) => {
-            handleElasticResponses(err, res.hits.hits[0]._source, callback)
+            handleElasticResponses(err, res.hits.hits[0]? res.hits.hits[0]._source : undefined, callback)
         })
     }
 
