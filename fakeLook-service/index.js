@@ -6,10 +6,15 @@ const fs = require('fs')
 const cors = require('cors')
 const socketio = require('socket.io')
 
+const swaggerUi = require('swagger-ui-express')
+YAML = require('yamljs')
+const swaggerDocument = YAML.load('./swagger.yaml')
+
 const authController = require('./authentication/authenticationController')
 const postsController = require('./social/posts/postsController')
 const friendsController = require('./social/friends/friendsController')
 const errorHandler = require('./common/errorHandler')
+
 
 app.use(cors())
 app.use((req, res, next) => {
@@ -32,6 +37,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')))
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
 app.use('/authentication', authController)
 
 app.use('/posts', postsController)
@@ -46,6 +53,7 @@ app.use((err, req, res, next) => {
 
 server = app.listen(1000, () => {
   console.log('server is working')
+  
 })
 
 const io = socketio(server)

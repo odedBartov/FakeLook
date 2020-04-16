@@ -1,0 +1,164 @@
+swagger: "2.0"
+info:
+  description: API For FaceLook
+  version: "0.2.0"
+  title: Node Rest API documentation
+  termsOfService: "http://swagger.io/terms/"
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: localhost:1000
+basePath: /
+schemes:
+  - http
+
+paths:
+  /authentication/login:
+    get:
+      tags:
+        - authentication
+      summary: login for existing user
+      parameters:
+        - in: query
+          name: userName
+          description: the user name
+          required: true
+        - in: query
+          name: password
+          description: the password for the user
+          required: true
+          # schema:
+          #   $ref: "#/RequestDefinitions/loginModel"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: good
+          schema:
+            $ref: "#/ResponseDefinitions/loginResponse"
+        400:
+          description: wrong userName or password
+
+  /authentication/signup:
+    get:
+      tags:
+        - authentication
+      summary: sign up new user
+      parameters:
+        - in: query
+          name: userName
+          description: name of the created user
+          required: true
+        - in: query
+          name: password
+          description: password for the created user
+          required: true
+        - in: query
+          name: email
+          description: user's email
+          required: true
+      produces:
+        - application/json
+      responses:
+        200:
+          description: new user signed up successfuly
+        400:
+          description: user name already exist
+
+  /posts/getPosts:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - social
+      summary: get all posts by filters
+      parameters: 
+      - in: body
+        name: filters
+        description: the filters to the posts
+        required: true
+        schema:
+          $ref: '#/RequestDefinitions/postsFilterModel'
+      produces:
+        - application/json
+      responses:
+        200:
+          description: posts recieved
+        403:
+          description: please provide validate token
+
+  /posts/getPost:
+    get:
+      security:
+        - Bearer: []
+      tags: 
+        - social
+      summary: get a specific post according to given ID
+      parameters:
+      - in: query
+        name: postId
+        description: the ID of the post to retrieve
+        required: true
+      produces:
+        - application/json
+      responses:
+        200:
+          description: post recieved
+        403:
+          description: please provide validate token
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: access-token
+    in: header
+
+RequestDefinitions:
+  loginModel:
+    properties:
+      userName:
+        type: string
+        description: the name of the user
+      password:
+        type: string
+        description: the password of the user
+
+  postsFilterModel:
+    properties:
+      from:
+        type: integer
+        description: index for virtual scrolling
+      dateFrom:
+        type: string
+        description: the start date for for filtering the posts
+      dateTo:
+        type: string
+        description: the end date for for filtering the posts
+      latitude:
+        type: number
+        description: the latitude to relate on the filters as cuurent position
+      longitude:
+        type: number
+        description: the longitude to relate on the filters as cuurent position
+      radius:
+        type: integer
+        description: the radius in kiloneter for the posts
+
+ResponseDefinitions:
+  DefaultApiResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+
+  loginResponse:
+  type: object
+  properties:
+    status:
+      type: integer
+    token:
+      type: string
