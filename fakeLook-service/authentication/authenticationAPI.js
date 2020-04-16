@@ -22,7 +22,7 @@ class authenticationAPI {
       if (error) {
         next(error)
       } else {
-        if (data && bcryptServiceType.comparePassword(user.password, data.password)) {
+        if (data && bcryptServiceType.comparePassword(user.password, data.Password)) {
           const token = this.jwtService.createToken(data.ID)
           res.setHeader('access-token', token)
           res.send(JSON.stringify({ userName: user.userName }))

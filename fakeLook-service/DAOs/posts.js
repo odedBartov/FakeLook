@@ -97,7 +97,7 @@ class postsDAO {
     }
 
     getPosts = (filter, callback) => {
-        console.log(filter)
+
         let filteres = this.generateAllFilters(filter)
         let searchJson = {
             index: this.postsIndex,
@@ -124,7 +124,7 @@ class postsDAO {
         else {
             searchJson.size = 20
         }
-        console.log(searchJson)
+
         this.elasticSearch.search(searchJson, (err, res) => {
             handleElasticResponses(err, res? res.hits.hits.map(p => p._source) : undefined, callback)
         })
