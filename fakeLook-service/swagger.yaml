@@ -107,6 +107,26 @@ paths:
         403:
           description: please provide validate token
 
+  /posts/likePost:
+    get:
+      security:
+        - Bearer: []
+      tags: 
+        - social
+      summary: like or dislike a post by given ID
+      parameters:
+        - in: query
+          name: postId
+          description: the id of the post to like
+          required: true
+      produces:
+        - application/json
+      responses:
+        200:
+          description: post liked/disliked successfuly
+        403:
+          description: please provide validate token
+
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -160,5 +180,7 @@ ResponseDefinitions:
   properties:
     status:
       type: integer
+      description: 
     token:
       type: string
+      description:

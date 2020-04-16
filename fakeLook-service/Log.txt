@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Error thrown at Tue Apr 14 2020 14:06:12 GMT+0300 (Israel Daylight Time)Error: Login for user has expired!
 
 
@@ -111,3 +112,5 @@ Error thrown at Thu Apr 16 2020 14:27:08 GMT+0300 (GMT+03:00)Error: Login for us
 Error thrown at Thu Apr 16 2020 14:27:08 GMT+0300 (GMT+03:00)Error: Login for user has expired!
 
 
+=======
+>>>>>>> cb211b3eaf9aa288c83a27900fadc0e8a5dbcbc2
