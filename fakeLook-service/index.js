@@ -65,4 +65,7 @@ io.on('connect', (socket => {
   socket.on('newComment', (comment) => { 
     socket.broadcast.emit('newCommentPostId' + comment.postId, comment.comment)
   })
+
+  socket.on('newPost',(post)=> {
+    socket.broadcast.emit('newPostData',post)})
 }))

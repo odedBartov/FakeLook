@@ -3,6 +3,7 @@ import { PostsService } from '../services/posts.service';
 import { postToShow } from '../models/postToShow';
 import { FilterModel } from '../filters/filter/models/filterModel';
 import { NavigatorService } from 'src/app/shared/navigator.service';
+import { Socket } from 'ngx-socket-io';
 @Component({
   selector: 'app-scroll-feed',
   templateUrl: './scroll-feed.component.html',
@@ -14,7 +15,9 @@ export class ScrollFeedComponent implements OnInit, OnDestroy {
   filter: FilterModel
   amountOfPosts: number
 
-  constructor(private postService: PostsService, private routeService: NavigatorService) {
+  constructor(private postService: PostsService,
+    private routeService: NavigatorService,
+    private socket: Socket) {
   }
 
   ngOnInit() {
@@ -29,6 +32,10 @@ export class ScrollFeedComponent implements OnInit, OnDestroy {
     this.filter.from = 0
     if (this.amountOfPosts != 0)
       this.loadMore()
+    this.socket.on('newPostData', (post) => {
+      this.posts.push(post)
+    })
+
   }
 
   showDetails(postId) {

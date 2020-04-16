@@ -10,6 +10,7 @@ const enviroment = require('./enviroments/dev')
 const jwt = require('jsonwebtoken')
 const authenticationConfig = require('./dbConfig/authenticationConfig')
 
+
 const authenticationDAO = require('./DAOs/authentication')
 const authenticationAPI = require('./authentication/authenticationAPI')
 

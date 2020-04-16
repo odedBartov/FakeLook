@@ -97,10 +97,11 @@ class postsDAO {
     }
 
     getPosts = (filter, callback) => {
+        console.log(filter)
         let filteres = this.generateAllFilters(filter)
         let searchJson = {
             index: this.postsIndex,
-            _source: ['post_id', 'image_url', 'location','post_text'],
+            _source: ['post_id', 'image_url', 'location', 'post_text'],
             body: {
                 "query": {
                     "bool": {
@@ -120,7 +121,12 @@ class postsDAO {
             searchJson.from = filter.from
             searchJson.size = 10
         }
+        else {
+            searchJson.size = 20
+        }
+        console.log(searchJson)
         this.elasticSearch.search(searchJson, (err, res) => {
+            console.log(res.hits.hits.length)
             handleElasticResponses(err, res.hits.hits.map(p => p._source), callback)
         })
     }
@@ -136,7 +142,7 @@ class postsDAO {
                 }
             }
         }, (err, res) => {
-            handleElasticResponses(err, res.hits.hits[0]? res.hits.hits[0]._source : undefined, callback)
+            handleElasticResponses(err, res.hits.hits[0] ? res.hits.hits[0]._source : undefined, callback)
         })
     }
 
@@ -281,7 +287,7 @@ class postsDAO {
                 }
             }
         }, (err, res) => {
-            handleElasticResponses(err, {commentId: generatedId}, callback)
+            handleElasticResponses(err, { commentId: generatedId }, callback)
         })
         // var dbreq = this.dbPool.request()
         // dbreq.input('postId', sql.BigInt, comment.postId)

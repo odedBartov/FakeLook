@@ -79,7 +79,13 @@ class postsAPI {
               if (err) {
                 next(err)
               } else {
-                res.json(post)
+                const postToShow = {
+                  post_id:data._id,
+                  location:post.location,
+                  image_url:post.image_url,
+                  post_text:post.text
+                } 
+                res.json(postToShow)
               }
             })
           }

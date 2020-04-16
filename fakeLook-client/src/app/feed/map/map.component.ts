@@ -7,6 +7,7 @@ import { FilterModel } from '../filters/filter/models/filterModel';
 import { InfoWindowComponent } from './info-window/info-window.component';
 import { postToShow } from '../models/postToShow';
 import { InfoWindowService } from '../services/info-window.service';
+import { Socket } from 'ngx-socket-io';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class MapComponent implements OnInit, OnDestroy {
   latitude = 0;
   longitude = 0;
   radius = 15;
-  posts: postToShow[];
+  posts: postToShow[] = [];
   markers = [];
   coordinates;
   mapOptions;
@@ -35,7 +36,8 @@ export class MapComponent implements OnInit, OnDestroy {
     private resolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
     private injector: Injector,
-    private infoWindowService: InfoWindowService
+    private infoWindowService: InfoWindowService,
+    private socket:Socket
   ) { }
 
   ngOnInit() {
@@ -47,6 +49,9 @@ export class MapComponent implements OnInit, OnDestroy {
       };
       this.mapInitializer();
       this.initPosts();
+      this.socket.on('newPostData',(post)=>{
+        this.addMarker(post)
+      })
     });
   }
 
@@ -66,32 +71,36 @@ export class MapComponent implements OnInit, OnDestroy {
       this.clearMarkers();
       this.posts = res;
       this.posts.forEach(post => {
-        const marker = new google.maps.Marker({
-          position: new google.maps.LatLng(post.location.lat, post.location.lon),
-          map: this.map,
-          icon: this.getIcon(post.image_url)
-        });
-        marker.addListener('click', () => {
-          var closeCallback = () => {console.log("close from map");
-          };
-          var infowindow = this.infoWindowService.getWindow(post.post_id)
-          if (!infowindow) {
-            infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.post_id) });
-            this.infoWindowService.setWindow(post.post_id, infowindow)
-          }
-          infowindow.open(this.map, marker);
-          infowindow.addListener('closeclick', () => {
-            //this.infoWindowService.deleteWindow(post.post_id);
-            //infowindow.destroy()
-            //infowindow.close();
-            //closeCallback();
-          })
-        });
-        this.markers.push(marker);
+        this.addMarker(post)
       });
 
     })
     this.postService.UpdatePosts(new FilterModel);
+  }
+
+  addMarker(post){
+    const marker = new google.maps.Marker({
+      position: new google.maps.LatLng(post.location.lat, post.location.lon),
+      map: this.map,
+      icon: this.getIcon(post.image_url)
+    });
+    marker.addListener('click', () => {
+      var closeCallback = () => {console.log("close from map");
+      };
+      var infowindow = this.infoWindowService.getWindow(post.post_id)
+      if (!infowindow) {
+        infowindow = new google.maps.InfoWindow({ content: this.getInfoWindow(post.post_id) });
+        this.infoWindowService.setWindow(post.post_id, infowindow)
+      }
+      infowindow.open(this.map, marker);
+      infowindow.addListener('closeclick', () => {
+        //this.infoWindowService.deleteWindow(post.post_id);
+        //infowindow.destroy()
+        //infowindow.close();
+        //closeCallback();
+      })
+    });
+    this.markers.push(marker);
   }
 
   getIcon(url) {
