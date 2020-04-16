@@ -113,7 +113,7 @@ paths:
         - Bearer: []
       tags: 
         - social
-      summary: like or dislike a post by given ID
+      summary: like or dislike a post by given ID and return 'true' or 'false', accordingly
       parameters:
         - in: query
           name: postId
