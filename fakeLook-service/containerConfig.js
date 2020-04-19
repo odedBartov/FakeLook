@@ -1,16 +1,16 @@
 const container = require('kontainer-di')
 
-const errorHandler = require('./common/errorHandler')
-const JWTservice = require('./common/JWT_Service')
-const strings = require('./common/strings')
 const elasticsearch  = require('elasticsearch')
 const elasticClient = new elasticsearch.Client({ node: 'http://localhost:5601' })
 const { v4: uuidv4 } = require('uuid')
 const enviroment = require('./enviroments/dev')
 const jwt = require('jsonwebtoken')
+const errorHandler = require('./common/errorHandler')
+const JWTservice = require('./common/JWT_Service')
+const strings = require('./common/strings')
+const logger = require('./common/logger')
+
 const authenticationConfig = require('./dbConfig/authenticationConfig')
-
-
 const authenticationDAO = require('./DAOs/authentication')
 const authenticationAPI = require('./authentication/authenticationAPI')
 
@@ -26,13 +26,14 @@ container.register('JWTservice', ['enviroment', 'errorHandler', 'jwt'], JWTservi
 container.register('currentUrl', [], strings.currentUrl)
 container.register('elasticClient', [], elasticClient)
 container.register('uuid', [], { v4: uuidv4 })
+container.register('logger', [], logger)
 
 container.register('socialConfig', [], socialConfig)
 container.register('postsDB', ['elasticClient', 'uuid'], postsDAO)
-container.register('postsAPI', ['postsDB', 'errorHandler', 'currentUrl', 'enviroment'], postsAPI)
+container.register('postsAPI', ['postsDB', 'errorHandler', 'currentUrl', 'enviroment', 'logger'], postsAPI)
 
 container.register('authenticationDB', ['authenticationConfig', 'uuid'], authenticationDAO)
-container.register('authenticationAPI', ['authenticationDB', 'errorHandler', 'JWTservice', 'enviroment', 'uuid', 'postsAPI'], authenticationAPI)
+container.register('authenticationAPI', ['authenticationDB', 'errorHandler', 'JWTservice', 'enviroment', 'uuid', 'postsAPI', 'logger'], authenticationAPI)
 
 
 module.exports = container

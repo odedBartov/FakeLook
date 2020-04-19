@@ -1,13 +1,16 @@
 class postsAPI {
+  currentController = "Social"
   dbService
   errorHandler
   currentUrl
   enviroment
-  constructor(postsDAO, ErrorHandler, CurrentUrl, enviroment) {
+  logger
+  constructor(postsDAO, ErrorHandler, CurrentUrl, enviroment, logger) {
     this.dbService = postsDAO
     this.errorHandler = ErrorHandler
     this.currentUrl = CurrentUrl
     this.enviroment = enviroment
+    this.logger = logger
   }
 
   GetPosts(req, res, next) {
@@ -17,9 +20,10 @@ class postsAPI {
     filter.data.dateFrom = recievedFilter.dateFrom
     filter.data.dateTo = recievedFilter.dateTo
     filter.data.radius = recievedFilter.radius
-    
+    this.logger.writeInfo(this.currentController, 'GetPosts', `request to get posts with according filters: ${JSON.stringify(filter)}`)
     this.dbService.getPosts(filter, (error, data) => {
       if (error) {
+        this.logger.writeError(this.currentController, 'GetPosts', error.message)
         next(error)
       } else {
         res.send(data)
@@ -30,6 +34,7 @@ class postsAPI {
   getAmountOfPosts(req, res, next) {
     this.dbService.getAmountOfPosts((err, amount) => {
       if (err) {
+        this.logger.writeError(this.currentController, 'getAmountOfPosts', error.message)
         next(err)
       }
       else {
@@ -39,8 +44,10 @@ class postsAPI {
   }
 
   GetPost(req, res, next) {
+    this.logger.writeInfo(this.currentController, 'GetPost', `request to get post with id: ${req.query.postId}`)
     this.dbService.getPost(req.query.postId, (error, data) => {
       if (error) {
+        this.logger.writeError(this.currentController, 'GetPost', error.message)
         next(error)
       } else {
         if (data) {
@@ -48,7 +55,7 @@ class postsAPI {
           res.send(data)
         }
         else{
-          this.errorHandler.throwException(`post with such ID could not be found\npostId: ${req.query.postId}`, 400)
+          next(this.errorHandler.createError(`post with such ID could not be found\npostId: ${req.query.postId}`, 400))
         }
       }
     })

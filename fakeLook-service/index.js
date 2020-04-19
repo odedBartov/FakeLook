@@ -46,14 +46,13 @@ app.use('/posts', postsController)
 app.use('/friends', friendsController)
 
 app.use((err, req, res, next) => {
-  fs.appendFile('Log.txt', `Error thrown at ${new Date()}${err}` + '\n\n\n', () => {})
+ // fs.appendFile('Log.txt', `Error thrown at ${new Date()}${err}` + '\n\n\n', () => {})
 
   res.status(err.status ? err.status : 500).send(err)
 })
 
 server = app.listen(1000, () => {
-  console.log('server is working')
-  
+  console.log('server is working')  
 })
 
 const io = socketio(server)
