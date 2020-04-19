@@ -33,6 +33,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
+app.use(bodyParser.json({limit: 10 * 1024 * 1024}))
+app.use(bodyParser.raw({limit: 10 * 1024 * 1024}))
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')))
