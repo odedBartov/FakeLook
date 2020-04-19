@@ -37,14 +37,15 @@ class authenticationAPI {
       if (error) {
         next(error)
       } else {
-          if (data && bcryptServiceType.comparePassword(user.password, data.Password)) {
-            const token = this.jwtService.createToken(data.ID)
-            res.setHeader('access-token', token)
-            res.send(JSON.stringify({ userName: user.userName }))
-          }
-          else {
-            this.errorHandler.throwException('Wrong username or password', 400)
-          }
+        console.log(data)
+        if (data && bcryptServiceType.comparePassword(user.password, data.Password)) {
+          const token = this.jwtService.createToken(data.ID)
+          res.setHeader('access-token', token)
+          res.send(JSON.stringify({ userName: user.userName }))
+        }
+        else {
+          this.errorHandler.throwException('Wrong username or password', 400)
+        }
       }
     })
     /*    const user = { userName: req.query.userName, password: req.query.password }

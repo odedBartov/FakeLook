@@ -165,7 +165,30 @@ paths:
           description: the comment
           required: true
           schema:
-            $ref: "#"
+            $ref: "#RequestDefinitions/publishCommentModel"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: comment published successfuly
+        403:
+          description: please provide a validate token
+
+  posts/getAmountOfPosts:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - social
+      summary: return the amount of all posts
+      produces:
+        - application/json
+      responses:
+        200:
+          description: amount is been taken succesfully
+        403:
+          description: please provide a validate token
+
 
 securityDefinitions:
   Bearer:
@@ -206,6 +229,20 @@ RequestDefinitions:
         description: the radius in kiloneter for the posts
 
   publishCommentModel:
+    properties:
+      commentPublisher:
+        type: string
+        description: the username of publisher
+      commentText:
+        type: string
+        description : the text of comment
+      commentPublishDate: 
+        type: string
+        description: the date of publishing the comment
+      postId:
+        type: string
+        description: the postId which belong to comment
+      
     
 
 ResponseDefinitions:
