@@ -151,11 +151,28 @@ paths:
           description: post published successfuly
         403:
           description: please provide a validate token
+
+  /posts/publishComment:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - social
+      summary: publish a comment for a specific post (determined by ID)
+      parameters:
+        - in: body
+          name: comment
+          description: the comment
+          required: true
+          schema:
+            $ref: "#"
+
 securityDefinitions:
   Bearer:
     type: apiKey
     name: access-token
     in: header
+
 
 RequestDefinitions:
   loginModel:
@@ -188,11 +205,8 @@ RequestDefinitions:
         type: integer
         description: the radius in kiloneter for the posts
 
-  createPostModel:
-    properties:
-      text:
-        type: string
-        description: the text of the post
+  publishCommentModel:
+    
 
 ResponseDefinitions:
   DefaultApiResponse:
