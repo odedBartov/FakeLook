@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: API For FaceLook
-  version: "0.2.0"
+  version: "0.3.0"
   title: Node Rest API documentation
   termsOfService: "http://swagger.io/terms/"
   license:
@@ -27,17 +27,15 @@ paths:
           name: password
           description: the password for the user
           required: true
-          # schema:
-          #   $ref: "#/RequestDefinitions/loginModel"
       produces:
         - application/json
       responses:
         200:
-          description: good
-          schema:
-            $ref: "#/ResponseDefinitions/loginResponse"
+         description: user logged in successfuly
+         schema:
+           $ref: "#/ResponseDefinitions/loginResponse"
         400:
-          description: wrong userName or password
+         description: wrong userName or password
 
   /authentication/signup:
     get:
@@ -72,13 +70,13 @@ paths:
       tags:
         - social
       summary: get all posts by filters
-      parameters: 
-      - in: body
-        name: filters
-        description: the filters to the posts
-        required: true
-        schema:
-          $ref: '#/RequestDefinitions/postsFilterModel'
+      parameters:
+        - in: body
+          name: filters
+          description: the filters to the posts
+          required: true
+          schema:
+            $ref: "#/RequestDefinitions/postsFilterModel"
       produces:
         - application/json
       responses:
@@ -91,14 +89,14 @@ paths:
     get:
       security:
         - Bearer: []
-      tags: 
+      tags:
         - social
       summary: get a specific post according to given ID
       parameters:
-      - in: query
-        name: postId
-        description: the ID of the post to retrieve
-        required: true
+        - in: query
+          name: postId
+          description: the ID of the post to retrieve
+          required: true
       produces:
         - application/json
       responses:
@@ -111,7 +109,7 @@ paths:
     get:
       security:
         - Bearer: []
-      tags: 
+      tags:
         - social
       summary: like or dislike a post by given ID and return 'true' or 'false' accordingly
       parameters:
@@ -125,13 +123,79 @@ paths:
         200:
           description: post liked/disliked successfuly
         403:
-          description: please provide validate token
+          description: please provide a validate token
+
+  /posts/publishPost:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - social
+      summary: publish new post
+      parameters:
+        - in: formData
+          name: image
+          description: the image of the post
+          type: file
+          required: false
+        - in: formData
+          name: post
+          description: all the details of the post
+          type: string
+          # schema:
+          #   $ref: "#RequestDefinitions/createPostModel"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: post published successfuly
+        403:
+          description: please provide a validate token
+
+  /posts/publishComment:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - social
+      summary: publish a comment for a specific post (determined by ID)
+      parameters:
+        - in: body
+          name: comment
+          description: the comment
+          required: true
+          schema:
+            $ref: "#RequestDefinitions/publishCommentModel"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: comment published successfuly
+        403:
+          description: please provide a validate token
+
+  /posts/getAmountOfPosts:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - social
+      summary: return the amount of all posts
+      produces:
+        - application/json
+      responses:
+        200:
+          description: amount is been taken succesfully
+        403:
+          description: please provide a validate token
+
 
 securityDefinitions:
   Bearer:
     type: apiKey
     name: access-token
     in: header
+
 
 RequestDefinitions:
   loginModel:
@@ -164,6 +228,23 @@ RequestDefinitions:
         type: integer
         description: the radius in kiloneter for the posts
 
+  publishCommentModel:
+    properties:
+      comment_publisher:
+        type: string
+        description: the username of publisher
+      comment_text:
+        type: string
+        description : the text of comment
+      comment_publish_date: 
+        type: string
+        description: the date of publishing the comment
+      postId:
+        type: string
+        description: the postId which belong to comment
+      
+    
+
 ResponseDefinitions:
   DefaultApiResponse:
     type: object
@@ -180,7 +261,7 @@ ResponseDefinitions:
   properties:
     status:
       type: integer
-      description: 
+      description:
     token:
       type: string
       description:
