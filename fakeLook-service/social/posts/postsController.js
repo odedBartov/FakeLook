@@ -18,9 +18,20 @@ const container = require('../../containerConfig')
 
 const jwtService = container.get('JWTservice')
 const postAPI = container.get('postsAPI')
+const logger = container.get('logger')
 const router = express.Router()
 
-router.use((req, res, next) => jwtService.validateToken(req, res, next))
+router.use((req, res, next) => {
+    jwtService.validateToken(req, (err) => {
+        if (err) {
+            logger.writeError("Social", "validateJWTtoken", "a request to social service with bad token")
+            next(err)
+        }
+        else{
+            next()
+        }
+    })
+})
 
 router.post('/getPosts', (req, res, next) => {
     postAPI.GetPosts(req, res, next)
