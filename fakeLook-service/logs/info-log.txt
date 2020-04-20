@@ -1,0 +1,141 @@
+message writen by Authentication controller in Login function on Mon Apr 20 2020 13:41:18 GMT+0300 (GMT+03:00).
+        user logged in with username: mushky22, and password: 22
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:41:19 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":-1}
+
+message writen by Authentication controller in Login function on Mon Apr 20 2020 13:41:27 GMT+0300 (GMT+03:00).
+        user logged in with username: chana, and password: 20
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:41:27 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":-1}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:41:28 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":0}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:41:51 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":0}
+
+message writen by Social controller in GetPost function on Mon Apr 20 2020 13:42:01 GMT+0300 (GMT+03:00).
+        request to get post with id: fa37d90c-6e5e-4b57-b15c-419d347d3810
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:42:01 GMT+0300 (GMT+03:00).
+        request to check if  postId of fa37d90c-6e5e-4b57-b15c-419d347d3810 is liked
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:42:01 GMT+0300 (GMT+03:00).
+        checking if postId of fa37d90c-6e5e-4b57-b15c-419d347d3810 is liked, been succesfully
+
+message writen by Social controller in GetPost function on Mon Apr 20 2020 13:42:04 GMT+0300 (GMT+03:00).
+        request to get post with id: fa37d90c-6e5e-4b57-b15c-419d347d3810
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:42:04 GMT+0300 (GMT+03:00).
+        request to check if  postId of fa37d90c-6e5e-4b57-b15c-419d347d3810 is liked
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:42:04 GMT+0300 (GMT+03:00).
+        checking if postId of fa37d90c-6e5e-4b57-b15c-419d347d3810 is liked, been succesfully
+
+message writen by Social controller in PublishComment function on Mon Apr 20 2020 13:42:10 GMT+0300 (GMT+03:00).
+        request to publish comment for postId of undefined
+
+message writen by Social controller in PublishComment function on Mon Apr 20 2020 13:42:10 GMT+0300 (GMT+03:00).
+        publishing comment for postId of undefined is been successfully
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:42:51 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":0}
+
+message writen by Social controller in GetPost function on Mon Apr 20 2020 13:42:52 GMT+0300 (GMT+03:00).
+        request to get post with id: f6a27183-35f2-499d-8de8-e2d7b793e209
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:42:52 GMT+0300 (GMT+03:00).
+        request to check if  postId of f6a27183-35f2-499d-8de8-e2d7b793e209 is liked
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:42:52 GMT+0300 (GMT+03:00).
+        checking if postId of f6a27183-35f2-499d-8de8-e2d7b793e209 is liked, been succesfully
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:42:55 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":0}
+
+message writen by Social controller in GetPost function on Mon Apr 20 2020 13:43:05 GMT+0300 (GMT+03:00).
+        request to get post with id: fa37d90c-6e5e-4b57-b15c-419d347d3810
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:43:05 GMT+0300 (GMT+03:00).
+        request to check if  postId of fa37d90c-6e5e-4b57-b15c-419d347d3810 is liked
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:43:05 GMT+0300 (GMT+03:00).
+        checking if postId of fa37d90c-6e5e-4b57-b15c-419d347d3810 is liked, been succesfully
+
+message writen by Social controller in PublishComment function on Mon Apr 20 2020 13:43:10 GMT+0300 (GMT+03:00).
+        request to publish comment for postId of undefined
+
+message writen by Social controller in PublishComment function on Mon Apr 20 2020 13:43:10 GMT+0300 (GMT+03:00).
+        publishing comment for postId of undefined is been successfully
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:43:19 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":0}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:43:25 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":10}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:43:29 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":20}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:43:40 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":0}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:43:43 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":10}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:43:47 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":20}
+
+message writen by Social controller in GetPost function on Mon Apr 20 2020 13:43:50 GMT+0300 (GMT+03:00).
+        request to get post with id: 18ad7980-529a-4e0c-9efe-d938e2b1a6ef
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:43:50 GMT+0300 (GMT+03:00).
+        request to check if  postId of 18ad7980-529a-4e0c-9efe-d938e2b1a6ef is liked
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:43:50 GMT+0300 (GMT+03:00).
+        checking if postId of 18ad7980-529a-4e0c-9efe-d938e2b1a6ef is liked, been succesfully
+
+message writen by Social controller in GetPost function on Mon Apr 20 2020 13:43:54 GMT+0300 (GMT+03:00).
+        request to get post with id: 18ad7980-529a-4e0c-9efe-d938e2b1a6ef
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:43:54 GMT+0300 (GMT+03:00).
+        request to check if  postId of 18ad7980-529a-4e0c-9efe-d938e2b1a6ef is liked
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:43:54 GMT+0300 (GMT+03:00).
+        checking if postId of 18ad7980-529a-4e0c-9efe-d938e2b1a6ef is liked, been succesfully
+
+message writen by Social controller in PublishComment function on Mon Apr 20 2020 13:43:58 GMT+0300 (GMT+03:00).
+        request to publish comment for postId of undefined
+
+message writen by Social controller in PublishComment function on Mon Apr 20 2020 13:43:58 GMT+0300 (GMT+03:00).
+        publishing comment for postId of undefined is been successfully
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:44:03 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":0}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:44:07 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":10}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:44:09 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":20}
+
+message writen by Social controller in GetPost function on Mon Apr 20 2020 13:44:13 GMT+0300 (GMT+03:00).
+        request to get post with id: 18ad7980-529a-4e0c-9efe-d938e2b1a6ef
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:44:13 GMT+0300 (GMT+03:00).
+        request to check if  postId of 18ad7980-529a-4e0c-9efe-d938e2b1a6ef is liked
+
+message writen by Social controller in checkIfLikedPost function on Mon Apr 20 2020 13:44:13 GMT+0300 (GMT+03:00).
+        checking if postId of 18ad7980-529a-4e0c-9efe-d938e2b1a6ef is liked, been succesfully
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:44:17 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":0}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:44:18 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":-1}
+
+message writen by Social controller in GetPosts function on Mon Apr 20 2020 13:44:20 GMT+0300 (GMT+03:00).
+        request to get posts with according filters: {"data":{"latitude":31.9325385,"longitude":34.8734416},"from":0}
+
