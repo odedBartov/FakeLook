@@ -2,9 +2,7 @@ fakeLook-service/credentials.js
 fakeLook-service/node_modules
 fakeLook-service/Log.txt
 fakeLook-service/dbConfig
+fakeLook-service/logs
 
 fakeLook-client/credentials.js
-fakeLook-service/logs/errors-log.txt
-fakeLook-service/logs/info-log.txt
-fakeLook-service/logs/info-log.txt
-fakeLook-service/logs/errors-log.txt
+
