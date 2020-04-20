@@ -174,7 +174,7 @@ paths:
         403:
           description: please provide a validate token
 
-  posts/getAmountOfPosts:
+  /posts/getAmountOfPosts:
     get:
       security:
         - Bearer: []
@@ -230,13 +230,13 @@ RequestDefinitions:
 
   publishCommentModel:
     properties:
-      commentPublisher:
+      comment_publisher:
         type: string
         description: the username of publisher
-      commentText:
+      comment_text:
         type: string
         description : the text of comment
-      commentPublishDate: 
+      comment_publish_date: 
         type: string
         description: the date of publishing the comment
       postId:
