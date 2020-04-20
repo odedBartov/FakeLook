@@ -1,3 +1,5 @@
 message writen by Authentication controller in Login function on Mon Apr 20 2020 12:02:33 GMT+0300 (GMT+03:00).
         user logged in with username: mushky22, and password: 22
 
+{"message":"hello?","level":"info"}
+{"message":"error!","level":"error"}

@@ -124,7 +124,6 @@ class postsAPI {
 
   PublishComment(req, res, next) {
     var comment = req.body
-    console.log(comment)
     this.dbService.publishComment(comment, (error, data) => {
       if (error) {
         next(error)
