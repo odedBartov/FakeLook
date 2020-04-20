@@ -126,6 +126,7 @@ class postsDAO {
         }
 
         this.elasticSearch.search(searchJson, (err, res) => {
+            console.log(res)
             handleElasticResponses(err, res? res.hits.hits.map(p => p._source) : undefined, callback)
         })
     }

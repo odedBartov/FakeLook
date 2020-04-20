@@ -50,6 +50,7 @@ export class MapComponent implements OnInit, OnDestroy {
       this.mapInitializer();
       this.initPosts();
       this.socket.on('newPostData',(post)=>{
+        this.posts.push(post)
         this.addMarker(post)
       })
     });
