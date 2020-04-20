@@ -4,3 +4,5 @@ fakeLook-service/Log.txt
 fakeLook-service/dbConfig
 
 fakeLook-client/credentials.js
+fakeLook-service/logs/errors-log.txt
+fakeLook-service/logs/info-log.txt
