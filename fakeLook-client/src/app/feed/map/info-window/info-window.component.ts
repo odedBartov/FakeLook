@@ -25,7 +25,7 @@ import { environment } from 'src/environments/environment.prod';
 export class InfoWindowComponent implements OnInit, OnDestroy {
 
   @Input() postId: string;
-  currentPost: PostModel;
+  currentPost: PostModel = new PostModel
   text: string;
   liked = false;
   isShown = false;
@@ -38,19 +38,6 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.socket.emit('msgFromClient', 'data from client');
-    this.socket.on('msgFromServer', (data) => {
-      console.log(data);
-    })
-    this.socket.on('like', (data) => {      
-      this.currentPost.likes += parseInt(data);
-    })
-
-    this.socket.on('newCommentPostId' + this.postId, (comment) => {
-      console.log(comment);
-      this.currentPost.comments.push(comment)
-    })
-
     let postId = this.activatedRouter.snapshot.paramMap.get("postId")
     if (postId) {
       this.postId = postId
@@ -68,6 +55,20 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
     }, err => {
       alert(err.error.message);
     })
+    this.socket.emit('msgFromClient', 'data from client');
+    this.socket.on('msgFromServer', (data) => {
+      console.log(data);
+    })
+    this.socket.on('like', (data) => {      
+      this.currentPost.likes += parseInt(data);
+    })
+
+    this.socket.on('newCommentPostId' + this.postId, (comment) => {
+      this.currentPost.comments.push(comment)
+    })
+
+  
+ 
   }
 
   like() {

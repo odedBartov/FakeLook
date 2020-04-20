@@ -9,5 +9,5 @@ export class PostModel{
     text: string;
     location: {lat: number, lon: number}
     likes: number;
-    comments: CommentModel[];
+    comments: CommentModel[] = [];
 }
