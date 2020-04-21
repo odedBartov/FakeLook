@@ -132,6 +132,8 @@ class postsDAO {
     }
 
     getPost = (postId, callback) => {
+        return this.fakeLookDB.getPosts().find(p => p._id == postId)
+
         // this.elasticSearch.search({
         //     index: this.postsIndex,
         //     body: {
@@ -147,6 +149,8 @@ class postsDAO {
     }
 
     publishPost = (post, callback) => {
+        this.fakeLookDB.push(post)
+        return post._id
         // const generatedId = this.UUID.v4()
         // this.elasticSearch.index({
         //     index: this.postsIndex,
@@ -234,6 +238,13 @@ class postsDAO {
     }
 
     CheckIfUsernamesExist = async (usernames, callback) => {
+        const users = this.fakeLookDB.getUsers()
+        let worngUsers = []
+        usernames.forEach(username => {
+            if (!users.find(user => user.username == username))
+                worngUsers.push(username)
+        });
+        return worngUsers
         // var wrongUsers = []
         // var promises = usernames.map(async (tag) => {
         //     var user = await this.elasticSearch.search({
