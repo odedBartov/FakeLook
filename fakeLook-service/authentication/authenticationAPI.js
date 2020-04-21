@@ -1,17 +1,4 @@
 const bcryptServiceType = require('./bcryptService')
-const winston = require('winston')
-const logger = winston.createLogger({
-    transports: [
-        new (winston.transports.File)({
-          filename: 'logs/info-log.txt',
-          level: 'info'
-        }),
-        new (winston.transports.File)({
-          filename: 'logs/errors-log.txt',
-          level: 'error'
-        })
-    ]
-})
 
 class authenticationAPI {
   currentController = "Authentication"
@@ -33,8 +20,6 @@ class authenticationAPI {
   }
 
   Login(req, res, next) {
-    logger.info("hello?")
-    logger.error("error!")
     const user = { userName: req.query.userName, password: req.query.password }
     this.logger.writeInfo(this.currentController, 'Login', `user logged in with username: ${user.userName}, and password: ${user.password}`)
     this.authenticationAPI.GetPassword(user.userName, (error, data) => {
@@ -53,18 +38,6 @@ class authenticationAPI {
         }
       }
     })
-    /*    const user = { userName: req.query.userName, password: req.query.password }
-       if (error) {
-         next(error)
-       } else {
-         if (bcryptServiceType.comparePassword(user.password, data.Password)) {
-           const token = this.jwtService.createToken(data.ID)
-           res.setHeader('access-token', token)
-           res.send(JSON.stringify({ userName: user.userName }))
-         } else {
-           this.errorHandler.throwException('Wrong username or password', 400)
-         }
-       } */
   }
 
 

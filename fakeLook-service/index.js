@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const bp = require('body-parser')
 const path = require('path')
-const fs = require('fs')
 const cors = require('cors')
 const socketio = require('socket.io')
 
@@ -13,7 +12,6 @@ const swaggerDocument = YAML.load('./swagger.yaml')
 const authController = require('./authentication/authenticationController')
 const postsController = require('./social/posts/postsController')
 const friendsController = require('./social/friends/friendsController')
-const errorHandler = require('./common/errorHandler')
 
 
 app.use(cors())
@@ -24,9 +22,6 @@ app.use((req, res, next) => {
 
 app.use(bp.json())
 
-app.use((req, res, next) => {
-  errorHandler.setNext(next)
-})
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({ extended: false }))
