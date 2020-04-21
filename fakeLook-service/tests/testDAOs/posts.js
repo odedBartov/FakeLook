@@ -150,7 +150,7 @@ class postsDAO {
 
     publishPost = (post, callback) => {
         this.fakeLookDB.push(post)
-        return post._id
+        return {_id:post._id}
         // const generatedId = this.UUID.v4()
         // this.elasticSearch.index({
         //     index: this.postsIndex,

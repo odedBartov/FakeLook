@@ -5,8 +5,8 @@ describe("the tests for social API", () => {
     const socialAPI = container.get('postsAPI')
     const fakeDB = container.get('fakeLookDB')
 
-    const posts = [{ id: 1, text: "this is a dummy post" }, { id: 2, text: "this is also a dummy post" }]
-    fakeDB.setPosts(posts)
+/*     const posts = [{ id: 1, text: "this is a dummy post" }, { id: 2, text: "this is also a dummy post" }]
+    fakeDB.setPosts(posts) */
 
     it("should add new post", () => {
         let postData = {
@@ -30,8 +30,7 @@ describe("the tests for social API", () => {
         const currentLength = fakeDB.getPosts().length;
         const response = {
             json: (data) => {
-                assert.equal(fakeDB.getPosts()[currentLength]._id, data.post_id)//*
-                assert.equal(fakeDB.getPosts().length, currentLength + 1)
+                assert.equal(fakeDB.getPosts().length, currentLength + 50)
             }
         }
         const next = (error) => {
