@@ -1,58 +1,25 @@
-const sql = require('mssql')
 
 class authenticationDAO {
-    elasticClient
     UUID
-    dbpool
-    constructor(authenticationConfig, idCreator) {
+    fakeDB
+    constructor(UsersDB, idCreator) {
         this.UUID = idCreator
-        this.dbPool = new sql.ConnectionPool(authenticationConfig, err => {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log('connected to DB from Authentication!')
-            }
-        })
+        this.fakeDB = UsersDB
     }
 
     CheckIfUserExist (userName, callback) {
-        // const dbreq = this.dbPool.request()
-        // dbreq.input('UserName', sql.NVarChar(50), userName)
-        // dbreq.execute('SP_CheckUserName', (err, data) => {
-        //     if (err) {
-        //         callback(err, undefined)
-        //     } else {
-        //         callback(undefined, data.recordset[0])
-        //     }
-        // })
+        callback(undefined, this.fakeDB.getUserByName(userName)? true : false)
     }
 
 
     InsertUser (user, callback) {
-        // const dbreq = this.dbPool.request()
-        // dbreq.input('ID', sql.NVarChar(60), user.ID)
-        // dbreq.input('UserName', sql.NVarChar(20), user.userName)
-        // dbreq.input('Password', sql.NVarChar(60), user.password)
-        // dbreq.input('email', sql.NVarChar(30), user.email)
-        // dbreq.execute('SP_InsertUser', (err, data) => {
-        //     if (err) {
-        //         callback(err, undefined)
-        //     } else {
-        //         callback(undefined, data.recordset[0])
-        //     }
-        // })
+        this.fakeDB.createUser(user)
+        callback(undefined, user)
     }
 
     GetPassword (userName, callback) {
-        // const dbreq = this.dbPool.request()
-        // dbreq.input('UserName', sql.NVarChar(15), userName)
-        // dbreq.execute('SP_GetPassword', (err, data) => {
-        //     if (err) {
-        //         callback(err, undefined)
-        //     } else {
-        //         callback(undefined, data.recordset[0]? data.recordset[0] : {Password: ''})
-        //     }
-        // })
+        const foundUser = this.fakeDB.getPassword(userName)
+        callback(undefined, foundUser? foundUser : {GetPassword: ""})
     }
 }
 

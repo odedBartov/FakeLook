@@ -293,19 +293,8 @@ class postsDAO {
     }
 
     createUser = (user, callback) => {
-        // this.elasticSearch.index({
-        //     index: this.postsIndex,
-        //     id: user.ID,
-        //     body: {
-        //         "user_id": user.ID,
-        //         "user_name": user.userName,
-        //         "password": user.password,
-        //         "email": user.email,
-        //         "join_field": "user"
-        //     }
-        // }, (err) => {
-        //     callback(err)
-        // })
+        this.fakeLookDB.createUser(user)
+        callback(undefined)
     }
 }
 handleDbResponses = (err, data, callback) => {

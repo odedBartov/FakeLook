@@ -6,9 +6,9 @@ describe("the tests for common services", () => {
     it("test the jwt service", () => {        
         const id = "some_id"
         const token = jwtService.createToken(id)
-        jwtService.validateToken(token, (err, data) => {
-            if (err) {
-                assert.Throw(err)
+        jwtService.validateToken(token, (error, data) => {
+            if (error) {
+                throw error
             }
             else{
                 assert.equal(data.id, id)

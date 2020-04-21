@@ -15,7 +15,7 @@ describe("the tests for social API", () => {
             }
         }
         const next = (error) => {
-            assert.throw(error)
+            throw error
         }
         socialAPI.GetPosts(request, response, next)
     })

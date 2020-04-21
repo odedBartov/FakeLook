@@ -1,6 +1,6 @@
 class fakeLookDB{
     constructor(){ }
-
+    user = []
     posts = []
 
     setPosts(posts){
@@ -9,6 +9,10 @@ class fakeLookDB{
 
     getPosts(){
         return this.posts
+    }
+
+    createUser(user){
+        this.user.push(user)
     }
 }
 

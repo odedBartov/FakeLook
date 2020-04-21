@@ -1,8 +1,8 @@
-const bcryptServiceType = require('./bcryptService')
+const bcryptServiceType = require('../common/bcryptService')
 
-class authenticationAPI {
+class authenticationDAO {
   currentController = "Authentication"
-  authenticationAPI
+  authenticationDAO
   socialAPI
   errorHandler
   jwtService
@@ -10,7 +10,7 @@ class authenticationAPI {
   UUID
   logger
   constructor(AuthDAO, ErrorHandler, JWTservice, _enviroment, guidCreator, socialDAO, _logger) {
-    this.authenticationAPI = AuthDAO
+    this.authenticationDAO = AuthDAO
     this.socialAPI = socialDAO
     this.errorHandler = ErrorHandler
     this.jwtService = JWTservice
@@ -22,7 +22,7 @@ class authenticationAPI {
   Login(req, res, next) {
     const user = { userName: req.query.userName, password: req.query.password }
     this.logger.writeInfo(this.currentController, 'Login', `user logged in with username: ${user.userName}, and password: ${user.password}`)
-    this.authenticationAPI.GetPassword(user.userName, (error, data) => {
+    this.authenticationDAO.GetPassword(user.userName, (error, data) => {
       if (error) {
         this.logger.writeError(this.currentController, 'Login', error.message)
         next(error)
@@ -51,16 +51,16 @@ class authenticationAPI {
       ID: generatedID
     }
     this.logger.writeInfo(this.currentController, 'SignUp', `user signed up with username: ${user.userName}, password: ${user.password} and email: ${user.email}`)
-    this.authenticationAPI.CheckIfUserExist(user.userName, (error, isExist) => {
+    this.authenticationDAO.CheckIfUserExist(user.userName, (error, isExist) => {
       if (error) {
         this.logger.writeError(this.currentController, 'SignUp', error.message)
         next(error)
       } else {
         if (isExist) {
-          this.errorHandler.throwException('user already exist!', 400)
+          next(this.errorHandler.createError('user already exist!', 400))
         } else {
-          user.password = bcryptServiceType.password(user)
-          this.authenticationAPI.InsertUser(user, (error, data) => {
+          user.password = bcryptServiceType.createPassword(user.password)
+          this.authenticationDAO.InsertUser(user, (error, data) => {
             if (error) {
               this.logger.writeError(this.currentController, 'SignUp', error.message)
               next(error)
@@ -82,4 +82,4 @@ class authenticationAPI {
 }
 
 
-module.exports = authenticationAPI
+module.exports = authenticationDAO

@@ -1,10 +1,18 @@
 class UsersDB{
     constructor(){ }
 
-    users = [{userName: "oded", password: "12"}]
+    users = []
 
-    login(){
+    createUser(user){
+        this.users.push(user)
+    }
 
+    getUserByName(userName){
+        return this.users.find(u => u.userName == userName)
+    }
+
+    getPassword(userName){
+        return this.users.find(u => u.userName == userName)
     }
 }
 
