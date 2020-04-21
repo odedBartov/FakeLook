@@ -5,12 +5,12 @@ describe("the tests for social API", () => {
     const socialAPI = container.get('postsAPI')
     const fakeDB = container.get('fakeLookDB')
 
- /*    const posts = [{ id: 1, text: "this is a dummy post" }, { id: 2, text: "this is also a dummy post" }]
-    fakeDB.setPosts(posts) */
+    const posts = [{ id: 1, text: "this is a dummy post" }, { id: 2, text: "this is also a dummy post" }]
+    fakeDB.setPosts(posts)
 
     it("should add new post", () => {
         let postData = {
-            _id:1,
+            _id:3,
             text: "I love banana",
             image_tags: "cat,shampoo",
             user_tags: "oded",
