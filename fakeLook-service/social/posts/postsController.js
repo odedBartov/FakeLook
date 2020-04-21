@@ -22,13 +22,12 @@ const logger = container.get('logger')
 const router = express.Router()
 
 router.use((req, res, next) => {
-    jwtService.validateToken(req.headers['access-token'], (err, data) => {
+    jwtService.validateToken(req, (err) => {
         if (err) {
             logger.writeError("Social", "validateJWTtoken", "a request to social service with bad token")
             next(err)
         }
         else{
-            req.user = data
             next()
         }
     })

@@ -33,6 +33,8 @@ class authenticationAPI {
   }
 
   Login(req, res, next) {
+    logger.info("hello?")
+    logger.error("error!")
     const user = { userName: req.query.userName, password: req.query.password }
     this.logger.writeInfo(this.currentController, 'Login', `user logged in with username: ${user.userName}, and password: ${user.password}`)
     this.authenticationAPI.GetPassword(user.userName, (error, data) => {

@@ -12,13 +12,16 @@ class JWT_service {
     createToken(id) {
         return this.jwt.sign({ id: id }, this.secretToken, { expiresIn: '4h' })
     }
-    validateToken(recievedToken, callback) {
-        this.jwt.verify(recievedToken, this.secretToken, (err, data) => {
+    validateToken(req, callback) {
+        const token = req.headers['access-token']
+
+        this.jwt.verify(token, this.secretToken, (err, data) => {
             if (err) {
-                callback(this.errorHandler.createError('Login for user has expired!', 403), undefined)
+                callback(this.errorHandler.createError('Login for user has expired!', 403))
             }
             else {
-                callback(undefined, data)
+                req.user = data
+                callback(undefined)
             }
         })
     }
