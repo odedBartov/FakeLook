@@ -1,12 +1,10 @@
 const expect = require('expect')
 const assert = require('chai').assert
-const container = require('../containerConfig')
+const container = require('./containerConfigForTests')
 const jwtService = container.get('JWTservice')
 
-
 describe("the tests for common services", () => {
-    const name = "oded"
-    it("should just check", () => {        
+    it("test the jwt service", () => {        
         const id = "some_id"
         const token = jwtService.createToken(id)
         jwtService.validateToken(token, (err, data) => {
@@ -17,9 +15,5 @@ describe("the tests for common services", () => {
                 assert.equal(data.id, id)
             }
         })
-    })
-
-    it("check the chai", () => {
-        assert.equal(name, "oded")
     })
 })
