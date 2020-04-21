@@ -56,4 +56,4 @@ class authenticationDAO {
     }
 }
 
-module.exports = authenticationDAO
+module.exports = authenticationDAO 

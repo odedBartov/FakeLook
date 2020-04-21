@@ -12,4 +12,4 @@ class fakeLookDB{
     }
 }
 
-module.exports = fakeLookDB
+module.exports = fakeLookDB 

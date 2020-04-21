@@ -15,6 +15,25 @@ class authenticationDAO {
         })
     }
 
+    // CheckIfUserExist(userName, callback) {
+    //     this.elasticClient.count({
+    //         index: "fake_look",
+    //         body: {
+    //             query: {
+    //                 term: {
+    //                     'user_name': userName
+    //                 }
+    //             }
+    //         }
+    //     }, (err, res) => {
+    //         if (err) {
+    //             callback(err, undefined)
+    //         } else {
+    //             callback(undefined, res.count > 0)
+    //         }
+    //     })
+    // }
+
     CheckIfUserExist (userName, callback) {
         const dbreq = this.dbPool.request()
         dbreq.input('UserName', sql.NVarChar(50), userName)
@@ -27,6 +46,26 @@ class authenticationDAO {
         })
     }
 
+    // InsertUser(user, callback) {
+    //     const generatedId = this.UUID.v4()
+    //     this.elasticClient.index({
+    //         index: "fake_look",
+    //         id: generatedId,
+    //         body: {
+    //             "user_id": generatedId,
+    //             "user_name": user.userName,
+    //             "password": user.password,
+    //             "email": user.email,
+    //             "join_field": "user"
+    //         }
+    //     }, (err, res) => {
+    //         if (err) {
+    //             callback(err, undefined)
+    //         } else {
+    //             callback(undefined, res)
+    //         }
+    //     })
+    // }
 
     InsertUser (user, callback) {
         const dbreq = this.dbPool.request()
@@ -42,6 +81,26 @@ class authenticationDAO {
             }
         })
     }
+
+    // GetPassword(userName, callback) {
+    //     this.elasticClient.search({
+    //         index: "fake_look",
+    //         _source: ['password', 'user_id'],
+    //         body: {
+    //             query: {
+    //                 term: {
+    //                     'user_name': userName
+    //                 }
+    //             }
+    //         }
+    //     }, (err, res) => {
+    //         if (err) {
+    //             callback(err, undefined)
+    //         } else {
+    //             callback(undefined, res.hits.hits[0]._source)
+    //         }
+    //     })
+    // }
 
     GetPassword (userName, callback) {
         const dbreq = this.dbPool.request()

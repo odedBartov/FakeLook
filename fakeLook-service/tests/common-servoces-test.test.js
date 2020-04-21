@@ -1,4 +1,3 @@
-const expect = require('expect')
 const assert = require('chai').assert
 const container = require('./containerConfigForTests')
 const jwtService = container.get('JWTservice')

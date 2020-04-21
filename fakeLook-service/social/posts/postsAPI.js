@@ -66,7 +66,7 @@ class postsAPI {
     const image = req.file
     if (!image) {
       this.logger.writeError(this.currentController, 'PublishPost', 'no image provided')
-      next(this.errorHandler.createError('No image provided', 400))//?
+      this.errorHandler.throwException('No image provided', 400)//?
     } else {
       var post = JSON.parse(req.body.post)
       post.image_url = `${this.currentUrl}/${req.file.path}`
@@ -81,10 +81,10 @@ class postsAPI {
         } else {
           if (data.length) {
             this.logger.writeError(this.currentController, 'PublishPost', `try to tagged users whom does not exist!\nNames: ${data}`)
-            next(this.errorHandler.createError(
+            this.errorHandler.throwException(
               `You tagged users whom does not exist!\nNames: ${data}`,
               400
-            ))
+            )
           } else {
             this.dbService.publishPost(post, (err, data) => {
               if (err) {
