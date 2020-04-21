@@ -100,6 +100,7 @@ class postsDAO {
     getPosts = (filter, callback) => {
         let filteres = this.generateAllFilters(filter)
         callback(undefined, this.fakeLookDB.getPosts())
+        //okoikoo
         // let searchJson = {
         //     index: this.postsIndex,
         //     _source: ['post_id', 'image_url', 'location', 'post_text'],
