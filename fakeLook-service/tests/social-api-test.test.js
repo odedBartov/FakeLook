@@ -10,7 +10,7 @@ describe("the tests for social API", () => {
 
     it("should add new post", () => {
         let postData = {
-            _id:3,
+            id: 3,
             text: "I love banana",
             image_tags: "cat,shampoo",
             user_tags: "oded",
@@ -52,11 +52,11 @@ describe("the tests for social API", () => {
         socialAPI.GetPosts(request, response, next)
     })
 
-    it("should get post of id 1", () => {
-        const request = { query: { postId: 1 } }
+    it("should get post of id 3", () => {
+        const request = { query: { postId: 3 } }
         const response = {
             send: (data) => {
-                assert.equal(fakeDB.getPosts()[0], data)
+                assert.equal(3, data.id)
             }
         }
         const next = (error) => {
@@ -64,4 +64,18 @@ describe("the tests for social API", () => {
         }
         socialAPI.GetPost(request, response, next)
     })
+
+    it("should get amount of all posts", () => {
+        const request = { body: {} }
+        const response = {
+            send: (data) => {
+                assert.equal(fakeDB.getPosts().length, data.amount)
+            }
+        }
+        const next = (error) => {
+            assert.throw(error)
+        }
+        socialAPI.getAmountOfPosts(request, response, next)
+    })
+
 })
