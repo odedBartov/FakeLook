@@ -173,65 +173,18 @@ class postsDAO {
         // })
     }
 
-    likepost = (postId, userId, callback) => {
-        // this.elasticSearch.update({
-        //     index: this.postsIndex,
-        //     id: postId,
-        //     body: {
-        //         "script": {
-        //             "source": "ctx._source.likes.add(params.user)",
-        //             "params": {
-        //                 "user": userId
-        //             }
-        //         }
-        //     }
-        // }, (err, res) => {
-        //     handleElasticResponses(err, res, callback)
-        // })
+    likepost = (postId, userId, callback) => {        
+        this.fakeLookDB.likePost(postId, userId)
+        callback()
     }
 
-    dislikePost = (postId, userId, callback) => {
-        // this.elasticSearch.update({
-        //     index: this.postsIndex,
-        //     id: postId,
-        //     body: {
-        //         "script": {
-        //             "inline": "ctx._source.likes.remove(ctx._source.likes.indexOf(params.user))",
-        //             "params": {
-        //                 "user": userId
-        //             }
-        //         }
-        //     }
-        // }, (err, res) => {
-        //     handleElasticResponses(err, res, callback)
-        // })
+    dislikePost = (postId, userId, callback) => {        
+        this.fakeLookDB.dislikePost(postId, userId)
+        callback()   
     }
 
-    checkIfLikedPost = (postId, callback) => {
-        // this.elasticSearch.search({
-        //     index: this.postsIndex,
-        //     _source: 'likes',
-        //     body: {
-        //         query: {
-        //             "bool": {
-        //                 "must": [
-        //                     {
-        //                         "term": {
-        //                             "join_field": "post"
-        //                         }
-        //                     },
-        //                     {
-        //                         "term": {
-        //                             "post_id": postId
-        //                         }
-        //                     }
-        //                 ]
-        //             }
-        //         }
-        //     }
-        // }, (err, res) => {
-        //     handleElasticResponses(err, res.hits.hits[0]._source.likes, callback)
-        // })
+    checkIfLikedPost = (postId, callback) => {        
+        callback(undefined, this.fakeLookDB.getLikes(postId))
     }
 
     CheckIfUsernamesExist = async (usernames, callback) => {
@@ -272,7 +225,8 @@ class postsDAO {
     }
 
     publishComment = (comment, callback) => {
-        // const generatedId = this.UUID.v4()
+        this.fakeLookDB.publishComment(comment, comment.postId)
+        callback(undefined)
         // this.elasticSearch.update({
         //     index: this.postsIndex,
         //     id: comment.postId,
