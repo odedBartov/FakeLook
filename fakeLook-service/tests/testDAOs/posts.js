@@ -103,13 +103,12 @@ class postsDAO {
         callback(undefined, this.fakeLookDB.getPosts())
     }
 
-    getPost = (postId, callback) => {            
+    getPost = (postId, callback) => {
         callback(undefined, this.fakeLookDB.getPost(postId))
     }
 
     publishPost = (post, callback) => {
         this.fakeLookDB.getPosts().push(post)
-<<<<<<< HEAD
         callback(undefined, { _id: post.id })
         // const generatedId = this.UUID.v4()
         // this.elasticSearch.index({
@@ -134,9 +133,6 @@ class postsDAO {
         // }, (err, data) => {
         //     handleElasticResponses(err, data, callback)
         // })
-=======
-        callback(undefined,{_id:post.pos}) 
->>>>>>> 3f1f570b28d0e3e26a020b2473aa64444aca49e0
     }
 
     likepost = (postId, userId, callback) => {
@@ -156,13 +152,12 @@ class postsDAO {
     CheckIfUsernamesExist = async (usernames, callback) => {
         const users = this.fakeLookDB.getUsers()
         let worngUsers = []
-        
-        
+
+
         usernames.forEach(username => {
             if (!users.find(user => user.username == username))
                 worngUsers.push(username)
         });
-<<<<<<< HEAD
         callback(undefined, worngUsers)
         // var wrongUsers = []
         // var promises = usernames.map(async (tag) => {
@@ -198,9 +193,6 @@ class postsDAO {
         //     callback(err, undefined)
         // }
         // callback(undefined, wrongUsers)
-=======
-        callback(undefined,worngUsers)
->>>>>>> 3f1f570b28d0e3e26a020b2473aa64444aca49e0
     }
 
     publishComment = (comment, callback) => {
