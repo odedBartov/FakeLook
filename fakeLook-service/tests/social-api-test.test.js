@@ -7,9 +7,12 @@ describe("the tests for social API", () => {
     const userId = "123"
     const postId = "1"
 
-    const posts = [{postId: postId, text: "this is a dummy post", likes: [userId], comments: []}, 
-                    {ipostId: 2, text: "this is also a dummy post", likes: [], comments: []}]
+    const posts = [{postId: postId, text: "this is a dummy post", likes: [userId, "456"], comments: []}, 
+                    {postId: 2, text: "this is also a dummy post", likes: [], comments: []}]    
     fakeDB.setPosts(posts)
+
+    const users = [{ username: "oded", id: 1, email: "oded@gmail.com" }]
+    fakeDB.setUsers(users)
 
     it("should add new post", () => {
         let postData = {
@@ -32,12 +35,12 @@ describe("the tests for social API", () => {
         }
         const currentLength = fakeDB.getPosts().length;
         const response = {
-            json: (data) => {
+            json: (data) => {                
                 assert.equal(fakeDB.getPosts().length, currentLength + 1)
             }
         }
         const next = (error) => {
-            assert.throw(error)
+           assert.fail(error)
         }
         socialAPI.PublishPost(request, response, next)
     })
@@ -54,15 +57,16 @@ describe("the tests for social API", () => {
         }
         socialAPI.GetPosts(request, response, next)
     })
-    it("should get post of id 3", () => {
-        const request = { query: { postId: 3 } }
+
+    it("should get post of id 1", () => {
+        const request = { query: { postId: postId} }
         const response = {
             send: (data) => {
-                assert.equal(3, data.id)
+                assert.equal(postId, data.postId)
             }
         }
         const next = (error) => {
-            assert.throw(error)
+            throw error
         }
         socialAPI.GetPost(request, response, next)
     })
@@ -75,7 +79,7 @@ describe("the tests for social API", () => {
             }
         }
         const next = (error) => {
-            assert.throw(error)
+            throw error
         }
         socialAPI.getAmountOfPosts(request, response, next)
     })

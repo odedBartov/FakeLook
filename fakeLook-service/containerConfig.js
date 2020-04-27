@@ -29,7 +29,7 @@ container.register('uuid', [], { v4: uuidv4 })
 container.register('logger', [], logger)
 
 container.register('socialConfig', [], socialConfig)
-container.register('postsDB', ['elasticClient', 'uuid'], postsDAO)
+container.register('postsDB', ['elasticClient', 'uuid', 'logger'], postsDAO)
 container.register('postsAPI', ['postsDB', 'errorHandler', 'currentUrl', 'enviroment', 'logger'], postsAPI)
 
 container.register('authenticationDB', ['authenticationConfig', 'uuid'], authenticationDAO)
