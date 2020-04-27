@@ -82,7 +82,8 @@ class postsDAO {
     }
 
 
-    getAmountOfPosts(callback) {
+    getAmountOfPosts = (callback) => {
+        callback(undefined, this.fakeLookDB.getPosts().length)
         // this.elasticSearch.count({
         //     index: this.postsIndex,
         //     body: {
@@ -151,7 +152,7 @@ class postsDAO {
 
     publishPost = (post, callback) => {
         this.fakeLookDB.getPosts().push(post)
-        callback(undefined,{_id:post.id}) 
+        callback(undefined, { _id: post.id })
         // const generatedId = this.UUID.v4()
         // this.elasticSearch.index({
         //     index: this.postsIndex,
@@ -177,17 +178,17 @@ class postsDAO {
         // })
     }
 
-    likepost = (postId, userId, callback) => {        
+    likepost = (postId, userId, callback) => {
         this.fakeLookDB.likePost(postId, userId)
         callback()
     }
 
-    dislikePost = (postId, userId, callback) => {        
+    dislikePost = (postId, userId, callback) => {
         this.fakeLookDB.dislikePost(postId, userId)
-        callback()   
+        callback()
     }
 
-    checkIfLikedPost = (postId, callback) => {        
+    checkIfLikedPost = (postId, callback) => {
         callback(undefined, this.fakeLookDB.getLikes(postId))
     }
 
@@ -198,7 +199,7 @@ class postsDAO {
             if (!users.find(user => user.username == username))
                 worngUsers.push(username)
         });
-        callback(undefined,worngUsers)
+        callback(undefined, worngUsers)
         // var wrongUsers = []
         // var promises = usernames.map(async (tag) => {
         //     var user = await this.elasticSearch.search({

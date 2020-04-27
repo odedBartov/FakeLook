@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 class fakeLookDB{
     constructor(){ }
-    users = []
-=======
-class fakeLookDB {
-    constructor() { }
-
->>>>>>> unit-test-server-mushky
     posts = []
     users = [{ username: "oded", id: 1, email: "oded@gmail.com" }]//?
     
