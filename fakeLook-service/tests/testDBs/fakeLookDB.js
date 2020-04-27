@@ -1,6 +1,6 @@
 class fakeLookDB {
     constructor() { }
-    users = [{ id: 1, username: "oded", email: "mushmush722@gmail.com" }]
+    users = []
     posts = []
 
     getUsers() {
