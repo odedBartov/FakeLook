@@ -1,13 +1,13 @@
-class fakeLookDB{
-    constructor(){ }
+class fakeLookDB {
+    constructor() { }
     users = []
     posts = []
-    
+
     getUsers() {
         return this.users
     }
 
-    setUsers(users){
+    setUsers(users) {
         this.users = users
     }
 
@@ -19,28 +19,28 @@ class fakeLookDB{
         return this.posts
     }
 
-    getPost(postId){
+    getPost(postId) {
         return Object.assign({}, this.posts.find(p => p.postId = postId))
     }
 
-    createUser(user){
+    createUser(user) {
         this.users.push(user)
     }
 
-    getLikes(postId){
+    getLikes(postId) {
         return this.posts.find(p => p.id = postId).likes
     }
 
-    likePost(postId, userId){
+    likePost(postId, userId) {
         this.posts.find(p => p.id = postId).likes.push(userId)
     }
 
-    dislikePost(postId, userId){
+    dislikePost(postId, userId) {
         const likes = this.posts.find(p => p.id = postId).likes
         likes.splice(likes.indexOf(userId), 1)
     }
 
-    publishComment(comment, postId){        
+    publishComment(comment, postId) {
         this.posts.find(p => p.postId == postId).comments.push(comment)
     }
 }
