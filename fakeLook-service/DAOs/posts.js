@@ -1,11 +1,14 @@
 
 class postsDAO {
     postsIndex = "fake_look"
+    currentDAO = "social DAO"
+    logger
     elasticSearch
     UUID
-    constructor(elasticSearchClient, idCreator) {
+    constructor(elasticSearchClient, idCreator, _logger) {
         this.elasticSearch = elasticSearchClient
         this.UUID = idCreator
+        this.logger = _logger
     }
 
     getfilterByDates(dateFrom, dateTo) {
@@ -82,6 +85,7 @@ class postsDAO {
     }
 
     getAmountOfPosts(callback) {
+        this.logger.writeInfo(this.currentDAO, "getAmountOfPosts", "a request to the db to get the amount of the posts")
         this.elasticSearch.count({
             index: this.postsIndex,
             body: {
@@ -97,6 +101,7 @@ class postsDAO {
     }
 
     getPosts = (filter, callback) => {
+        this.logger.writeInfo(this.currentDAO, "getPosts", "a request to the db to get posts with filters: " + filter)
         let filteres = this.generateAllFilters(filter)
         let searchJson = {
             index: this.postsIndex,
@@ -130,6 +135,7 @@ class postsDAO {
     }
 
     getPost = (postId, callback) => {
+        this.logger.writeInfo(this.currentDAO, "postId", "a request to the db to get a specific post with id: " + postId)
         this.elasticSearch.search({
             index: this.postsIndex,
             body: {
@@ -145,6 +151,7 @@ class postsDAO {
     }
 
     publishPost = (post, callback) => {
+        this.logger.writeInfo(this.currentDAO, "publishPost", "a request to the db to publish new post: " + post)
         const generatedId = this.UUID.v4()
         this.elasticSearch.index({
             index: this.postsIndex,
@@ -171,6 +178,7 @@ class postsDAO {
     }
 
     likepost = (postId, userId, callback) => {
+        this.logger.writeInfo(this.currentDAO, "likepost", `a request to the db to like a post with postId: ${postId} and userId: ${userId}`)
         this.elasticSearch.update({
             index: this.postsIndex,
             id: postId,
@@ -188,6 +196,7 @@ class postsDAO {
     }
 
     dislikePost = (postId, userId, callback) => {
+        this.logger.writeInfo(this.currentDAO, "dislikepost", `a request to the db to dislike a post with postId: ${postId} and userId: ${userId}`)
         this.elasticSearch.update({
             index: this.postsIndex,
             id: postId,
@@ -205,6 +214,7 @@ class postsDAO {
     }
 
     checkIfLikedPost = (postId, callback) => {
+        this.logger.writeInfo(this.currentDAO, "checkIfLikedPost", `a request to the db to get all likes of post with postId: ${postId}`)
         this.elasticSearch.search({
             index: this.postsIndex,
             _source: 'likes',
@@ -232,6 +242,7 @@ class postsDAO {
     }
 
     CheckIfUsernamesExist = async (usernames, callback) => {
+        this.logger.writeInfo(this.currentDAO, "CheckIfUsernamesExist", `a request to the db to get check if recieved userNames exists: ${usernames}`)
         var wrongUsers = []
         var promises = usernames.map(async (tag) => {
             var user = await this.elasticSearch.search({
@@ -269,6 +280,8 @@ class postsDAO {
     }
 
     publishComment = (comment, callback) => {
+        this.logger.writeInfo(this.currentDAO, "publishComment", `a request to the db to publish a comment: ${comment}`)
+
         const generatedId = this.UUID.v4()
         this.elasticSearch.update({
             index: this.postsIndex,
@@ -287,17 +300,10 @@ class postsDAO {
         }, (err, res) => {
             handleElasticResponses(err, { commentId: generatedId }, callback)
         })
-        // var dbreq = this.dbPool.request()
-        // dbreq.input('postId', sql.BigInt, comment.postId)
-        // dbreq.input('userId', sql.BigInt, comment.userId)
-        // dbreq.input('text', sql.NVarChar(200), comment.text)
-        // dbreq.input('date', sql.Date, comment.date)
-        // dbreq.execute('SP_PublishComment', (err, data) => {
-        //     handleDbResponses(err, data, callback)
-        // })
     }
 
     createUser = (user, callback) => {
+        this.logger.writeInfo(this.currentDAO, "createUser", `a request to the db to create a user: ${user}`)
         this.elasticSearch.index({
             index: this.postsIndex,
             id: user.ID,
@@ -311,13 +317,6 @@ class postsDAO {
         }, (err) => {
             callback(err)
         })
-    }
-}
-handleDbResponses = (err, data, callback) => {
-    if (err) {
-        callback(err, undefined)
-    } else {
-        callback(undefined, data.recordset)
     }
 }
 

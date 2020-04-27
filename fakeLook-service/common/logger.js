@@ -14,11 +14,11 @@ const logger = winston.createLogger({
 })
 
 module.exports = {
-    writeInfo(controller, call, msg) {
-        logger.info(`message writen by ${controller} controller in ${call} function on ${getTime()}.\n        ${msg}\n`)
+    writeInfo(file, call, msg) {
+        logger.info(`message writen by ${file} in ${call} function on ${getTime()}.\n        ${msg}\n`)
     },
-    writeError(controller, call, msg) {
-        logger.error(`error occoured by ${controller} controller in ${call} function on ${getTime()}.\n        ${msg}\n`)
+    writeError(file, call, msg) {
+        logger.error(`error occoured by ${file} in ${call} function on ${getTime()}.\n        ${msg}\n`)
     }
 }
 

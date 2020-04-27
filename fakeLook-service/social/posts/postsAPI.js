@@ -1,5 +1,5 @@
 class postsAPI {
-  currentController = "Social"
+  currentController = "Social controller"
   dbService
   errorHandler
   currentUrl
@@ -50,7 +50,7 @@ class postsAPI {
         this.logger.writeError(this.currentController, 'GetPost', error.message)
         next(error)
       } else {
-        if (data) {
+        if (data) {      
           data.likes = data.likes ? data.likes.length : 0
           res.send(data)
         }
@@ -66,21 +66,21 @@ class postsAPI {
     const image = req.file
     if (!image) {
       this.logger.writeError(this.currentController, 'PublishPost', 'no image provided')
-      next(this.errorHandler.createError('No image provided', 400))//?
+      next(this.errorHandler.createError('No image provided', 400))
     } else {
       var post = JSON.parse(req.body.post)
       post.image_url = `${this.currentUrl}/${req.file.path}`
       const date = new Date();
       post.publishedDate = `${date.getFullYear()}/${("0" + (date.getMonth() + 1)).slice(-2)}/${("0" + date.getDate()).slice(-2)}`
       post.publisherId = req.user.id
-
+      
       this.dbService.CheckIfUsernamesExist(post.user_tags.split(','), (err, data) => {
         if (err) {
           this.logger.writeError(this.currentController, 'PublishPost', err.message)
-          next(err)//?
+          next(err)
         } else {
           if (data.length) {
-            this.logger.writeError(this.currentController, 'PublishPost', `try to tagged users whom does not exist!\nNames: ${data}`)
+            this.logger.writeError(this.currentController, 'PublishPost', `try to tag users whom does not exist!\nNames: ${data}`)
             next(this.errorHandler.createError(
               `You tagged users whom does not exist!\nNames: ${data}`,
               400
@@ -116,7 +116,7 @@ class postsAPI {
       if (err) {
         this.logger.writeError(this.currentController, 'LikePost', err.message)
         next(err)
-      } else {
+      } else {  
         const isLiked = data && data.includes(userId)
         const like = isLiked ? this.dbService.dislikePost : this.dbService.likepost        
         like(postId, userId, (err, data) => {

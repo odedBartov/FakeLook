@@ -1,18 +1,16 @@
-<<<<<<< HEAD
 class fakeLookDB{
     constructor(){ }
     users = []
-=======
-class fakeLookDB {
-    constructor() { }
-
->>>>>>> unit-test-server-mushky
     posts = []
-    users = [{ username: "oded", id: 1, email: "oded@gmail.com" }]//?
     
     getUsers() {
         return this.users
     }
+
+    setUsers(users){
+        this.users = users
+    }
+
     setPosts(posts) {
         this.posts = posts
     }
@@ -22,7 +20,7 @@ class fakeLookDB {
     }
 
     getPost(postId){
-        return this.posts.find(p => p.postId = postId)
+        return Object.assign({}, this.posts.find(p => p.postId = postId))
     }
 
     createUser(user){
