@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.prod';
 
 
@@ -21,9 +21,5 @@ export class HttpService {
 
   SignUp(userName, password, email){
     return this.http.get(`http://localhost:1000/authentication/signUp?userName=${userName}&password=${password}&email=${email}`);
-  }
-
-  ResetPassword(){
-
   }
 }

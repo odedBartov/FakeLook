@@ -84,18 +84,6 @@ class postsDAO {
 
     getAmountOfPosts = (callback) => {
         callback(undefined, this.fakeLookDB.getPosts().length)
-        // this.elasticSearch.count({
-        //     index: this.postsIndex,
-        //     body: {
-        //         query: {
-        //             term: {
-        //                 'join_field': "post"
-        //             }
-        //         }
-        //     }
-        // }, (err, res) => {
-        //     handleElasticResponses(err, res.count, callback)
-        // })
     }
 
     getPosts = (filter, callback) => {
@@ -110,29 +98,6 @@ class postsDAO {
     publishPost = (post, callback) => {
         this.fakeLookDB.getPosts().push(post)
         callback(undefined, { _id: post.id })
-        // const generatedId = this.UUID.v4()
-        // this.elasticSearch.index({
-        //     index: this.postsIndex,
-        //     id: generatedId,
-        //     routing: post.publisherId,
-        //     body: {
-        //         "post_id": generatedId,
-        //         "post_text": post.text,
-        //         "post_publish_date": post.publishedDate,
-        //         "image_url": post.image_url,
-        //         "location": post.location,
-        //         "user_tags": post.user_tags.split(','),
-        //         "image_tags": post.image_tags.split(','),
-        //         "likes": [],
-        //         "comments": [],
-        //         "join_field": {
-        //             "name": "post",
-        //             "parent": post.publisherId
-        //         }
-        //     }
-        // }, (err, data) => {
-        //     handleElasticResponses(err, data, callback)
-        // })
     }
 
     likepost = (postId, userId, callback) => {

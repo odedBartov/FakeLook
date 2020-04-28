@@ -11,6 +11,7 @@ import { NavigatorService } from "../../shared/navigator.service"
 export class LoginComponent implements OnInit {
   userName: string = 'oded';
   password: string = '12';
+  noUsernameOrPassword = "please type user name and password";
   constructor(private httpService: HttpService, private navigatorService: NavigatorService) { }
 
   ngOnInit() {
@@ -18,12 +19,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (!this.userName || !this.password) {
-      alert("please type user name and password")
+      alert(this.noUsernameOrPassword)
     }
     else {
       this.httpService.Login(this.userName, this.password).subscribe(res => {        
         this.navigatorService.navigateToFeed();
-      }, error => {
+      }, error => {        
         alert(error.message + "\n\n" + error.error.message)
       })
     }

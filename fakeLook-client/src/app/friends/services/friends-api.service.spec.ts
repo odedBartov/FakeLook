@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+// import { TestBed } from '@angular/core/testing';
 
-import { FriendsApiService } from './friends-api.service';
+// import { FriendsApiService } from './friends-api.service';
 
-describe('FriendsApiService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+// describe('FriendsApiService', () => {
+//   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: FriendsApiService = TestBed.get(FriendsApiService);
-    expect(service).toBeTruthy();
-  });
-});
+//   it('should be created', () => {
+//     const service: FriendsApiService = TestBed.get(FriendsApiService);
+//     expect(service).toBeTruthy();
+//   });
+// });
