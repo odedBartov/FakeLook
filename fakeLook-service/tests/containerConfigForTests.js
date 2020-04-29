@@ -10,7 +10,7 @@ const enviroment = require('../enviroments/dev')
 const errorHandler = require('../common/errorHandler')
 const JWTservice = require('../common/JWT_Service')
 const strings = require('../common/strings')
-const logger = require('../common/logger')
+const logger = require('./testLogger')
 
 // const authenticationConfig = require('../dbConfig/authenticationConfig')
 const authenticationDAO = require('./testDAOs/authentication')
