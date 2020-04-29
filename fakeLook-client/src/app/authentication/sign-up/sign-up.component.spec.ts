@@ -13,15 +13,7 @@ describe('SignUpComponent', () => {
     let fixture: ComponentFixture<SignUpComponent>;
     let httpService: HttpService;
     let navigatorService: NavigatorService
-
-    /*     beforeEach(async(() => {
-            TestBed.configureTestingModule({
-                imports: [HttpClientModule, RouterModule.forRoot([]), FormsModule],
-                declarations: [SignUpComponent],
-                providers: [HttpService, NavigatorService]
-            })
-        })); */
-
+    
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientModule, RouterModule.forRoot([]), FormsModule],
