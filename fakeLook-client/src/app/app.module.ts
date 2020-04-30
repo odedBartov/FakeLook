@@ -21,9 +21,10 @@ import { PublishPostComponent } from './feed/publish-post/publish-post.component
 import { Credentials } from '../../credentials';
 import { InfoWindowComponent } from './feed/map/info-window/info-window.component';
 import { ScrollFeedComponent } from './feed/scroll-feed/scroll-feed.component';
+import { environment } from 'src/environments/environment.prod';
 
 
-const socketioConfig: SocketIoConfig = { url: 'http://localhost:1000', options: {} };
+const socketioConfig: SocketIoConfig = { url: environment.URL, options: {} };
 
 @NgModule({
   declarations: [

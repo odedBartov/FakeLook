@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { PostModel } from '../models/postModel';
 import { HttpService } from 'src/app/feed/services/http.service';
 import { Subject } from 'rxjs';
 import { FilterModel } from '../filters/filter/models/filterModel';

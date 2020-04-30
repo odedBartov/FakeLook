@@ -11,5 +11,4 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

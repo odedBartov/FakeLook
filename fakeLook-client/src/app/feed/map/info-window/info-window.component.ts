@@ -45,6 +45,7 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
     }
     this.postServiec.getPost(this.postId).subscribe((res: any) => {
       this.currentPost = res;
+      debugger;
     },
       err => {
         alert("can't get post\n\n" + err.error.message);
@@ -55,20 +56,18 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
     }, err => {
       alert(err.error.message);
     })
-    this.socket.emit('msgFromClient', 'data from client');
-    this.socket.on('msgFromServer', (data) => {
-      console.log(data);
-    })
-    this.socket.on('like', (data) => {      
+
+    this.initSocketIO();
+  }
+
+  initSocketIO() {
+    this.socket.on('like', (data) => {
       this.currentPost.likes += parseInt(data);
     })
 
     this.socket.on('newCommentPostId' + this.postId, (comment) => {
       this.currentPost.comments.push(comment)
     })
-
-  
- 
   }
 
   like() {
@@ -95,19 +94,21 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
         comment_text: this.text,
         postId: this.postId,
         comment_publisher: environment.userName
-      };      
-      this.postServiec.publishComment(comment).subscribe((res: {commentId: string}) => {
-        alert('Your comment published successfuly');
+      };
+      this.postServiec.publishComment(comment).subscribe((res: { commentId: string }) => {
         const newComment = new CommentModel;
         newComment.comment_id = res.commentId;
         newComment.comment_publisher = environment.userName;
         newComment.comment_publish_date = date;
         newComment.comment_text = this.text;
         this.currentPost.comments.push(newComment);
-        console.log(this.currentPost.comments);
-        this.socket.emit('newComment', {postId: this.postId, comment: newComment});
+        this.socket.emit('newComment', { postId: this.postId, comment: newComment });
+        alert('Your comment published successfuly');
         this.text = '';
-      })
+      }, error => {
+        alert(error.error.message)
+        }
+      )
     }
   }
 
@@ -115,8 +116,6 @@ export class InfoWindowComponent implements OnInit, OnDestroy {
     this.routerService.navigateToScrollFeed();
   }
 
-  ngOnDestroy(){
-    console.log("info window out");
-    debugger
+  ngOnDestroy() {
   }
 }

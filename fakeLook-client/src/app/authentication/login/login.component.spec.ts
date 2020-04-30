@@ -22,6 +22,7 @@ describe('LoginComponent', () => {
             declarations: [LoginComponent],
             providers: [HttpService, NavigatorService]
         })
+        
         fixture = TestBed.createComponent(LoginComponent);
         component = fixture.componentInstance;
         httpService = TestBed.get(HttpService)

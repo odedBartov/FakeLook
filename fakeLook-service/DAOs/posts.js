@@ -101,7 +101,7 @@ class postsDAO {
     }
 
     getPosts = (filter, callback) => {
-        this.logger.writeInfo(this.currentDAO, "getPosts", "a request to the db to get posts with filters: " + filter)
+        this.logger.writeInfo(this.currentDAO, "getPosts", "a request to the db to get posts with filters: " + JSON.stringify(filter))
         let filteres = this.generateAllFilters(filter)
         let searchJson = {
             index: this.postsIndex,

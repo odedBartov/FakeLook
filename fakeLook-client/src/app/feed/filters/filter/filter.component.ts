@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostsService } from "../../services/posts.service"
 import { FilterModel } from "./models/filterModel"
 
