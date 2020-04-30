@@ -23,7 +23,7 @@
     "@angular/router": "~8.2.14",
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-image-picker": "0.0.1",
     "ngx-socket-io": "^3.0.1",
     "rxjs": "~6.4.0",
