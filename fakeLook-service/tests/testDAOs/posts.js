@@ -124,62 +124,11 @@ class postsDAO {
                 worngUsers.push(username)
         });
         callback(undefined, worngUsers)
-        // var wrongUsers = []
-        // var promises = usernames.map(async (tag) => {
-        //     var user = await this.elasticSearch.search({
-        //         index: this.postsIndex,
-        //         _source: "user_name",
-        //         body: {
-        //             "query": {
-        //                 "bool": {
-        //                     "must": [
-        //                         {
-        //                             "term": {
-        //                                 "join_field": "user"
-        //                             }
-        //                         },
-        //                         {
-        //                             "term": {
-        //                                 "user_name": tag
-        //                             }
-        //                         }
-        //                     ]
-        //                 }
-        //             }
-        //         }
-        //     })
-        //     if (user.hits.hits.length == 0) {
-        //         wrongUsers.push(tag)
-        //     }
-        // })
-        // try {
-        //     await Promise.all(promises)
-        // } catch (err) {
-        //     callback(err, undefined)
-        // }
-        // callback(undefined, wrongUsers)
     }
 
     publishComment = (comment, callback) => {
         this.fakeLookDB.publishComment(comment, comment.postId)
         callback(undefined)
-        // this.elasticSearch.update({
-        //     index: this.postsIndex,
-        //     id: comment.postId,
-        //     body: {
-        //         "script": {
-        //             "source": "ctx._source.comments.add(['comment_id': params.comment_id, 'comment_text': params.comment_text, 'comment_publisher': params.comment_publisher, 'comment_publish_date': params.comment_publish_date])",
-        //             "params": {
-        //                 "comment_id": generatedId,
-        //                 "comment_text": comment.comment_text,
-        //                 "comment_publisher": comment.comment_publisher,
-        //                 "comment_publish_date": comment.comment_publish_date
-        //             }
-        //         }
-        //     }
-        // }, (err, res) => {
-        //     handleElasticResponses(err, { commentId: generatedId }, callback)
-        // })
     }
 
     createUser = (user, callback) => {
