@@ -34,7 +34,7 @@ export class PublishPostComponent implements OnInit {
   upload() {
     this.postService.publishPost(this.post, this.uploadedImage).subscribe(
       res => {//res id post data
-        this.socket.emit('newPost',res)
+        this.emitNewPost(res)
         alert('Your post uploaded successfuly!');
         this.goBackToFeed();
       },
@@ -42,7 +42,9 @@ export class PublishPostComponent implements OnInit {
         alert('An error occured:\n\n' + err.error.message)
       })
   }
-
+  emitNewPost(res) {
+    this.socket.emit('newPost', res)
+  }
   goBackToFeed() {
     this.navigationService.navigateToFeed();
   }
