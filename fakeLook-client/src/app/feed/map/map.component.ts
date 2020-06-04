@@ -140,6 +140,8 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.postsSubscription.unsubscribe();
+    if (this.postsSubscription){
+      this.postsSubscription.unsubscribe()
+    }
   }
 }

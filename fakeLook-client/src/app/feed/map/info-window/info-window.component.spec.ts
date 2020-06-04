@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { InfoWindowComponent } from './info-window.component';
 import { PostsService } from "../../services/posts.service"
 import { NavigatorService } from 'src/app/shared/navigator.service';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { SocketIoModule } from 'ngx-socket-io';
 
 describe('InfoWindowComponent', () => {
   let component: InfoWindowComponent;
