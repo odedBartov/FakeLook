@@ -17,7 +17,7 @@
     "dotenv": "^8.2.0",
     "elasticsearch": "^16.7.1",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "kontainer-di": "^0.9.9",
     "mocha": "^7.1.1",
     "mssql": "^6.0.1",
