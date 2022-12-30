@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "kontainer-di": "^0.9.9",
-    "mocha": "^7.1.1",
+    "mocha": "^10.2.0",
     "mssql": "^6.0.1",
     "multer": "^1.4.2",
     "socket.io": "^2.3.0",
